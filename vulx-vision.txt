@@ -1,0 +1,97 @@
+Project Description / Revision
+
+How will the frontend work?
+The application will create a web based interface to allow users to select and edit settings.
+Upon first launch the tab will open and function as followed.
+
+[+] The page will display a welcome message, centralised on the page
+[+] The page will ask some basic questions, for example: where is your valorant installed, have you downloaded the correct launcher ect.
+[+] After this a quick promt to say, Consider checking out the developer with some links (a button under showing, no thanks or skip)
+[+] This will take you to the main page, it will display some stats such as display name ect along with settings to edit every value of your profile.
+[+] Settings can be saved locally to allow quick loading.
+
+Display at the top Steps x/x (1/3)
+
+On initial launch (Local save will set a boolean and save the selected options + the settings they change):
+
+Ask if they'd like to use Discord RPC,
+Ask if they would like to use experimental features
+Promote the YouTube and Discord 
+
+DiscordRPC Manager:
+
+[+] Display Vulx in the status, this will contain the current rank
+[+] It will also display the status selected if one is present.
+[+] Two buttons will be located display Discord & YouTube
+
+Note: This code will be easily accessible and will most likely be prone to skidding
+
+{
+    "isValid": true,
+    "sessionLoopState": "INGAME", //Player state: INGAME, MENUES (Making the state invalid / empty created purple profile)
+    "partyOwnerSessionLoopState": "INGAME", //Player state: INGAME, MENUES (Making the state invalid / empty created purple profile)
+    "customGameName": "",
+    "customGameTeam": "",
+    "partyOwnerMatchMap": "", //Map path used to display what map the player is in
+    "partyOwnerMatchCurrentTeam": "",
+    "partyOwnerMatchScoreAllyTeam": -1, //Score displayed on the left side of the user profile (Can use negative numbers)
+    "partyOwnerMatchScoreEnemyTeam": -1, //Score displayed on the right side of the user profile (Can use negative numbers)
+    "partyOwnerProvisioningFlow": "Invalid",
+    "provisioningFlow": "Invalid",
+    "matchMap": "", //Map path used to display what map the player is in
+    "partyId": "58DsGJ20-9prT-7Jy8-h7hS-YXF1YXBsYXlz",
+    "isPartyOwner": true, 
+    "partyState": "DEFAULT",
+    "partyAccessibility": "CLOSED", //Allows players to join you (CLOSED, OPEN)
+    "maxPartySize": 5,
+    "queueId": "youtube.com/aqua <3", //This can be used for a custom status depending on the players state
+    "partyLFM": false,
+    "partyClientVersion": "release-04.07-shipping-15-699063", //Client version, Older versions will display red text on the profile
+    "partySize": 1, //This number will display under the profile, EG: +789
+    "tournamentId": "",
+    "rosterId": "",
+    "partyVersion": 1650719279092,
+    "queueEntryTime": "0001.01.01-00.00.00",
+    "playerCardId": "30b64514-440d-1261-f863-6bbb180263f9", //UUID Item for the banner under the player profile
+    "playerTitleId": "00d4d326-4edc-3229-7c28-129d3374e3ad", //UUID Item for the title under the player profile
+    "preferredLevelBorderId": "",
+    "accountLevel": 720, //Users account level, this will only display for other users (Buggy / inconsistent)
+    "competitiveTier": 24, //Rank displayed under the profile, EG: Diamond, Immortal, Radiant
+    "leaderboardPosition": 1, //Position that will display next to the rank, EG: Radiant (#1) Note: 0 will remove the number
+    "isIdle": true
+}
+
+{
+    "isValid": true,
+    "sessionLoopState": "INGAME", 
+    "partyOwnerSessionLoopState": "INGAME", 
+    "customGameName": "",
+    "customGameTeam": "",
+    "partyOwnerMatchMap": "",
+    "partyOwnerMatchCurrentTeam": "",
+    "partyOwnerMatchScoreAllyTeam": -1, 
+    "partyOwnerMatchScoreEnemyTeam": -1, 
+    "partyOwnerProvisioningFlow": "Invalid",
+    "provisioningFlow": "Invalid",
+    "matchMap": "", 
+    "partyId": "58DsGJ20-9prT-7Jy8-h7hS-YXF1YXBsYXlz",
+    "isPartyOwner": true, 
+    "partyState": "DEFAULT",
+    "partyAccessibility": "CLOSED", 
+    "maxPartySize": 5,
+    "queueId": "youtube.com/aqua <3", 
+    "partyLFM": false,
+    "partyClientVersion": "release-04.07-shipping-15-699063", 
+    "partySize": 1, 
+    "tournamentId": "",
+    "rosterId": "",
+    "partyVersion": 1650719279092,
+    "queueEntryTime": "0001.01.01-00.00.00",
+    "playerCardId": "30b64514-440d-1261-f863-6bbb180263f9", 
+    "playerTitleId": "00d4d326-4edc-3229-7c28-129d3374e3ad", 
+    "preferredLevelBorderId": "",
+    "accountLevel": 720, 
+    "competitiveTier": 24, 
+    "leaderboardPosition": 1, 
+    "isIdle": true
+}
