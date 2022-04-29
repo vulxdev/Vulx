@@ -91,8 +91,9 @@ async function startInstance() {
 		valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 		valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
 		fs.writeFileSync("./valorant.json", JSON.stringify(valConfig));
+		discord.update(valConfig.queueId, valConfig.competitiveTier)
+		valConfig.queueId = `\r\n\r\n██╗░░░██╗██╗░░░██╗██╗░░░░░██╗░░██╗\r\n ██║░░░██║██║░░░██║██║░░░░░╚██╗██╔╝\r\n ╚██╗░██╔╝██║░░░██║██║░░░░░░╚███╔╝░\r\n ░╚████╔╝░██║░░░██║██║░░░░░░██╔██╗░\r\n ░░╚██╔╝░░╚██████╔╝███████╗██╔╝╚██╗\r\n ░░░╚═╝░░░░╚═════╝░╚══════╝╚═╝░░╚═╝\r\n\r\n\n                                     You can check out Vulx @ discord.gg/aquaplays\r\n\r\n\r\n\r\n\r\n                             ${valConfig.queueId}\r\n\r\n\r\n\r\n\r\n  ` 
 		let json = await createJson(JSON.stringify(valConfig), false)
-		discord.update(req.body.status)
 		return sendRequest("/chat/v2/me", json) && res.sendFile(path.join(__dirname, '/public/index.html'));
 	});
 
@@ -196,7 +197,7 @@ async function startInstance() {
 
 	let jsonData = await createJson(JSON.stringify(valConfig), false)
 	await sendRequest("/chat/v2/me", jsonData);
-	discord.update("Playing Valorant")
+	discord.update(valConfig.queueId, valConfig.competitiveTier)
 }
 discord.startRPC();
 startInstance();
