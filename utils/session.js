@@ -1,4 +1,5 @@
 const logger = require('./logger')
+
 async function checkSession(client, timeout) {
   let totalTime = 0; 
   let checkTime = timeout / 25;

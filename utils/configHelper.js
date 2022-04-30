@@ -32,7 +32,7 @@ module.exports.createValConfig = function() {
         partyState:'DEFAULT',
         partyAccessibility:'CLOSED',
         maxPartySize:5,
-        queueId:'\r\n\r\n██╗░░░██╗██╗░░░██╗██╗░░░░░██╗░░██╗\r\n ██║░░░██║██║░░░██║██║░░░░░╚██╗██╔╝\r\n ╚██╗░██╔╝██║░░░██║██║░░░░░░╚███╔╝░\r\n ░╚████╔╝░██║░░░██║██║░░░░░░██╔██╗░\r\n ░░╚██╔╝░░╚██████╔╝███████╗██╔╝╚██╗\r\n ░░░╚═╝░░░░╚═════╝░╚══════╝╚═╝░░╚═╝\r\n\r\n\n                                     You can check out Vulx @ discord.gg/aquaplays\r\n\r\n\r\n\r\n\r\n                             \\(0-0)/ Listening to some absoloute bangers \\(0-0)/ \r\n\r\n\r\n\r\n\r\n                                                                  ',
+        queueId:'Valorant Profile Editor',
         partyLFM:false,
         partyClientVersion:'release-04.08-shipping-15-701907',
         partySize:1,

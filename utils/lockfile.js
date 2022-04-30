@@ -36,14 +36,14 @@ class lockfile {
         const filePath = process.env.LOCALAPPDATA + '\\Riot Games\\Riot Client\\Config\\lockfile';
         logger.info("Checking for lockfile...")
         await checkFileExist(filePath, 120000)
-        .then(function(results){
-            if(results == true) {
-                var data = fs.readFileSync(filePath, { encoding:'utf8' })
-                    .toString()
-                    .split(":");
-                returnData = data;
-            }
-        });
+            .then(function(results){
+                if(results == true) {
+                    var data = fs.readFileSync(filePath, { encoding:'utf8' })
+                        .toString()
+                        .split(":");
+                    returnData = data;
+                }
+            });
         this.port = returnData[2]
         this.password = returnData[3]
         this.protocol = returnData[4]
