@@ -1,3 +1,11 @@
+/* print stacktrace for all logs
+var logg = console.log;
+console.log = function() {
+    logg.apply(console, arguments);
+    console.trace();
+};
+*/
+
 function log(logtype, str, projectType="Vulx") {
 	const date_ob = new Date();
 	const date = ('0' + date_ob.getDate()).slice(-2);

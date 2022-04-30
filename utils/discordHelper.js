@@ -3,7 +3,7 @@ const logger = require('./logger')
 const configHelper = require('./configHelper')
 
 const clientId = "948363491100721242";
-const client = new RPC.Client({ transport: 'ipc' });
+let client = new RPC.Client({ transport: 'ipc' });
 
 const rankIdToName = {
     0: "Unranked",
@@ -53,29 +53,42 @@ client.on('ready', () => {
 
 module.exports.update = function(status, competitiveTier) {
     const config = configHelper.getConfig();
-    //add rank support
-    //add small image rank status [ small_image: " ]
-    if(config.discordRpc) {
-        client.request('SET_ACTIVITY', {
-            pid: process.pid,
-            activity : {
-                details : "Valorant Profile Editor",
-                state : `${status.length < 128 ? status : 'Playing Valorant'}`,
-                assets : {
-                    large_image : "logo",
-                    large_text : "Vulx",
-                    small_image: `${competitiveTier}`,
-                    small_text: `${rankIdToName[competitiveTier]}`
-                },
-                buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
-            }
-        })
-        logger.debug("RPC Client status updated.")
-    } else {
-        client.clearActivity();
+    try {
+        if(config.discordRpc) {
+            client.request('SET_ACTIVITY', {
+                pid: process.pid,
+                activity : {
+                    details : "Valorant Profile Editor",
+                    state : `${status.length < 128 ? status : 'Playing Valorant'}`,
+                    assets : {
+                        large_image : "logo",
+                        large_text : "Vulx",
+                        small_image: `${competitiveTier}`,
+                        small_text: `${rankIdToName[competitiveTier]}`
+                    },
+                    buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
+                }
+            })
+            logger.debug("RPC Client status updated.")
+        } else {
+            client.clearActivity();
+        }
+    } catch (err) {
+        logger.discord("Failed to update RPC Client status");
     }
 }
 
-module.exports.startRPC = function() {
-    client.login({ clientId });
+module.exports.startRPC = async function() {
+    client = new RPC.Client({ transport: 'ipc' })
+
+    client.on('disconnected', async () => {
+        await client.destroy();
+    })
+
+    try {
+        await client.login({ clientId });
+    } catch (err) {
+        logger.discord("Failed to start RPC Client");
+        await client.destroy();
+    }
 }
