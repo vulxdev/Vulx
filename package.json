@@ -15,7 +15,6 @@
     "dependencies": {
         "@forevolve/bootstrap-dark": "^2.1.0",
         "axios": "^0.26.1",
-        "axios-cookiejar-support": "^2.0.4",
         "discord-rpc": "^4.0.1",
         "express": "^4.17.3",
         "http-status": "^1.5.1",
