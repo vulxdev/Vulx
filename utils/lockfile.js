@@ -12,7 +12,7 @@ async function checkFileExist(path, timeout) {
 
             if (fileExists) {
                 clearInterval(timer);
-                logger.info("Found Valorant, loaded client")
+                logger.info("Found Valorant, loading session..")
                 resolve(fileExists);
             }
             else if(totalTime >= timeout) {
@@ -34,7 +34,7 @@ class lockfile {
     async getLockfile() {  
         let returnData;
         const filePath = process.env.LOCALAPPDATA + '\\Riot Games\\Riot Client\\Config\\lockfile';
-        logger.info("Checking for lockfile...")
+        logger.info("Checking for lockfile..")
         await checkFileExist(filePath, 120000)
             .then(function(results){
                 if(results == true) {

@@ -23,7 +23,7 @@ async function checkSession(client, timeout) {
 
           if (stateConnected) {
               clearInterval(timer);
-              logger.debug("Found session, updating account..")
+              logger.info("Found session, updating account..")
               resolve(stateConnected);
           }
           else if(totalTime >= timeout) {
