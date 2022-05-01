@@ -1,13 +1,11 @@
 const configHelper = require('./configHelper');
-const axios = require('axios');
+const ValorantAPI = require('./ValorantAPI');
 
 module.exports.createJson = async function(settings, leagueToggle) {
 	const lolConfig = configHelper.getLolConfig();
 	const lolSettingsEncoded = JSON.stringify(lolConfig).toString()
 
-	// fetch party version from external api, talk to officer if he minds about us doing this
-	const response = await axios.get('https://valorant-api.com/v1/version');
-	settings.partyClientVersion = response.data.data.riotClientVersion;
+	settings.partyClientVersion = ValorantAPI.clientVersion;
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",
