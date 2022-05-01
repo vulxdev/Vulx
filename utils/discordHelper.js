@@ -89,6 +89,10 @@ module.exports.startRPC = async function() {
         await client.login({ clientId });
     } catch (err) {
         logger.discord("Failed to start RPC Client");
-        await client.destroy();
+        try {
+            await client.destroy();
+        } catch (err) {
+            logger.error("Failed to find Discord")
+        }
     }
 }

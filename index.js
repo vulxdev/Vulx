@@ -11,6 +11,7 @@ const logger = require('./utils/logger');
 const configHelper = require('./utils/configHelper');
 const { createJson } = require('./utils/jsonHelper');
 const { axiosHelperInit, vulxAxios, lockFile } = require('./utils/axiosHelper');
+const ValApi = require('./utils/apiHelper');
 const routes = require('./routes');
 
 // TODO: Figure out why the actual fuck pkg doesn't include this in the compiled exe even after having it included through pkg config
@@ -49,7 +50,10 @@ app.use('/', routes);
 
 	const valConfig = configHelper.getValConfig();
 	const jsonData = await createJson(valConfig, false);
-	
+
+	let valClient = await ValApi.startValorantAPI()
+	console.log(await valClient.lookup.getCosmetic('5f8d3a7f-467b-97f3-062c-13acf203c006', ValApi.client.CosmeticType.Agent));
+
 	await vulxAxios.put("/chat/v2/me", jsonData);
 	discord.update(valConfig.queueId, valConfig.competitiveTier);
 
