@@ -29,14 +29,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav w-100" id="navbarContent">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Presence <span class="sr-only">(current)</span></a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Presence <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item" id="experimentalNav" style="display: none;">
+                            <li class="nav-item" id="experimentalNav">
                                 <a class="nav-link" href="experimental.html">Experimental</span></a>
                             </li>
-                            <li class="nav-item" id="gameFeedNav" style="display: none;">
-                                <a class="nav-link" href="gamefeed.html">Gamefeed</span></a>
+                            <li class="nav-item active" id="gameFeedNav">
+                                <a class="nav-link" href="#">Gamefeed</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://discord.gg/aquaplays">Discord</a>
@@ -59,91 +59,25 @@
                       <h1>Welcome <b><a id="username"></a></b></h1>
                   </div>
                 <br />
-                <form action="/updatePresence" method="POST">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputName"
-                                style="font-size: 23px">
-                                Status
-                            </label>
-                            <input type="text" class="form-control"
-                                id="status" name="status" />
+                <div class="row">
+                    <div style="display: flex; padding: 10px;" class="col-md-12">
+                        <div style="background-color: gray; height: 600px; width: 20%; margin: 0rem 0.5rem 0rem 0.5rem; border-radius: 20px;" class="">
+                            <h5 class="card-title">Gamefeed</h5>
                         </div>
-         
-                        <div class="form-group col-md-6">
-                            <label style="font-size: 23px" for="rank">Rank</label>
-                                <select class="form-control" name="rank" id="rank">
-                                    <option value="-1">Empty</option>
-                                    <option value="0">Unused 1</option>
-                                    <option value="1">Unused 2</option>
-                                    <option value="2">Unranked</option>
-                                    <option value="3">Iron 1</option>
-                                    <option value="4">Iron 2</option>
-                                    <option value="5">Iron 3</option>
-                                    <option value="6">Bronze 1</option>
-                                    <option value="7">Bronze 2</option>
-                                    <option value="8">Bronze 3</option>
-                                    <option value="9">Silver 1</option>
-                                    <option value="10">Silver 2</option>
-                                    <option value="11">Silver 3</option>
-                                    <option value="12">Gold 1</option>
-                                    <option value="13">Gold 2</option>
-                                    <option value="14">Gold 3</option>
-                                    <option value="15">Platinum 1</option>
-                                    <option value="16">Platinum 2</option>
-                                    <option value="17">Platinum 3</option>
-                                    <option value="18">Diamond 1</option>
-                                    <option value="19">Diamond 2</option>
-                                    <option value="20">Diamond 3</option>
-                                    <option value="21">Immortal 1</option>
-                                    <option value="22">Immortal 2</option>
-                                    <option value="23">Immortal 3</option>
-                                    <option value="24">Radiant</option>
-                                </select>
-                          </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputPosition"
-                                style="font-size: 23px">
-                                Leaderboard Position
-                            </label>
-                            <input type="text" class="form-control"
-                                id="position" name="position" />
+                        <div style="background-color: gray; height: 600px; width: 20%; margin: 0rem 0.5rem 0rem 0.5rem; border-radius: 20px;" class="">
+                            <h5 class="card-title">Gamefeed</h5>
                         </div>
-         
-                        <div class="form-group col-md-6">
-                            <label for="inputLevel"
-                                style="font-size: 23px">
-                                Account Level
-                            </label>
-                            <input type="text" class="form-control"
-                                id="level" name="level" />
+                        <div style="background-color: gray; height: 600px; width: 20%; margin: 0rem 0.5rem 0rem 0.5rem; border-radius: 20px;" class="">
+                            <h5 class="card-title">Gamefeed</h5>
+                        </div>
+                        <div style="background-color: gray; height: 600px; width: 20%; margin: 0rem 0.5rem 0rem 0.5rem; border-radius: 20px;" class="">
+                            <h5 class="card-title">Gamefeed</h5>
+                        </div>
+                        <div style="background-color: gray; height: 600px; width: 20%; margin: 0rem 0.5rem 0rem 0.5rem; border-radius: 20px; " class="">
+                            <h5 class="card-title">Gamefeed</h5>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputAlly"
-                                style="font-size: 23px">
-                                Ally Score (Left Side)
-                            </label>
-                            <input type="text" class="form-control"
-                                id="ally" name="ally" />
-                        </div>
-         
-                        <div class="form-group col-md-6">
-                            <label for="inputEnemy"
-                                style="font-size: 23px">
-                                Enemy Score (Right Side)
-                            </label>
-                            <input type="text" class="form-control"
-                                id="enemy" name="enemy" />
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
         <div class="modal fade" id="debugModal" tabindex="-1" role="dialog" aria-labelledby="connectionLabel" aria-hidden="true">
@@ -217,5 +151,4 @@
 <script src="js/vulx.load.js"></script>
 <script src="js/vulx.request.reset.js"></script>
 <script src="js/vulx.request.session.js"></script>
-<script src="js/vulx.request.settings.js"></script>
 </html>

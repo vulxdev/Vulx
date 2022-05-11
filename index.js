@@ -16,7 +16,12 @@ const LookupAPI = require('./utils/LookupAPI');
 const routes = require('./routes');
 
 // TODO: Figure out why the actual fuck pkg doesn't include this in the compiled exe even after having it included through pkg config
-path.join(__dirname, 'public/style.css');
+path.join(__dirname, 'public/css/style.css');
+path.join(__dirname, 'public/js/vulx.load.js');
+path.join(__dirname, 'public/js/vulx.request.reset.js');
+path.join(__dirname, 'public/js/vulx.request.session.js');
+path.join(__dirname, 'public/js/vulx.request.settings.js');
+path.join(__dirname, 'public/js/vulx.welcome.js');
 
 const config = configHelper.getConfig();
 
