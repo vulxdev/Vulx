@@ -4,7 +4,7 @@
     "description": "Local client that allows Valorant profile changes.",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon index.js",
+        "dev": "nodemon index.js -debug",
         "build": "pkg -t node17-win-x64 -o build/Vulx index.js"
     },
     "pkg": {

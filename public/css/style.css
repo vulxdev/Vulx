@@ -3,6 +3,42 @@ body {
   font-family: sans-serif;
   line-height: 1.5;
 }
+
+.arrow-down {
+  position: relative;
+  top: -50px;
+}
+
+.arrow-down:before, .arrow-down:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 5px;
+  background: white;
+  position: absolute;
+  top: 20px;
+  transition: transform .2s;
+}
+
+.arrow-down:before {
+  right: 21px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transform: rotate(45deg);
+}
+
+.arrow-down:after {
+  right: 10px;
+  transform: rotate(-45deg);
+}
+
+.arrow-down.active:before {
+  transform: rotate(-45deg);
+}
+
+.arrow-down.active:after {
+  transform: rotate(45deg);
+}
   
 .wrapper {
   display: flex;
@@ -44,6 +80,15 @@ body {
 .welcomeContent {
   text-align-last: center;
   width: 60%;
+}
+
+.playerInformation {
+  text-align: left; 
+  margin: 10px;
+}
+
+.noBreak {
+  margin: 0;
 }
 
 .centerBox {
