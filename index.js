@@ -57,7 +57,12 @@ app.use('/', routes);
 	const valConfig = configHelper.getValConfig();
 	const jsonData = await createJson(valConfig, false);
 
-	await vulxAxios.put("/chat/v2/me", jsonData);
+	await vulxAxios.put("/chat/v2/me", jsonData)
+		.then((res) => {
+			if (!res.isAxiosError) {
+				logger.debug("Updated account")
+			}
+		})
 	discord.update(valConfig.queueId, valConfig.competitiveTier);
 
 	if (port != config.port)
