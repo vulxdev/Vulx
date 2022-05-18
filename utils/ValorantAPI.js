@@ -141,7 +141,13 @@ class Client {
     async getPlayers(playerIDs) {
         await this._initialize();
         return await this.axios.put(`https://pd.${this.region}.a.pvp.net/name-service/v2/players`, playerIDs).then(res => res.data);
-    } 
+    }
+
+    // value accessors
+    async getClientVersion() {
+        await this._initialize();
+        return this.clientVersion;
+    }
 }
 
 module.exports = new Client();

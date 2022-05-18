@@ -23,27 +23,6 @@ const updatePresence = catchAsync(async (req, res) => {
 
 	fs.writeFileSync("../valorant.json", JSON.stringify(valConfig));
 	discord.update(valConfig.queueId, valConfig.competitiveTier) //Spacing is important
-	valConfig.queueId = `
-    
-    ██╗░░░██╗██╗░░░██╗██╗░░░░░██╗░░██╗
-     ██║░░░██║██║░░░██║██║░░░░░╚██╗██╔╝
-      ╚██╗░██╔╝██║░░░██║██║░░░░░░╚███╔╝░
-       ░╚████╔╝░██║░░░██║██║░░░░░░██╔██╗░
-        ░░╚██╔╝░░╚██████╔╝███████╗██╔╝╚██╗
-         ░░░╚═╝░░░░╚═════╝░╚══════╝╚═╝░░╚═╝
-         
-         
-         You can check out Vulx @ discord.gg/aquaplays
-         
-         
-         
-         
-         ${valConfig.queueId}
-         
-         
-         
-         
-         `;
 	let json = await createJson(valConfig, false)
 
 	await vulxAxios.put("/chat/v2/me", json)

@@ -1,11 +1,13 @@
 const configHelper = require('./configHelper');
 const ValorantAPI = require('./ValorantAPI');
+const StatusHelper = require('./statusHelper')
 
 module.exports.createJson = async function(settings, leagueToggle) {
 	const lolConfig = configHelper.getLolConfig();
 	const lolSettingsEncoded = JSON.stringify(lolConfig).toString()
 
-	settings.partyClientVersion = ValorantAPI.clientVersion;
+	settings.partyClientVersion = await ValorantAPI.getClientVersion();
+	settings.queueId = await StatusHelper.formatStatus(settings.queueId);
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",
