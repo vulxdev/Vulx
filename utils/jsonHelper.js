@@ -7,7 +7,7 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(lolConfig).toString()
 
 	settings.partyClientVersion = await ValorantAPI.getClientVersion();
-	settings.queueId = await StatusHelper.formatStatus(settings.queueId);
+	settings.queueId = StatusHelper.formatStatus(settings.queueId);
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",
