@@ -21,7 +21,7 @@ const userSession = catchAsync(async (req, res) => {
 		port: lockFile.port,
 		password: Buffer.from(`riot:${lockFile.password}`).toString('base64')
     };
-    logger.debug(returnJson);
+    logger.debug(`Session info, ${JSON.stringify(returnJson)}`);
 
     res.status(httpStatus.OK).send(returnJson);
 });

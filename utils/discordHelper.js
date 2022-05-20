@@ -69,7 +69,7 @@ module.exports.update = function(status, competitiveTier) {
                     buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
                 }
             })
-            logger.debug("RPC Client status updated.")
+            logger.debug("Discord RPC status has been updated")
         } else {
             client.clearActivity();
         }
