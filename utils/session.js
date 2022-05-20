@@ -32,7 +32,7 @@ async function checkSession(client, timeout) {
               process.exit();
           }
           else { 
-            logger.debug("Connecting to session..") 
+            logger.debug("Waiting for connection to session") 
         }
       }, checkTime);
   });

@@ -28,7 +28,7 @@ const updatePresence = catchAsync(async (req, res) => {
 	await vulxAxios.put("/chat/v2/me", json)
 		.then((res) => {
 			if (!res.isAxiosError) {
-				logger.debug("Updated account")
+				logger.debug(`Successfully sent /me request to local Valorant API`)
 			}
 		})
         
@@ -46,7 +46,7 @@ const currentSettings = catchAsync(async (req, res) => {
 		partyOwnerMatchScoreEnemyTeam: valConfig.partyOwnerMatchScoreEnemyTeam
 	}
 
-	logger.debug(data)
+	logger.debug(`Sending current settings to client, ${JSON.stringify(data)}`);
 
 	res.status(httpStatus.OK).send(data);
 });

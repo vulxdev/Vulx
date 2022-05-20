@@ -32,7 +32,7 @@ let port;
 process.argv.forEach(arg => {
 	if (arg.includes("debug")) {
 		logger.debugMode = true;
-		logger.debug("Debug mode enabled!");
+		logger.debug("You are in debug mode, this is a feature to print verbose debug information to the console.");
 	}
 })
 
@@ -60,7 +60,7 @@ app.use('/', routes);
 	await vulxAxios.put("/chat/v2/me", jsonData)
 		.then((res) => {
 			if (!res.isAxiosError) {
-				logger.debug("Updated account")
+				logger.debug(`Successfully sent /me request to local Valorant API`)
 			}
 		})
 	discord.update(valConfig.queueId, valConfig.competitiveTier);
@@ -74,7 +74,7 @@ app.use('/', routes);
 	});
 
 	app.listen(port, () => {
-		logger.debug(`Dashboard started on port: ${port}`);
+		logger.debug(`Vulx initialized on port ${port}`);
 		if(process.pkg)
 			open('http://127.0.0.1:' + port);
 	});
