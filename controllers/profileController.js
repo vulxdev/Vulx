@@ -8,8 +8,6 @@ const catchAsync = require('../utils/catchAsync');
 const { vulxAxios, lockFile } = require('../utils/axiosHelper');
 const configHelper = require('../utils/configHelper');
 const logger = require('../utils/logger');
-const discord = require("../utils/discordHelper");
-const { createJson } = require('../utils/jsonHelper');
 
 const userSession = catchAsync(async (req, res) => {
     const config = configHelper.getConfig();

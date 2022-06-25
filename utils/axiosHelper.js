@@ -2,7 +2,6 @@ const axios = require('axios');
 const https = require('https');
 
 const LockFile = require('./lockfile');
-const Session = require('./session');
 
 const lockFile = new LockFile();
 
@@ -35,11 +34,7 @@ vulxAxios.interceptors.request.use(function(config) {
 })
 
 vulxAxios.interceptors.response.use(
-    response => response,
-    async function (error) {
-        const checkSession = new Session(vulxAxios);
-		await checkSession.getSession()
-    }
+    response => response
 )
 
 module.exports = {

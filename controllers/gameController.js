@@ -1,18 +1,11 @@
 // library definitions
 const httpStatus = require('http-status');
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
 
 // helper definitions
 const ValorantAPI = require('../utils/ValorantAPI');
 const LookupAPI = require('../utils/LookupAPI');
 const catchAsync = require('../utils/catchAsync');
-const { vulxAxios, lockFile } = require('../utils/axiosHelper');
-const configHelper = require('../utils/configHelper');
-const logger = require('../utils/logger');
-const discord = require("../utils/discordHelper");
-const { createJson } = require('../utils/jsonHelper');
 
 const getLoadouts = catchAsync(async (req, res) => {
     const weaponSkins = await LookupAPI.getWeaponSkins();

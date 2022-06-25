@@ -1,6 +1,5 @@
 // library definitions
 const path = require('path');
-const fs = require('fs');
 const open = require('open');
 const express = require('express');
 const portfinder = require('portfinder');
@@ -9,11 +8,9 @@ const portfinder = require('portfinder');
 const discord = require("./utils/discordHelper");
 const logger = require('./utils/logger');
 const configHelper = require('./utils/configHelper');
-const { createJson } = require('./utils/jsonHelper');
-const { axiosHelperInit, vulxAxios, lockFile } = require('./utils/axiosHelper');
-const ValorantAPI = require('./utils/ValorantAPI');
-const LookupAPI = require('./utils/LookupAPI');
+const { axiosHelperInit } = require('./utils/axiosHelper');
 const routes = require('./routes');
+const MeHelper = require('./utils/meHelper');
 
 // TODO: Figure out why the actual fuck pkg doesn't include this in the compiled exe even after having it included through pkg config
 path.join(__dirname, 'public/css/style.css');
@@ -38,32 +35,17 @@ process.argv.forEach(arg => {
 
 // express definition
 const app = express();
-
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.urlencoded({ extended: true }));
-
 app.use('/', routes);
 
 (async function () {
 	await discord.startRPC();
-
 	await axiosHelperInit();
-
 	port = await portfinder.getPortPromise();
-
-	const valConfig = configHelper.getValConfig();
-	const jsonData = await createJson(valConfig, false);
-
-	await vulxAxios.put("/chat/v2/me", jsonData)
-		.then((res) => {
-			if (!res.isAxiosError) {
-				logger.debug(`Successfully sent /me request to local Valorant API`)
-			}
-		})
-	discord.update(valConfig.queueId, valConfig.competitiveTier);
+	await MeHelper._initialize();
+	await discord.update();
 
 	if (port != config.port)
 		logger.info(`Dashboard port changed from ${config.port} to ${port}`);

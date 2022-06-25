@@ -6,12 +6,14 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const lolConfig = configHelper.getLolConfig();
 	const lolSettingsEncoded = JSON.stringify(lolConfig).toString()
 
-	settings.partyClientVersion = await ValorantAPI.getClientVersion();
-	settings.queueId = StatusHelper.formatStatus(settings.queueId);
+	const settingsCopy = JSON.parse(JSON.stringify(settings));
+
+	settingsCopy.partyClientVersion = await ValorantAPI.getClientVersion();
+	settingsCopy.queueId = await StatusHelper.formatStatus(settings.queueId);
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",
-			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(settings)).toString('base64'),
+			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(settingsCopy)).toString('base64'),
 			shared: {
 				actor: "",
 				details: "",

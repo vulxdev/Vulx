@@ -5,14 +5,12 @@ const path = require('path');
 
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
-const { vulxAxios, lockFile } = require('../utils/axiosHelper');
-const configHelper = require('../utils/configHelper');
 const logger = require('../utils/logger');
 const discord = require("../utils/discordHelper");
-const { createJson } = require('../utils/jsonHelper');
+const meHelper = require('../utils/meHelper');
 
 const updatePresence = catchAsync(async (req, res) => {
-    const valConfig = configHelper.getValConfig();
+    const valConfig = await meHelper.getValorantJson();
 
 	valConfig.queueId = req.body.status;
 	valConfig.competitiveTier = req.body.rank;
@@ -21,22 +19,15 @@ const updatePresence = catchAsync(async (req, res) => {
 	valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 	valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
 
-	fs.writeFileSync("../valorant.json", JSON.stringify(valConfig));
-	discord.update(valConfig.queueId, valConfig.competitiveTier) //Spacing is important
-	let json = await createJson(valConfig, false)
-
-	await vulxAxios.put("/chat/v2/me", json)
-		.then((res) => {
-			if (!res.isAxiosError) {
-				logger.debug(`Successfully sent /me request to local Valorant API`)
-			}
-		})
+	await discord.update();
+	
+	await meHelper.updateRequest(valConfig);
         
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    await res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 const currentSettings = catchAsync(async (req, res) => {
-    const valConfig = configHelper.getValConfig();
+    const valConfig = await meHelper.getValorantJson();
 	const data = {
 		queueId: valConfig.queueId,
 		competitiveTier: valConfig.competitiveTier,

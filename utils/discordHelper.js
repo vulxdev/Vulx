@@ -1,36 +1,40 @@
 const RPC = require("discord-rpc")
 const logger = require('./logger')
-const configHelper = require('./configHelper')
+const configHelper = require('./configHelper');
+const meHelper = require("./meHelper");
 
 const clientId = "948363491100721242";
 let client = new RPC.Client({ transport: 'ipc' });
 
 const rankIdToName = {
     0: "Unranked",
-    1: "Unused I",
-    2: "Unused II",
-    3: "Iron I",
-    4: "Iron II",
-    5: "Iron III",
-    6: "Bronze I",
-    7: "Bronze II",
-    8: "Bronze III",
-    9: "Silver I",
-    10: "Silver II",
-    11: "Silver III",
-    12: "Gold I",
-    13: "Gold II",
-    14: "Gold III",
-    15: "Platium I",
-    16: "Platium II",
-    17: "Platinum III",
-    18: "Diamond I",
-    19: "Diamond II",
-    20: "Diamond III",
-    21: "Immortal I",
-    22: "Immortal II",
-    23: "Immortal III",
-    24: "Radiant",
+    1: "Unused 1",
+    2: "Unused 2",
+    3: "Iron 1",
+    4: "Iron 2",
+    5: "Iron 3",
+    6: "Bronze 1",
+    7: "Bronze 2",
+    8: "Bronze 3",
+    9: "Silver 1",
+    10: "Silver 2",
+    11: "Silver 3",
+    12: "Gold 1",
+    13: "Gold 2",
+    14: "Gold 3",
+    15: "Platium 1",
+    16: "Platium 2",
+    17: "Platinum 3",
+    18: "Diamond 1",
+    19: "Diamond 2",
+    20: "Diamond 3",
+	21: "Ascendant 1",
+	22: "Ascendant 2",
+	23: "Ascendant 3",
+    24: "Immortal 1",
+    25: "Immortal 2",
+    26: "Immortal 3",
+    27: "Radiant",
 }
 
 client.on('ready', () => {
@@ -51,30 +55,34 @@ client.on('ready', () => {
         })
 })
 
-module.exports.update = function(status, competitiveTier) {
+module.exports.update = function() {
     const config = configHelper.getConfig();
     try {
-        if(config.discordRpc) {
-            client.request('SET_ACTIVITY', {
-                pid: process.pid,
-                activity : {
-                    details : "Valorant Profile Editor",
-                    state : `${status.length < 128 ? status : 'Playing Valorant'}`,
-                    assets : {
-                        large_image : "logo",
-                        large_text : "Vulx",
-                        small_image: `${competitiveTier}`,
-                        small_text: `${rankIdToName[competitiveTier]}`
-                    },
-                    buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
-                }
-            })
-            logger.debug("Discord RPC status has been updated")
-        } else {
-            client.clearActivity();
-        }
+		meHelper.getValorantJson()
+			.then(valorantConfig => {
+				if(config.discordRpc) {
+					client.request('SET_ACTIVITY', {
+						pid: process.pid,
+						activity : {
+							details : "Valorant Profile Editor",
+							state : `${valorantConfig.queueId.length < 128 ? valorantConfig.queueId : 'Playing Valorant'}`,
+							assets : {
+								large_image : "logo",
+								large_text : "Vulx",
+								small_image: `${valorantConfig.competitiveTier}`,
+								small_text: `${rankIdToName[valorantConfig.competitiveTier]}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : ''}`,
+							},
+							buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
+						}
+					})
+					logger.debug("Discord RPC status has been updated")
+				} else {
+					client.clearActivity();
+				}
+			})
     } catch (err) {
         logger.discord("Failed to update RPC Client status");
+		console.log(err)
     }
 }
 
