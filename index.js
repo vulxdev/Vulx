@@ -19,6 +19,10 @@ path.join(__dirname, 'public/js/vulx.request.reset.js');
 path.join(__dirname, 'public/js/vulx.request.session.js');
 path.join(__dirname, 'public/js/vulx.request.settings.js');
 path.join(__dirname, 'public/js/vulx.welcome.js');
+path.join(__dirname, 'public/experimental.html');
+path.join(__dirname, 'public/gamefeed.html');
+path.join(__dirname, 'public/index.html');
+path.join(__dirname, 'public/welcome.html');
 
 const config = configHelper.getConfig();
 

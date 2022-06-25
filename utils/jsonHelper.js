@@ -1,10 +1,8 @@
-const configHelper = require('./configHelper');
 const ValorantAPI = require('./ValorantAPI');
 const StatusHelper = require('./statusHelper')
 
 module.exports.createJson = async function(settings, leagueToggle) {
-	const lolConfig = configHelper.getLolConfig();
-	const lolSettingsEncoded = JSON.stringify(lolConfig).toString()
+	const lolSettingsEncoded = JSON.stringify(settings).toString()
 
 	const settingsCopy = JSON.parse(JSON.stringify(settings));
 
