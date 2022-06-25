@@ -4,10 +4,10 @@ $(window).on('load', async function () {
             setTimeout(resolve, time);
         });
     }
-    await delay(1000)
+    await delay(1000);
     var loading = document.getElementById("loading");
-      loading.classList.add("hide");
-    await delay(500)
+    loading.classList.add("hide");
+	await delay(500);
     $('#loading').hide(); 
     //This is such a digusting way to make this work but fuck it
 }) 

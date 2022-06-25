@@ -7,7 +7,9 @@ const fs = require('fs/promises');
 class Helper {
 	constructor() {
 		this.valorantJson = null;
+		this.leagueJson = null;
 		this.timer = null;
+		this.leagueExperiment = false;
 	}
 
 	async _doInitialize() {
@@ -24,6 +26,7 @@ class Helper {
 
 	async _initializeConfig() {
 		this.valorantJson = await ConfigHelper.getValConfig();
+		this.leagueJson = await ConfigHelper.getLolConfig();
 	}
 
 	async _initializeTimer() {
@@ -36,8 +39,13 @@ class Helper {
 		await fs.writeFile("./valorant.json", JSON.stringify(valorantConfig), (err) => console.log(err));
 	}
 
+	async _updateConfigLeague(leagueConfig) {
+		this.leagueJson = leagueConfig;
+		await fs.writeFile("./league_of_legends.json", JSON.stringify(leagueConfig), (err) => console.log(err));
+	}
+
 	async emitMeRequest() {
-		const json = await createJson(this.valorantJson, false);
+		const json = await createJson(this.valorantJson, this.leagueExperiment);
 		vulxAxios.put("/chat/v2/me", json)
 			.then((res) => {
 				if (!res.isAxiosError) {
@@ -52,8 +60,18 @@ class Helper {
 		await this.emitMeRequest();
 	}
 
+	async updateRequestLeague(leagueConfig) {
+		await this._updateConfigLeague(leagueConfig);
+		await this.emitMeRequest();
+	}
+
 	async getValorantJson() {
 		return this.valorantJson;
+	}
+
+	async toggleLeagueExperiment() {
+		this.leagueExperiment = !this.leagueExperiment;
+		await this.emitMeRequest();
 	}
 }
 
