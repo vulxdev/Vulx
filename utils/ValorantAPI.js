@@ -69,14 +69,16 @@ class Client {
     }
 
     async _initializeSession() { //(phase) displays the current phase of the game (Pending, Idle, Gameplay)
-        const res = await vulxAxios.get("/product-session/v1/external-sessions").then(res => res.data[Object.keys(res.data)[0]]);
-        res.launchConfiguration.arguments.forEach(arg => {
-            if(arg.includes("-ares-deployment")) {
-                this.region = arg.split("=")[1];
-            } else if (arg.includes("-subject")) {
-                this.puuid = arg.split("=")[1];
-            }
-        });
+		const externalSession = await this._getExternalSession();
+
+		externalSession.launchConfiguration.arguments.forEach(arg => {
+			if(arg.includes("-ares-deployment")) {
+				this.region = arg.split("=")[1];
+			} else if (arg.includes("-subject")) {
+				this.puuid = arg.split("=")[1];
+			}
+		});
+		logger.debug(`Got external session; Region: ${this.region} PUUID: ${this.puuid}`);
     }
 
     async _initializeAuth() {
@@ -85,10 +87,20 @@ class Client {
 
     async _initializeVersion() {
         const res = await this.axios.get(`https://glz-${this.region}-1.${this.region}.a.pvp.net/session/v1/sessions/${this.puuid}`).then(res => res.data);
-        this.clientVersion = res.clientVersion;
+        this.clientVersion = await res.clientVersion;
     }
 
     // internal use functions 
+	async _getExternalSession() {
+		const res = await vulxAxios.get("/product-session/v1/external-sessions").catch(err => logger.debug('API response error getting external session.'));
+		
+		if (!res.data || Object.keys(res.data).length == 0) {
+			logger.debug("Failed to get external session, retrying...");
+			await new Promise(resolve => setTimeout(resolve, 1000));
+			return await this._getExternalSession();
+		}
+		return await res.data[Object.keys(res.data)[0]];
+	}
     async _refreshEntitlement() {
         const response = await vulxAxios.get("/entitlements/v1/token");
         this.entitlementToken = response.data.token;
@@ -146,7 +158,7 @@ class Client {
     // value accessors
     async getClientVersion() {
         await this._initialize();
-        return this.clientVersion;
+        return await this.clientVersion;
     }
 }
 
