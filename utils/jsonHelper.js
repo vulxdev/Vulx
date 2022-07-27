@@ -4,16 +4,15 @@ const LicenseHelper = require('./LicenseHelper');
 
 module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(settings).toString()
+	const config = Object.assign({}, settings);
 
-	const settingsCopy = JSON.parse(JSON.stringify(settings));
-
-	settingsCopy.partyClientVersion = await ValorantAPI.getClientVersion();
-	if (!LicenseHelper.isDev) settingsCopy.queueId = await StatusHelper.formatStatus(settings.queueId);
-	//settingsCopy.queueId = '\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+	config.partyClientVersion = await ValorantAPI.getClientVersion();
+	if (!LicenseHelper.isDev) config.queueId = await StatusHelper.formatStatus(settings.queueId);
+	//config.queueId = '\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",
-			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(settingsCopy)).toString('base64'),
+			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(config)).toString('base64'),
 			shared: {
 				actor: "",
 				details: "",

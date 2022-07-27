@@ -5,19 +5,20 @@ const path = require('path');
 
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
-const { vulxAxios, lockFile } = require('../utils/axiosHelper');
+const AxiosHelper = require('../utils/axiosHelper');
+const Lockfile = require('../utils/lockfile');
 const configHelper = require('../utils/configHelper');
 const logger = require('../utils/logger');
 
 const userSession = catchAsync(async (req, res) => {
-    const config = configHelper.getConfig();
+    const config = await configHelper.getVulxConfig();
 
-    const response = await vulxAxios.get("/chat/v1/session");
+    const response = await (await AxiosHelper.getVulxAxios()).get("/chat/v1/session");
     const returnJson = {
         session: response.data,
 		config: config,
-		port: lockFile.port,
-		password: Buffer.from(`riot:${lockFile.password}`).toString('base64')
+		port: Lockfile.port,
+		password: Buffer.from(`riot:${Lockfile.password}`).toString('base64')
     };
     logger.debug(`Session info, ${JSON.stringify(returnJson)}`);
 
@@ -25,7 +26,7 @@ const userSession = catchAsync(async (req, res) => {
 });
 
 const updateSettings = catchAsync(async (req, res) => {
-    const valConfig = configHelper.getConfig();
+    const valConfig = await configHelper.getVulxConfig();
 
 	logger.debug(`Updated settings:
         Experimental Features: ${valConfig.experimental} --> ${req.body.experimentalFeatures}
@@ -46,7 +47,7 @@ const updateSettings = catchAsync(async (req, res) => {
 			break;
 	}
 
-	fs.writeFileSync("./config.json", JSON.stringify(valConfig));
+	fs.writeFileSync("./cfg/vulx.json", JSON.stringify(valConfig));
 
 	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
@@ -54,9 +55,10 @@ const updateSettings = catchAsync(async (req, res) => {
 const resetAccount = catchAsync(async (req, res) => {
     if(req.body.resetAccount == true) {
         logger.debug("Account reset")
-        fs.unlinkSync("./valorant.json");
-        fs.unlinkSync("./config.json");
-        fs.unlinkSync("./league_of_legends.json");
+        fs.unlinkSync("./cfg/valorant.json");
+        fs.unlinkSync("./cfg/vulx.json");
+        fs.unlinkSync("./cfg/league.json");
+		fs.unlinkSync("./cfg/experiments.json");
         res.status(httpStatus.OK).send();
     }
     res.status(httpStatus.IM_A_TEAPOT).send();

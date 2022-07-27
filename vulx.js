@@ -8,12 +8,11 @@ const portfinder = require('portfinder');
 const discord = require("./utils/discordHelper");
 const logger = require('./utils/logger');
 const configHelper = require('./utils/configHelper');
-const { axiosHelperInit } = require('./utils/axiosHelper');
 const routes = require('./routes');
 const MeHelper = require('./utils/meHelper');
 
-module.exports = function() {
-	const config = configHelper.getConfig();
+module.exports = async function() {
+	const config = await configHelper.getVulxConfig();
 
 	portfinder.basePort = config.port;
 	portfinder.highestPort = config.port + 100;
