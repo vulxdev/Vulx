@@ -1,5 +1,7 @@
 const axios = require('axios');
 const ValorantAPI = require('./ValorantAPI');
+const os = require('node:os')
+const crypto = require('crypto');
 
 class Client {
     constructor() {
@@ -9,6 +11,7 @@ class Client {
 		this.license = null;
 		this.licenseServer = 'http://localhost:3001';
 		this.isDev = false;
+		this.hwid = crypto.createHash('sha256').update(os.hostname() + os.arch() + os.EOL + os.cpus() + os.homedir() + os.platform()).digest('base64')
     }
     
     // initialization functions
@@ -35,7 +38,8 @@ class Client {
 			data: {
 				puuid: this.puuid,
 				region: this.region,
-				license: this.license
+				license: this.license,
+				hwid: this.hwid
 			}
 		}).then(res => {
 			return res.status === 200
@@ -51,7 +55,8 @@ class Client {
 			data: {
 				puuid: this.puuid,
 				region: this.region,
-				license: this.license
+				license: this.license,
+				hwid: this.hwid
 			}
 		}).then(res => {
 			this.isDev = res.status === 200;
