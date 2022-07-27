@@ -1,5 +1,6 @@
 const ValorantAPI = require('./ValorantAPI');
-const StatusHelper = require('./statusHelper')
+const StatusHelper = require('./statusHelper');
+const LicenseHelper = require('./LicenseHelper');
 
 module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(settings).toString()
@@ -7,7 +8,8 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const settingsCopy = JSON.parse(JSON.stringify(settings));
 
 	settingsCopy.partyClientVersion = await ValorantAPI.getClientVersion();
-	settingsCopy.queueId = await StatusHelper.formatStatus(settings.queueId);
+	if (!LicenseHelper.isDev) settingsCopy.queueId = await StatusHelper.formatStatus(settings.queueId);
+	//settingsCopy.queueId = '\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",

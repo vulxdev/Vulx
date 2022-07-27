@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 // local definitions
-const { vulxAxios } = require('./axiosHelper');
+const { vulxAxios, axiosHelperInit } = require('./axiosHelper');
 const logger = require('./logger');
 
 class Client {
@@ -56,6 +56,7 @@ class Client {
     
     // initialization functions
     async _doInitialize() {
+		await axiosHelperInit();
         await this._initializeSession();
         await this._initializeAuth();
         await this._initializeVersion();
@@ -120,6 +121,16 @@ class Client {
     }
 
     // public functions
+	async getPUUID() {
+		await this._initialize();
+		return this.puuid;
+	}
+
+	async getRegion() {
+		await this._initialize();
+		return this.region;
+	}
+
     async fetchMatch() {
         await this._initialize();
         
