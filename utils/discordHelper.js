@@ -37,12 +37,12 @@ const rankIdToName = {
     27: "Radiant",
 }
 
-client.on('ready', () => {
-    const config = configHelper.getConfig();
+client.on('ready', async () => {
+    const config = await configHelper.getVulxConfig();
     logger.discord(`Authed as ${client.user.username}#${client.user.discriminator}`);
 
     if (config.discordRpc)
-        client.request('SET_ACTIVITY', {
+        await client.request('SET_ACTIVITY', {
             pid: process.pid,
             activity : {
                 details : "Valorant Profile Editor",
@@ -55,8 +55,8 @@ client.on('ready', () => {
         })
 })
 
-module.exports.update = function() {
-    const config = configHelper.getConfig();
+module.exports.update = async function() {
+    const config = await configHelper.getVulxConfig();
     try {
 		meHelper.getValorantJson()
 			.then(valorantConfig => {

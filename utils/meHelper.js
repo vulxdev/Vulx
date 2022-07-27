@@ -1,6 +1,6 @@
 const ConfigHelper = require('./configHelper');
 const { createJson } = require('./jsonHelper');
-const { vulxAxios } = require('./axiosHelper');
+const AxiosHelper = require('./axiosHelper');
 const logger = require('./logger');
 const fs = require('fs/promises');
 
@@ -25,8 +25,8 @@ class Helper {
     }
 
 	async _initializeConfig() {
-		this.valorantJson = await ConfigHelper.getValConfig();
-		this.leagueJson = await ConfigHelper.getLolConfig();
+		this.valorantJson = await ConfigHelper.getValorantConfig();
+		this.leagueJson = await ConfigHelper.getLeagueConfig();
 	}
 
 	async _initializeTimer() {
@@ -36,17 +36,18 @@ class Helper {
 
 	async _updateConfig(valorantConfig) {
 		this.valorantJson = valorantConfig;
-		await fs.writeFile("./valorant.json", JSON.stringify(valorantConfig), (err) => console.log(err));
+		await fs.writeFile("./cfg/valorant.json", JSON.stringify(valorantConfig), (err) => console.log(err));
 	}
 
 	async _updateConfigLeague(leagueConfig) {
 		this.leagueJson = leagueConfig;
-		await fs.writeFile("./league_of_legends.json", JSON.stringify(leagueConfig), (err) => console.log(err));
+		await fs.writeFile("./cfg/league.json", JSON.stringify(leagueConfig), (err) => console.log(err));
 	}
 
 	async emitMeRequest() {
 		const json = await createJson(this.valorantJson, this.leagueExperiment);
-		vulxAxios.put("/chat/v2/me", json)
+		if (!this.vulxAxios) this.vulxAxios = await AxiosHelper.getVulxAxios();
+		this.vulxAxios.put("/chat/v2/me", json)
 			.then((res) => {
 				if (!res.isAxiosError) {
 					logger.debug(`Successfully sent /me request to local Valorant API`)

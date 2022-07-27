@@ -130,7 +130,5 @@ dist
 .pnp.*
 
 build/
-config.json
-league_of_legends.json
-valorant.json
+cfg/
 licensekey.txt

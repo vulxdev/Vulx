@@ -1,54 +1,58 @@
 var fs = require('fs');
 const logger = require('./logger')
 
-async function checkFileExist(path, timeout) {
-    let totalTime = 0; 
-    let checkTime = timeout / 40;
+class Helper {
+	constructor() {
+		this.port = null;
+		this.password = null;
+		this.protocol = null;
+		this.LockfilePath = process.env.LOCALAPPDATA + '\\Riot Games\\Riot Client\\Config\\lockfile';
+		this.RetryAmount = 40;
+		this.RetryTimeout = 2000;
+	}
 
-    return await new Promise((resolve, reject) => {
-        const timer = setInterval(function() {
-            totalTime += checkTime;
-            let fileExists = fs.existsSync(path);
+	async _sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
 
-            if (fileExists) {
-                clearInterval(timer);
-                logger.info("Found Valorant, fetching session..")
-                resolve(fileExists);
-            }
-            else if(totalTime >= timeout) {
-                clearInterval(timer);
-                logger.error("Failed to find Valorant..")
-                process.exit();
-            }
-            else { 
-                logger.info("Waiting for Valorant..") 
-            }
-        }, checkTime);
-    });
+	async _getLockfile() {
+		if (!fs.existsSync(this.LockfilePath)) return false;
+
+		const lockfile = fs.readFileSync(this.LockfilePath, { encoding:'utf8' })
+			.toString()
+			.split(":");
+		this.port = lockfile[2];
+		this.password = lockfile[3];
+		this.protocol = lockfile[4];
+
+		return true;
+	}
+
+	async _initializeLockFile() {
+		for (let i = 0; i < this.RetryAmount; i++) {
+			if (await this._getLockfile()) break;
+			logger.debug('Failed to get lockfile, retrying..');
+			await this._sleep(this.RetryTimeout);
+		}
+
+		if (!this.port || !this.password || !this.protocol) {
+			logger.error('Failed to get lockfile, exiting..');
+			process.exit();
+		}
+
+		logger.info('Got lockfile!')
+
+		return true;
+	}
+
+	async getLockfile() {
+		if (!this.LockfileInitialized) {
+			logger.info('Grabbing lockfile..')
+			this.LockfileInitialized = this._initializeLockFile();;
+		}
+
+		return this.LockfileInitialized;
+	}
 }
 
-class lockfile {
-    port = null
-    password = null
-    protocol = null
-    async getLockfile() {  
-        let returnData;
-        const filePath = process.env.LOCALAPPDATA + '\\Riot Games\\Riot Client\\Config\\lockfile';
-        logger.info("Fetching lockfile..")
-        await checkFileExist(filePath, 120000)
-            .then(function(results){
-                if(results == true) {
-                    var data = fs.readFileSync(filePath, { encoding:'utf8' })
-                        .toString()
-                        .split(":");
-                    returnData = data;
-                }
-            });
-        this.port = returnData[2]
-        this.password = returnData[3]
-        this.protocol = returnData[4]
-        return true;
-    }
-}
-
-module.exports = lockfile
+module.exports = new Helper();

@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 // local definitions
-const { vulxAxios, axiosHelperInit } = require('./axiosHelper');
+const AxiosHelper = require('./axiosHelper');
 const logger = require('./logger');
 
 class Client {
@@ -23,6 +23,8 @@ class Client {
         axiosInstance.interceptors.response.use(this._handleSuccess, this._handleResError);
 
         this.axios = axiosInstance;
+
+		this.vulxAxios;
     }
     
     // axios interceptor functions
@@ -46,7 +48,6 @@ class Client {
 
     _handleResError = (error) => {
         const originalRequest = error.config;
-        console.log(error)
         if (error.response.status === 400) {
             this._refreshEntitlement();
             logger.info("Refreshing entitlements...");
@@ -56,10 +57,12 @@ class Client {
     
     // initialization functions
     async _doInitialize() {
-		await axiosHelperInit();
+		await this._initializeVulxAxios();
         await this._initializeSession();
         await this._initializeAuth();
         await this._initializeVersion();
+
+		await this.vulxAxios.get('/chat/v4/presences').then(res => console.log(res.data))
     }
 
     async _initialize() {
@@ -68,6 +71,10 @@ class Client {
         }
         return this.initializationPromise;
     }
+
+	async _initializeVulxAxios() {
+		this.vulxAxios = await AxiosHelper.getVulxAxios()
+	}
 
     async _initializeSession() { //(phase) displays the current phase of the game (Pending, Idle, Gameplay)
 		const externalSession = await this._getExternalSession();
@@ -93,7 +100,7 @@ class Client {
 
     // internal use functions 
 	async _getExternalSession() {
-		const res = await vulxAxios.get("/product-session/v1/external-sessions").catch(err => logger.debug('API response error getting external session.'));
+		const res = await this.vulxAxios.get("/product-session/v1/external-sessions").catch(err => logger.debug('API response error getting external session.'));
 		
 		if (!res.data || Object.keys(res.data).length == 0) {
 			logger.debug("Failed to get external session, retrying...");
@@ -103,7 +110,7 @@ class Client {
 		return await res.data[Object.keys(res.data)[0]];
 	}
     async _refreshEntitlement() {
-        const response = await vulxAxios.get("/entitlements/v1/token");
+        const response = await this.vulxAxios.get("/entitlements/v1/token");
         this.entitlementToken = response.data.token;
         this.accessToken = response.data.accessToken;
         logger.debug(`Entitlement token refreshed: ${this.entitlementToken}`);
