@@ -30,6 +30,19 @@ class Helper {
 			return config;
 		})
 
+		vulxAxios.interceptors.response.use(function (response) {
+			return response;
+		  }, function (error) {
+			const originalRequest = error.config;
+			if (error.response.status === 401) {
+				LockFile._initializeLockFile();
+				this._doInitialize();
+				return this.axios(originalRequest);
+			}
+
+			return Promise.reject(error);
+		});
+
 		this.axios = vulxAxios;
 	}
 

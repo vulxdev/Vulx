@@ -53,7 +53,7 @@ class Helper {
 					logger.debug(`Successfully sent /me request to local Valorant API`)
 				}
 			})
-			.catch(() => logger.debug("Failed sending /me request to local Valorant API, has the game finished initializing?"));
+			.catch(() => logger.info("Failed sending /me request to local Valorant API, has the game finished initializing?"));
 	}
 
 	async updateRequest(valorantConfig) {
