@@ -53,6 +53,7 @@ class Client {
             logger.info("Refreshing entitlements...");
             return this.axios(originalRequest);
         }
+		return Promise.reject(error)
     }
     
     // initialization functions
@@ -62,7 +63,7 @@ class Client {
         await this._initializeAuth();
         await this._initializeVersion();
 
-		await this.vulxAxios.get('/chat/v4/presences').then(res => console.log(res.data))
+		//await this.vulxAxios.get('/chat/v4/presences').then(res => console.log(res.data))
     }
 
     async _initialize() {
@@ -102,7 +103,7 @@ class Client {
 	async _getExternalSession() {
 		const res = await this.vulxAxios.get("/product-session/v1/external-sessions").catch(err => logger.debug('API response error getting external session.'));
 		
-		if (!res.data || Object.keys(res.data).length == 0) {
+		if (!res || !res.data || Object.keys(res.data).length == 0) {
 			logger.debug("Failed to get external session, retrying...");
 			await new Promise(resolve => setTimeout(resolve, 1000));
 			return await this._getExternalSession();

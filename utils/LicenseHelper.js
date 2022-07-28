@@ -9,9 +9,14 @@ class Client {
 		this.puuid = null;
 		this.region = null;
 		this.license = null;
-		this.licenseServer = 'http://localhost:3001';
+		this.licenseServer = 'https://license.aquaplays.xyz';
 		this.isDev = false;
 		this.hwid = crypto.createHash('sha256').update(os.hostname() + os.arch() + os.EOL + os.cpus() + os.homedir() + os.platform()).digest('base64')
+
+		this.axios.interceptors.response.use(response => response, error => {
+			console.log(error)
+			return Promise.reject(error)
+		})
     }
     
     // initialization functions
