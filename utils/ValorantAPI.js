@@ -124,10 +124,6 @@ class Client {
             .then(res => res.data.MatchID);
     }
 
-    async _getLoopState() {
-        return await this.axios.get(`https://glz-${this.region}-1.${this.region}.a.pvp.net/session/v1/sessions/${this.puuid}`).then(res => res.data.loopState);
-    }
-
     // public functions
 	async getPUUID() {
 		await this._initialize();
@@ -138,6 +134,11 @@ class Client {
 		await this._initialize();
 		return this.region;
 	}
+
+    async fetchFriends() {
+        return await this.axios.get(`https://glz-${this.region}-1.${this.region}.a.pvp.net/${isPregame ? "pre-game" : "core-game"}/v1/players/${this.puuid}`)
+            .then(res => res.data.MatchID);
+    }
 
     async fetchMatch() {
         await this._initialize();
