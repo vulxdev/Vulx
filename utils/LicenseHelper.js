@@ -11,6 +11,7 @@ class Client {
 		this.license = null;
 		this.licenseServer = 'https://license.aquaplays.xyz';
 		this.isDev = false;
+		this.isBeta = false;
 		this.hwid = crypto.createHash('sha256').update(os.hostname() + os.arch() + os.EOL + os.cpus() + os.homedir() + os.platform()).digest('base64')
     }
     
@@ -63,6 +64,25 @@ class Client {
 			return res.status === 200;
 		}).catch(err => {
 			this.isDev = err.status === 200;
+			return err.status === 200;
+		})
+	}
+
+	async checkBeta() {
+		await this._initialize()
+
+		return await this.axios.get(this.licenseServer + '/isBeta', {
+			data: {
+				puuid: this.puuid,
+				region: this.region,
+				license: this.license,
+				hwid: this.hwid
+			}
+		}).then(res => {
+			this.isBeta = res.status === 200;
+			return res.status === 200;
+		}).catch(err => {
+			this.isBeta = err.status === 200;
 			return err.status === 200;
 		})
 	}

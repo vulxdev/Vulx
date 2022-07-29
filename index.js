@@ -36,6 +36,7 @@ async function licenseCheck(licenseKey) {
 			fs.writeFileSync('./licensekey.txt', licenseKey);
 		}
 		await LicenseHelper.checkDev();
+		await LicenseHelper.checkBeta();
 		Vulx();
 	} else {
 		process.exit(1);
