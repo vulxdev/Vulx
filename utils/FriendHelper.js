@@ -6,14 +6,14 @@ const fs = require('fs/promises');
 
 class FHelper {
 	constructor() {
-		this.friends, this.presences;
+		this.friends, this.presences, this.vulxAxios;
 	}
 
 	async _initialize() {
 		if (!this.initializePromise) {
-			this.initializeProcess = this._doInitialize();
+			this.initializePromise = await this._doInitialize();
 		}
-		
+
 		return this.initializePromise;
 	}
 
