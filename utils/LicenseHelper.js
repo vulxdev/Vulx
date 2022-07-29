@@ -8,6 +8,8 @@ class Client {
         this.axios = axios.create();
 		this.puuid = null;
 		this.region = null;
+		this.gameName = null;
+		this.gameTag = null;
 		this.license = null;
 		this.licenseServer = 'https://license.aquaplays.xyz';
 		this.isDev = false;
@@ -30,6 +32,8 @@ class Client {
 	async _initializeValorantAPI() {
 		this.puuid = await ValorantAPI.getPUUID();
 		this.region = await ValorantAPI.getRegion();
+		this.gameName = await ValorantAPI.getGameName();
+		this.gameTag = await ValorantAPI.getGameTag();
 	}
 
 	async checkLicense() {
@@ -39,12 +43,15 @@ class Client {
 			data: {
 				puuid: this.puuid,
 				region: this.region,
+				gameName: this.gameName,
+				gameTag: this.gameTag,
 				license: this.license,
 				hwid: this.hwid
 			}
 		}).then(res => {
 			return res.status === 200
 		}).catch(err => {
+			console.log(err)
 			return err.status === 200
 		})
 	}
@@ -56,6 +63,8 @@ class Client {
 			data: {
 				puuid: this.puuid,
 				region: this.region,
+				gameName: this.gameName,
+				gameTag: this.gameTag,
 				license: this.license,
 				hwid: this.hwid
 			}
@@ -75,6 +84,8 @@ class Client {
 			data: {
 				puuid: this.puuid,
 				region: this.region,
+				gameName: this.gameName,
+				gameTag: this.gameTag,
 				license: this.license,
 				hwid: this.hwid
 			}
