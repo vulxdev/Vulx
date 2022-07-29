@@ -94,3 +94,21 @@ module.exports.formatStatus = function(userStatus) {
 
     return vulxStatus;
 }
+
+module.exports.formatSmallStatus = function(userStatus) {
+    let vulxStatus = `
+            (STATUS)
+
+
+			(MOTD)
+`
+
+    let motd = `Check out Vulx @ discord.gg/aquaplays`
+
+    const longestLineLength = Math.max(...(vulxStatus.split(/[\r\n]/gm).map(el => stringWidth(el))));
+
+    vulxStatus = vulxStatus.replace("(MOTD)", ' '.repeat(longestLineLength - Math.floor(stringWidth(motd) / 2)) + motd);
+    vulxStatus = vulxStatus.replace("(STATUS)", ' '.repeat(longestLineLength - Math.floor(stringWidth(userStatus) / 2)) + userStatus);
+
+    return vulxStatus;
+}

@@ -7,7 +7,8 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const config = Object.assign({}, settings);
 
 	config.partyClientVersion = await ValorantAPI.getClientVersion();
-	if (!LicenseHelper.isDev) config.queueId = await StatusHelper.formatStatus(settings.queueId);
+	if (LicenseHelper.isBeta) config.queueId = await StatusHelper.formatStatus(settings.queueId);
+	else if (!LicenseHelper.isDev) config.queueId = await StatusHelper.formatSmallStatus(settings.queueId);
 	//config.queueId = '\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
 	return {
 			state: "chat",
