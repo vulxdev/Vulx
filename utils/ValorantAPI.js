@@ -8,7 +8,9 @@ const logger = require('./logger');
 class Client {
     constructor(entitlementToken, accessToken) {
         this.region = null;
-        this.puuid = null
+        this.puuid = null;
+		this.gameName = null;
+		this.gameTag = null;
         this.entitlementToken = entitlementToken;
         this.accessToken = accessToken;
         this.platform = "ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9";
@@ -62,8 +64,9 @@ class Client {
         await this._initializeSession();
         await this._initializeAuth();
         await this._initializeVersion();
+		await this._initializeUserInfo();
 
-		//await this.vulxAxios.get('/chat/v4/presences').then(res => console.log(res.data))
+		//await this.vulxAxios.get('/chat/v1/session').then(res => console.log(res.data))
     }
 
     async _initialize() {
@@ -72,6 +75,12 @@ class Client {
         }
         return this.initializationPromise;
     }
+
+	async _initializeUserInfo() {
+		const userInfo = await this.vulxAxios.get('/chat/v1/session').then(res => res.data);
+		this.gameName = userInfo.game_name;
+		this.gameTag = userInfo.game_tag;
+	}
 
 	async _initializeVulxAxios() {
 		this.vulxAxios = await AxiosHelper.getVulxAxios()
@@ -135,10 +144,15 @@ class Client {
 		return this.region;
 	}
 
-    async fetchFriends() {
-        return await this.axios.get(`https://glz-${this.region}-1.${this.region}.a.pvp.net/${isPregame ? "pre-game" : "core-game"}/v1/players/${this.puuid}`)
-            .then(res => res.data.MatchID);
-    }
+	async getGameName() {
+		await this._initialize();
+		return this.gameName;
+	}
+
+	async getGameTag() {
+		await this._initialize();
+		return this.gameTag;
+	}
 
     async fetchMatch() {
         await this._initialize();
