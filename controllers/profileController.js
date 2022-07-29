@@ -8,6 +8,7 @@ const catchAsync = require('../utils/catchAsync');
 const AxiosHelper = require('../utils/axiosHelper');
 const Lockfile = require('../utils/lockfile');
 const configHelper = require('../utils/configHelper');
+const FriendHelper = require('../utils/FriendHelper');
 const logger = require('../utils/logger');
 
 const userSession = catchAsync(async (req, res) => {
@@ -64,8 +65,27 @@ const resetAccount = catchAsync(async (req, res) => {
     res.status(httpStatus.IM_A_TEAPOT).send();
 });
 
+const getFriends = catchAsync(async (req, res) => {
+	const friends = await FriendHelper.getFriends();
+	const presences = await FriendHelper.getPresences();
+
+    console.log(friends);
+	console.log(presences);
+
+	console.log(FriendHelper)
+    
+	const data = {
+		friends: friends,
+		onlineFriends: presences
+	}
+
+	logger.debug(`Sending current friends to client`);
+	res.status(httpStatus.OK).send(data);
+});
+
 module.exports = {
     userSession,
     updateSettings,
-    resetAccount
+    resetAccount,
+    getFriends
 };

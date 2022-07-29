@@ -24,4 +24,8 @@ router
   .route('/currentSettings')
   .get(presenceController.currentSettings);
 
+router
+  .route('/friends')
+  .get(profileController.getFriends);
+
 module.exports = router;

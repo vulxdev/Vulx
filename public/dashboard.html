@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
+    <title>Vulx</title>
+</head>
+ 
+<body class="bootstrap-dark">
+    <div id="loading">
+        <div class="title show3">
+            <h1 class="vulxTitle">VULX</h1>
+        </div>
+        <h1 class="show3">Updating Presence</h1>
+        <img class="show3" style="height: 40px; margin: 15px;" id="loading-image" src="https://d2w9rnfcy7mm78.cloudfront.net/11137417/original_8019249c9ae1d7d7c575d4d3bb2ce0b6.gif?1615501067?bc=0" alt="Loading..." />
+    </div>
+    <div class="wrapper">
+        <div class="main">
+            <div style="background-color: #0000005f; position: absolute; height: 100%; width: 100%; margin: -20px;" id="overlay" class="hidden" onclick="closeSearchBar()"></div>
+            <div style="background-color: #0c0c0e; display: flex; margin: -20px;" class="header">
+                <div class="container mt-3">
+                    <nav style="padding: 0;" class="navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="#">VulxV2</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav w-100" id="navbarContent">
+                                <li style="padding-left: 13%;" class="nav-item active">
+                                    <a class="nav-link" href="#">Presence <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item" id="experimentalNav" style="display: none;">
+                                    <a class="nav-link" href="experimental.html">Experimental</span></a>
+                                </li>
+                                <li class="nav-item" id="gameFeedNav" style="display: none;">
+                                    <a class="nav-link" href="gamefeed.html">Gamefeed</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://discord.gg/aquaplays">Discord</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://youtube.com/aqua">Youtube</a>
+                                </li>
+                                <li class="nav-item dropdown ml-auto">
+                                    <a class="nav-link dropdown-toggle" href="#" id="username" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <div id="navDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingsModal">Settings</a>
+                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#debugModal">Session Stats</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                      </nav>
+                      <div style="padding: 0;" class="container">
+                        <div style="position: relative; z-index: 2;" class="searchBox row">                  
+                            <input class="searchBarInput" placeholder="Search Friends.." type="text">
+                            <div id="searchBar" class="search-bar-cont hidden">
+                                <div class="search-bar-innerCont">
+                                    <div class="search-bar-results">
+                                        <div class="search-bar-results-title">
+                                            <div style="width: 91%;"><h5><b>Friends</b></h5></div>
+                                        </div>
+                                        <div class="search-bar-results-cards">
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="https://media.valorant-api.com/playercards/fbe4935e-421d-4d5d-9ea8-3fb5218d1d1d/smallart.png">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="https://media.valorant-api.com/playercards/fbe4935e-421d-4d5d-9ea8-3fb5218d1d1d/wideart.png">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">Syfe#6847</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">Friend</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="https://media.valorant-api.com/playercards/2f7fd4ed-4b6b-b3fc-0658-18a58f61581b/smallart.png">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="https://media.valorant-api.com/playercards/2f7fd4ed-4b6b-b3fc-0658-18a58f61581b/wideart.png">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">aqua#wtff</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">Friend</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="https://media.valorant-api.com/playercards/aaad6093-4d27-c053-c53b-9c8a657338d1/smallart.png">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="https://media.valorant-api.com/playercards/aaad6093-4d27-c053-c53b-9c8a657338d1/wideart.png">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">Kentashi#3929</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">Friend</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                        <div class="search-bar-results-cards">
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="http://localhost:3000/static/amv-pfp-1627519279.gif">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="http://localhost:3000/static/amv-banner-1627519279.gif">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">Akame Ga Kill</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">By Aqua</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="http://localhost:3000/static/a83-pfp-1627502974.gif">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="http://localhost:3000/static/a83-banner-1627502974.gif">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">Kurapika</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">By Aqua</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="search-bar-results-card">
+                                                <img class="searchPfp" src="http://localhost:3000/static/ga8-pfp-1627909761.gif">                                            
+                                                <div class="searchBannerCont">
+                                                    <img class="searchBanner" src="http://localhost:3000/static/ga8-banner-1627909761.gif">
+                                                    <div class="searchInfo">
+                                                        <h1 class="themeName-large5">Noragami</h1>
+                                                        <h3 style="font-size: 18px; margin-top: -10px;">By Aqua</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>        
+                                    </div> 
+                                </div>
+                            </div> 
+                        </div>
+                      </div>
+                    <br />
+                </div>
+            </div>
+            <div style="margin-top: 2rem;" class="container">
+                <form action="/updatePresence" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName"
+                                style="font-size: 23px">
+                                Status
+                            </label>
+                            <input type="text" class="form-control"
+                                id="status" name="status" />
+                        </div>
+         
+                        <div class="form-group col-md-6">
+                            <label style="font-size: 23px" for="rank">Rank</label>
+                                <select class="form-control" name="rank" id="rank">
+                                    <option value="-1">Empty</option>
+                                    <option value="0">Unused 1</option>
+                                    <option value="1">Unused 2</option>
+                                    <option value="2">Unranked</option>
+                                    <option value="3">Iron 1</option>
+                                    <option value="4">Iron 2</option>
+                                    <option value="5">Iron 3</option>
+                                    <option value="6">Bronze 1</option>
+                                    <option value="7">Bronze 2</option>
+                                    <option value="8">Bronze 3</option>
+                                    <option value="9">Silver 1</option>
+                                    <option value="10">Silver 2</option>
+                                    <option value="11">Silver 3</option>
+                                    <option value="12">Gold 1</option>
+                                    <option value="13">Gold 2</option>
+                                    <option value="14">Gold 3</option>
+                                    <option value="15">Platinum 1</option>
+                                    <option value="16">Platinum 2</option>
+                                    <option value="17">Platinum 3</option>
+                                    <option value="18">Diamond 1</option>
+                                    <option value="19">Diamond 2</option>
+                                    <option value="20">Diamond 3</option>
+									<option value="21">Ascendant 1</option>
+                                    <option value="22">Ascendant 2</option>
+                                    <option value="23">Ascendant 3</option>
+                                    <option value="24">Immortal 1</option>
+                                    <option value="25">Immortal 2</option>
+                                    <option value="26">Immortal 3</option>
+                                    <option value="27">Radiant</option>
+                                </select>
+                          </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPosition"
+                                style="font-size: 23px">
+                                Leaderboard Position
+                            </label>
+                            <input type="text" class="form-control"
+                                id="position" name="position" />
+                        </div>
+         
+                        <div class="form-group col-md-6">
+                            <label for="inputLevel"
+                                style="font-size: 23px">
+                                Account Level
+                            </label>
+                            <input type="text" class="form-control"
+                                id="level" name="level" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAlly"
+                                style="font-size: 23px">
+                                Ally Score (Left Side)
+                            </label>
+                            <input type="text" class="form-control"
+                                id="ally" name="ally" />
+                        </div>
+         
+                        <div class="form-group col-md-6">
+                            <label for="inputEnemy"
+                                style="font-size: 23px">
+                                Enemy Score (Right Side)
+                            </label>
+                            <input type="text" class="form-control"
+                                id="enemy" name="enemy" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="modal fade" id="debugModal" tabindex="-1" role="dialog" aria-labelledby="connectionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="connectionLabel">RC-Unknown | disconnected</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h4>Session Debug</h4>
+                  <p id="accountName"></p>
+                  <p id="pid"></p>
+                  <p id="region"></p>
+                  <p id="port"></p>
+                  <p id="password"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Account Settings</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="/updateSettings" method="POST">
+                <div class="modal-body">
+                    <div class="form-row">
+                           <div class="form-group col-md-6">
+                            <label style="font-size: 23px" for="experimentalFeatures">Experimental Features</label>
+                                <select class="form-control" name="experimentalFeatures" id="experimentalFeatures">
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" id="updateType" name="updateType" value="settingsIndex">
+                            
+                            <div class="form-group col-md-6">
+                                <label style="font-size: 23px" for="discordRpc">DiscordRPC</label>
+                                    <select class="form-control" name="discordRpc" id="discordRpc">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                              </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" style="margin-right: 43%;" onClick="resetAccount()" class="btn btn-danger" data-dismiss="modal">Reset Account</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+               </form>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="js/vulx.load.js"></script>
+<script src="js/vulx.request.reset.js"></script>
+<script src="js/vulx.request.session.js"></script>
+<script src="js/vulx.request.settings.js"></script>
+<script>
+    const searchBar = document.querySelector('input[type="text"]');
+
+    if(searchBar.addEventListener('focusin', (event) => {
+        var overlay = document.getElementById("overlay");
+        var searchBar = document.getElementById("searchBar");
+            //Remove old class
+            overlay.classList.remove("hidden");
+            overlay.classList.remove("fadeout");
+            searchBar.classList.remove("hidden");
+            searchBar.classList.remove("fadeout");
+            //Add new class
+            overlay.classList.add("visible");
+            overlay.classList.add("fadein");
+            searchBar.classList.add("visible");
+            searchBar.classList.add("fadein");
+    }));
+
+    function closeSearchBar() {
+        var overlay = document.getElementById("overlay");
+        var searchBar = document.getElementById("searchBar");
+            //Remove old class
+            overlay.classList.remove("visible");
+            overlay.classList.remove("fadein");
+            searchBar.classList.remove("visible");
+            searchBar.classList.remove("fadein");
+            //Add new class
+            overlay.classList.add("hidden");
+            overlay.classList.add("fadeout");
+            searchBar.classList.add("hidden");
+            searchBar.classList.add("fadeout");
+            
+    }
+</script>
+</html>
