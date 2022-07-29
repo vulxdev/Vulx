@@ -241,12 +241,13 @@ body {
   top: 70px;
   left: 0;
   z-index: 3;
+  height: auto;
+  max-height: 800px;
+  overflow: scroll;
 }
 
-.search-bar-innerCont {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+::-webkit-scrollbar {
+  display: none;
 }
 
 .search-bar-results {
@@ -254,13 +255,14 @@ body {
 }
 
 .search-bar-results-title {
-  margin: 0px 10px -8px 10px;
+  margin: 12px 0px -8px 40px;
   display: flex;
 }
 
 .search-bar-results-cards {
   display: flex;
   margin-bottom: 5px;
+  margin-left: 30px;
 }
 
 .search-bar-results-card {
@@ -272,7 +274,7 @@ body {
   -ms-transition: transform .2s;
   -o-transition: transform .2s;
   transition: transform .2s;
-  margin: 5px 10px 15px 10px;
+  margin: 5px -14px 15px 10px;
   overflow: hidden;
   z-index: 0;
 }
@@ -283,12 +285,12 @@ body {
 }
 
 .searchPfp {
-  height: 90px;
+  height: 80px;
   border-radius: 50%;
   position: absolute;
-  border: 2px solid #101116;
+  border: 3px solid #101116;
   margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 10px;
   z-index: 1;
 }
 
@@ -303,8 +305,22 @@ body {
 
 .searchInfo {
   position: relative;
-  left: 110px;
+  left: 98px;
   top: 25px;
+  max-width: 55%;
+}
+
+.searchInfo2 {
+  position: relative;
+  left: 98px;
+  top: 35px;
+  max-width: 55%;
+}
+
+.textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .searchBarTags {

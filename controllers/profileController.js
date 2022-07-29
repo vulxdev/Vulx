@@ -68,11 +68,6 @@ const resetAccount = catchAsync(async (req, res) => {
 const getFriends = catchAsync(async (req, res) => {
 	const friends = await FriendHelper.getFriends();
 	const presences = await FriendHelper.getPresences();
-
-    console.log(friends);
-	console.log(presences);
-
-	console.log(FriendHelper)
     
 	const data = {
 		friends: friends,
