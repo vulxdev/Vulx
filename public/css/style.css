@@ -5,6 +5,139 @@ body {
   background-color: #101116 !important;
 }
 
+a {
+  font-family: sans-serif !important;
+}
+
+.nav-link {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.profileBanner {
+  background-color: #14151c;
+  height: 500px;
+  border-radius: 15px;
+      box-shadow: 5px 5px #0c0c0e;
+}
+
+.valorantBanner {
+  height: 108px;
+  position: absolute;
+  left: 0px;
+  border-radius: 15px;
+}
+
+.valorantPfp {
+  position: absolute;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid #14151c;
+  top: 45px;
+  left: 12px;
+}
+
+.valorantActivity {
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid #14151c;
+  height: 20px;
+  top: 110px;
+  left: 75px;
+}
+
+.valorantName {
+  position: absolute;
+  top: 135px;
+  left: 16px;
+  max-width: 349px;
+}
+
+.valorantTitle {
+  position: absolute;
+  top: 171px;
+  left: 16px;
+}
+
+.valorantRankContainer {
+  position: absolute;
+  top: 219px;
+  left: 16px;
+  display: flex;
+}
+
+.valorantRankImg {
+  height: 45px;
+}
+
+.valorantRankInfo {
+  position: absolute;
+  top: 23px;
+  font-size: 17px;
+  left: 50px;
+  padding-left: 6px;
+}
+
+.valorantRank {
+  font-size: 19px;
+  padding-left: 10px;
+}
+
+.valorantHighlightTag {
+  margin-top: -5px;
+  font-size: 15px;
+}
+
+.valorantInfoContainer {
+  position: absolute;
+  top: 283px;
+  left: 20px;
+}
+
+.valorantMatchContainer {
+  position: absolute;
+  top: 387px;
+  left: 20px;
+}
+
+.valorantMatchInfo {
+  max-width: 349px;
+}
+
+.vulxAdvertising {
+  position: absolute;
+  top: 435px;
+  left: 20px;
+  font-size: 16px;
+}
+
+.valorantHighlightContainer {
+  position: absolute;
+  top: 282px;
+}
+
+.flexCont {
+  display: flex;
+}
+
+.spacer {
+  position: absolute;
+  top: 195px;
+  left: 16px;
+  width: 350px;
+  border: 0.1px solid #333336;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #0c0c0e;
+  color: white;
+  text-align: center;
+}
+
 .arrow-down {
   position: relative;
   top: -50px;
@@ -43,7 +176,11 @@ body {
   
 .wrapper {
   display: flex;
-   height: 100vh;
+  height: 100vh;
+  background: linear-gradient(#0000002e, rgb(0 0 0 / 54%)), url(http://127.0.0.1:5500/public/images/Sprinkle.svg);
+  /* background-repeat: no-repeat; */
+  background-attachment: fixed;
+  background-position: center;
 }
   
 .main {
@@ -252,6 +389,9 @@ body {
 
 .search-bar-results {
   width: 100%;
+  display: flex;
+  margin: 30px;
+  flex-wrap: wrap;
 }
 
 .search-bar-results-title {
@@ -263,6 +403,16 @@ body {
   display: flex;
   margin-bottom: 5px;
   margin-left: 30px;
+}
+
+.statusIcon {
+  height: 19px;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid #101116;
+  margin-left: 68px;
+  margin-top: 68px;
+  z-index: 1;
 }
 
 .search-bar-results-card {
