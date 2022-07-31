@@ -34,7 +34,9 @@ const currentSettings = catchAsync(async (req, res) => {
 		leaderboardPosition: valConfig.leaderboardPosition,
 		accountLevel: valConfig.accountLevel,
 		partyOwnerMatchScoreAllyTeam: valConfig.partyOwnerMatchScoreAllyTeam,
-		partyOwnerMatchScoreEnemyTeam: valConfig.partyOwnerMatchScoreEnemyTeam
+		partyOwnerMatchScoreEnemyTeam: valConfig.partyOwnerMatchScoreEnemyTeam,
+		playerCardId: valConfig.playerCardId,
+		playerTitleId: valConfig.playerTitleId
 	}
 
 	logger.debug(`Sending current settings to client, ${JSON.stringify(data)}`);

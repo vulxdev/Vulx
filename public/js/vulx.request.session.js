@@ -13,7 +13,9 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
             }
         }
         var username = document.getElementById("username");
+        var usernameNav = document.getElementById("usernameNav");
             username.textContent = data.session.game_name + "#" + data.session.game_tag;
+            usernameNav.textContent = data.session.game_name + "#" + data.session.game_tag;
         var connection = document.getElementById("connectionLabel");
             connection.textContent = data.session.resource + " | " + data.session.state;
         var account = document.getElementById("accountName");
