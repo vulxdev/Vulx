@@ -48,7 +48,7 @@ fetch("http://127.0.0.1:/friends") //Add PUUID to div to allow for on click to l
 
                 var friendCardActivity = document.createElement("img"); 
                 friendCardActivity.className = "statusIcon";
-                friendCardActivity.src = `https://cdn.discordapp.com/attachments/808062997180317767/1002731345287581766/online.png`;
+                friendCardActivity.src = `https://cdn.aquaplays.xyz/user/online.png`;
                 friendCard.appendChild(friendCardActivity);
 
                 var friendBannerContainer = document.createElement("div");
@@ -89,7 +89,7 @@ fetch("http://127.0.0.1:/friends") //Add PUUID to div to allow for on click to l
 
                 var friendCardActivity = document.createElement("img"); 
                 friendCardActivity.className = "statusIcon";
-                friendCardActivity.src = `https://cdn.discordapp.com/attachments/808062997180317767/1002731345707016242/offline.png`;
+                friendCardActivity.src = `https://cdn.aquaplays.xyz/user/offline.png`;
                 friendCard.appendChild(friendCardActivity);
 
                 var friendBannerContainer = document.createElement("div");

@@ -31,7 +31,7 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav w-100" id="navbarContent">
-                                <li style="padding-left: 13%;" class="nav-item active">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="#">Presence <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item" id="experimentalNav" style="display: none;">
@@ -47,7 +47,7 @@
                                     <a class="nav-link" href="https://youtube.com/aqua">Youtube</a>
                                 </li>
                                 <li class="nav-item dropdown ml-auto">
-                                    <a class="nav-link dropdown-toggle" href="#" id="username" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="usernameNav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                     <div id="navDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingsModal">Settings</a>
                                         <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#debugModal">Session Stats</a>
@@ -72,23 +72,208 @@
             </div>
             <div style="margin-top: 2rem;" class="container">
                 <div class="row">
-                    <div class="col-6 col-md-4 profileBanner">
+                    <div id="profile" class="col-6 col-md-4 profileBanner">
                         <div class="valorantBanner">
-                            <img class="valorantBanner" src="https://media.valorant-api.com/playercards/2ee6d025-4aac-3a67-0f6e-dba827acc75f/wideart.png">
+                            <img id="playerCard" class="valorantBanner">
                         </div>
                         <div id="valorantPfp">
-                            <img class="valorantPfp" src="https://media.valorant-api.com/playercards/2ee6d025-4aac-3a67-0f6e-dba827acc75f/smallart.png">
-                            <img class="valorantActivity" src="https://cdn.discordapp.com/attachments/808062997180317767/1002731345287581766/online.png">
+                            <img id="playerCardSmall" class="valorantPfp">
+                            <img class="valorantActivity" src="https://cdn.aquaplays.xyz/user/online.png">
                         </div>
                         <div id="valorantName">
-                            <h3 class="valorantName textOverflow"><b>Aqua#0607</b></h3>
-                            <h5 class="valorantTitle">Nightmare</h5>
+                            <h3 class="valorantName textOverflow"><b><a id="username"></a></b></h3>
+                            <h5 id="valorantTitle" class="valorantTitle"></h5>
                         </div>
                         <hr class="spacer">
                         <div class="valorantRankContainer">
                             <div class="flexCont">
-                                <img class="valorantRankImg" src="https://cdn.discordapp.com/attachments/808090629065801788/1002752815246098553/23.png">
-                                <h4 class="valorantRank">Ascendant 3</h4>
+                                <img id="valorantRankImg" class="valorantRankImg">
+                                <h4 id="valorantRank" class="valorantRank">Ascendant 3</h4>
+                                <div data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                <div id="collapseRank" class="collapse profileRankDropdown">
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Special</h4>
+                                        <div style="top: 0px !important;" data-toggle="collapse" href="#collapseRankSpecific1" role="button" aria-expanded="false" aria-controls="collapseRankSpecific1" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 0px;" id="collapseRankSpecific1" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Unranked</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Empty 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Empty 2</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/3.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Iron</h4>
+                                        <div style="top: 45px !important;" data-toggle="collapse" href="#collapseRankSpecific2" role="button" aria-expanded="false" aria-controls="collapseRankSpecific2" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 45px;" id="collapseRankSpecific2" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/3.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Iron 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/4.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Iron 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/5.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Iron 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/6.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Bronze</h4>
+                                        <div style="top: 90px !important;" data-toggle="collapse" href="#collapseRankSpecific3" role="button" aria-expanded="false" aria-controls="collapseRankSpecific3" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 90px;" id="collapseRankSpecific3" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/6.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Bronze 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/7.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Bronze 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/8.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Bronze 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/9.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Silver</h4>
+                                        <div style="top: 135px !important;" data-toggle="collapse" href="#collapseRankSpecific4" role="button" aria-expanded="false" aria-controls="collapseRankSpecific4" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 135px;" id="collapseRankSpecific4" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/9.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Silver 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/10.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Silver 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/11.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Silver 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/12.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Gold</h4>
+                                        <div style="top: 180px !important;" data-toggle="collapse" href="#collapseRankSpecific5" role="button" aria-expanded="false" aria-controls="collapseRankSpecific5" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 180px;" id="collapseRankSpecific5" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/12.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Gold 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/13.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Gold 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/14.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Gold 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/15.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Platinum</h4>
+                                        <div style="top: 225px !important;" data-toggle="collapse" href="#collapseRankSpecific6" role="button" aria-expanded="false" aria-controls="collapseRankSpecific6" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 225px;" id="collapseRankSpecific6" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/15.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Platinum 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/16.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Platinum 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/17.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Platinum 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/18.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Diamond</h4>
+                                        <div style="top: 270px !important;" data-toggle="collapse" href="#collapseRankSpecific7" role="button" aria-expanded="false" aria-controls="collapseRankSpecific7" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 270px;" id="collapseRankSpecific7" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/18.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Diamond 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/19.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Diamond 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/20.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Diamond 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/21.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Ascendant</h4>
+                                        <div style="top: 315px !important;" data-toggle="collapse" href="#collapseRankSpecific8" role="button" aria-expanded="false" aria-controls="collapseRankSpecific8" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 315px;" id="collapseRankSpecific8" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/21.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Ascendant 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/22.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Ascendant 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/23.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Ascendant 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/24.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Immortal</h4>
+                                        <div style="top: 360px !important;" data-toggle="collapse" href="#collapseRankSpecific9" role="button" aria-expanded="false" aria-controls="collapseRankSpecific9" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 360px;" id="collapseRankSpecific9" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/24.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Immortal 1</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/25.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Immortal 2</h4>
+                                            </div>
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/26.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Immortal 3</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valorantDropdownItem">
+                                        <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/27.png">
+                                        <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Radiant</h4>
+                                        <div style="top: 405px !important;" data-toggle="collapse" href="#collapseRankSpecific10" role="button" aria-expanded="false" aria-controls="collapseRankSpecific10" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div data-parent="#collapseRank" style="top: 405px;" id="collapseRankSpecific10" class="collapse profileRankSpecificDropdown">
+                                            <div class="valorantDropdownItem">
+                                                <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/27.png">
+                                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Radiant</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                             <h5 class="valorantRankInfo">Vulx Rank</h5>
@@ -105,8 +290,11 @@
                             <h5 class="valorantMatchInfo textOverflow">Fracture • 433 - 343</h5>
                         </div>
                         <hr style="top: 407px !important;" class="spacer">
-                        <h5 class="vulxAdvertising">💙 Go premium to remove watermarks</h5>
-                        <h5 style="top: 461px;" class="vulxAdvertising"><b>Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;" href="https://github.com/itssyfe">Syfe</a></b></h5>
+                        <div id="valorantMatchStatusContainer" class="valorantMatchStatusContainer">
+                            <h5 id="valorantMatchStatus" class="valorantMatchStatusInfo textOverflow"></h5>
+                        </div>
+                        <hr id="bottomSpacer" style="top: 452px !important;" class="spacer">
+                        <h5 class="vulxAdvertising"><b>Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;" href="https://github.com/itssyfe">Syfe</a></b></h5>
                     </div>
                     <div class="col-12 col-md-8"></div>
                   </div>
@@ -188,39 +376,6 @@
 <script src="js/vulx.request.session.js"></script>
 <script src="js/vulx.request.settings.js"></script>
 <script src="js/vulx.request.friends.js"></script>
+<script src="js/vulx.profile.js"></script>
 <script src="js/vulx.search.js"></script>
-<script>
-    const searchBar = document.querySelector('input[type="text"]');
-
-    if(searchBar.addEventListener('focusin', (event) => {
-        var overlay = document.getElementById("overlay");
-        var searchBar = document.getElementById("searchBar");
-            //Remove old class
-            overlay.classList.remove("hidden");
-            overlay.classList.remove("fadeout");
-            searchBar.classList.remove("hidden");
-            searchBar.classList.remove("fadeout");
-            //Add new class
-            overlay.classList.add("visible");
-            overlay.classList.add("fadein");
-            searchBar.classList.add("visible");
-            searchBar.classList.add("fadein");
-    }));
-
-    function closeSearchBar() {
-        var overlay = document.getElementById("overlay");
-        var searchBar = document.getElementById("searchBar");
-            //Remove old class
-            overlay.classList.remove("visible");
-            overlay.classList.remove("fadein");
-            searchBar.classList.remove("visible");
-            searchBar.classList.remove("fadein");
-            //Add new class
-            overlay.classList.add("hidden");
-            overlay.classList.add("fadeout");
-            searchBar.classList.add("hidden");
-            searchBar.classList.add("fadeout");
-            
-    }
-</script>
 </html>

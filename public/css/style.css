@@ -16,9 +16,10 @@ a {
 
 .profileBanner {
   background-color: #14151c;
-  height: 500px;
+  height: 505px;
+  transition: height 0.1s ease-in-out;
   border-radius: 15px;
-      box-shadow: 5px 5px #0c0c0e;
+  box-shadow: 5px 5px #0c0c0e;
 }
 
 .valorantBanner {
@@ -83,6 +84,38 @@ a {
   padding-left: 10px;
 }
 
+.profileRankDropdown {
+  background-color: #0c0c0e;
+  position: absolute;
+  z-index: 4;
+  top: 60px;
+  left: 0px;
+  width: 352px;
+  border-radius: 15px;
+}
+
+.profileRankSpecificDropdown {
+  background-color: #0c0c0e;
+  position: absolute;
+  z-index: 4;
+  top: 0px;
+  left: 360px;
+  width: 352px;
+  border-radius: 15px;
+}
+
+.valorantDropdownItem {
+  display: flex;
+  padding: 5px;
+  display: flex;
+}
+
+.collapsing {
+  overflow: hidden !important;
+  transition: height 0.35s ease 0s !important;
+  position: absolute !important;
+}
+
 .valorantHighlightTag {
   margin-top: -5px;
   font-size: 15px;
@@ -106,14 +139,28 @@ a {
 
 .vulxAdvertising {
   position: absolute;
-  top: 435px;
+  top: 475px;
   left: 20px;
   font-size: 16px;
+  transition: top 0.1s ease-in-out;
 }
 
 .valorantHighlightContainer {
   position: absolute;
   top: 282px;
+}
+
+.valorantMatchStatusContainer {
+  position: absolute;
+  overflow: hidden;
+  top: 433px;
+  left: 20px;
+  max-width: 349px;
+  width: 349px;
+  height: auto;
+  transition: max-height 0.1s ease-in-out;
+  max-height: 267px;
+  overflow: scroll;
 }
 
 .flexCont {
@@ -126,6 +173,7 @@ a {
   left: 16px;
   width: 350px;
   border: 0.1px solid #333336;
+  transition: top 0.1s ease-in-out;
 }
 
 .footer {
@@ -138,9 +186,53 @@ a {
   text-align: center;
 }
 
+.arrow-left {
+  position: relative;
+  top: -50px;
+}
+
+.arrow-left:before, .arrow-left:after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 3px;
+  background: white;
+  position: absolute;
+  top: 17px;
+  transition: transform .2s;
+}
+
+.arrow-left:before {
+  right: 10px;
+  top: 12px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transform: rotate(45deg);
+}
+
+.arrow-left:after {
+  top: 19px;
+  right: 10px;
+  transform: rotate(-45deg);
+}
+
+.arrow-left.active:before {
+  transform: rotate(-45deg);
+}
+
+.arrow-left.active:after {
+  transform: rotate(45deg);
+}
+
 .arrow-down {
   position: relative;
   top: -50px;
+}
+
+.arrow-downV2 {
+  position: absolute;
+  top: 0px !important;
+  left: 350px !important;
 }
 
 .arrow-down:before, .arrow-down:after {
@@ -177,7 +269,7 @@ a {
 .wrapper {
   display: flex;
   height: 100vh;
-  background: linear-gradient(#0000002e, rgb(0 0 0 / 54%)), url(http://127.0.0.1:5500/public/images/Sprinkle.svg);
+  background: linear-gradient(#0000002e, rgb(0 0 0 / 54%)), url(https://cdn.aquaplays.xyz/profile/sprinkle.svg);
   /* background-repeat: no-repeat; */
   background-attachment: fixed;
   background-position: center;
@@ -471,6 +563,7 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .searchBarTags {
