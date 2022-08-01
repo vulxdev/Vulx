@@ -37,6 +37,15 @@ function closeSearchBar() {
         
 }
 
+function rankDropdownToggle(el) {
+	var rankDropdowns = document.querySelectorAll(".arrow-downV2");
+	rankDropdowns.forEach(rankDropdown => {
+		if (rankDropdown.id != "mainRankDropdown" && rankDropdown != el)
+			rankDropdown.classList.remove("active")
+	})
+	el.classList.toggle("active")
+}
+
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
     const isHover = e => e.parentElement.querySelector(':hover') === e;    
     const valorantStatus = document.getElementById('valorantMatchStatus');

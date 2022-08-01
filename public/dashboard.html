@@ -89,12 +89,12 @@
                             <div class="flexCont">
                                 <img id="valorantRankImg" class="valorantRankImg">
                                 <h4 id="valorantRank" class="valorantRank">Ascendant 3</h4>
-                                <div data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                <div id="mainRankDropdown" data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
                                 <div id="collapseRank" class="collapse profileRankDropdown">
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Special</h4>
-                                        <div style="top: 0px !important;" data-toggle="collapse" href="#collapseRankSpecific1" role="button" aria-expanded="false" aria-controls="collapseRankSpecific1" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 0px !important;" data-toggle="collapse" href="#collapseRankSpecific1" role="button" aria-expanded="false" aria-controls="collapseRankSpecific1" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 0px;" id="collapseRankSpecific1" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/0.png">
@@ -113,7 +113,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/3.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Iron</h4>
-                                        <div style="top: 45px !important;" data-toggle="collapse" href="#collapseRankSpecific2" role="button" aria-expanded="false" aria-controls="collapseRankSpecific2" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 45px !important;" data-toggle="collapse" href="#collapseRankSpecific2" role="button" aria-expanded="false" aria-controls="collapseRankSpecific2" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 45px;" id="collapseRankSpecific2" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/3.png">
@@ -132,7 +132,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/6.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Bronze</h4>
-                                        <div style="top: 90px !important;" data-toggle="collapse" href="#collapseRankSpecific3" role="button" aria-expanded="false" aria-controls="collapseRankSpecific3" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 90px !important;" data-toggle="collapse" href="#collapseRankSpecific3" role="button" aria-expanded="false" aria-controls="collapseRankSpecific3" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 90px;" id="collapseRankSpecific3" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/6.png">
@@ -151,7 +151,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/9.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Silver</h4>
-                                        <div style="top: 135px !important;" data-toggle="collapse" href="#collapseRankSpecific4" role="button" aria-expanded="false" aria-controls="collapseRankSpecific4" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 135px !important;" data-toggle="collapse" href="#collapseRankSpecific4" role="button" aria-expanded="false" aria-controls="collapseRankSpecific4" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 135px;" id="collapseRankSpecific4" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/9.png">
@@ -170,7 +170,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/12.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Gold</h4>
-                                        <div style="top: 180px !important;" data-toggle="collapse" href="#collapseRankSpecific5" role="button" aria-expanded="false" aria-controls="collapseRankSpecific5" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 180px !important;" data-toggle="collapse" href="#collapseRankSpecific5" role="button" aria-expanded="false" aria-controls="collapseRankSpecific5" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 180px;" id="collapseRankSpecific5" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/12.png">
@@ -189,7 +189,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/15.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Platinum</h4>
-                                        <div style="top: 225px !important;" data-toggle="collapse" href="#collapseRankSpecific6" role="button" aria-expanded="false" aria-controls="collapseRankSpecific6" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 225px !important;" data-toggle="collapse" href="#collapseRankSpecific6" role="button" aria-expanded="false" aria-controls="collapseRankSpecific6" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 225px;" id="collapseRankSpecific6" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/15.png">
@@ -208,7 +208,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/18.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Diamond</h4>
-                                        <div style="top: 270px !important;" data-toggle="collapse" href="#collapseRankSpecific7" role="button" aria-expanded="false" aria-controls="collapseRankSpecific7" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 270px !important;" data-toggle="collapse" href="#collapseRankSpecific7" role="button" aria-expanded="false" aria-controls="collapseRankSpecific7" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 270px;" id="collapseRankSpecific7" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/18.png">
@@ -227,7 +227,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/21.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Ascendant</h4>
-                                        <div style="top: 315px !important;" data-toggle="collapse" href="#collapseRankSpecific8" role="button" aria-expanded="false" aria-controls="collapseRankSpecific8" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 315px !important;" data-toggle="collapse" href="#collapseRankSpecific8" role="button" aria-expanded="false" aria-controls="collapseRankSpecific8" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 315px;" id="collapseRankSpecific8" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/21.png">
@@ -246,7 +246,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/24.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Immortal</h4>
-                                        <div style="top: 360px !important;" data-toggle="collapse" href="#collapseRankSpecific9" role="button" aria-expanded="false" aria-controls="collapseRankSpecific9" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 360px !important;" data-toggle="collapse" href="#collapseRankSpecific9" role="button" aria-expanded="false" aria-controls="collapseRankSpecific9" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 360px;" id="collapseRankSpecific9" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/24.png">
@@ -265,7 +265,7 @@
                                     <div class="valorantDropdownItem">
                                         <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/27.png">
                                         <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Radiant</h4>
-                                        <div style="top: 405px !important;" data-toggle="collapse" href="#collapseRankSpecific10" role="button" aria-expanded="false" aria-controls="collapseRankSpecific10" class="arrow-left arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                        <div style="top: 405px !important;" data-toggle="collapse" href="#collapseRankSpecific10" role="button" aria-expanded="false" aria-controls="collapseRankSpecific10" class="arrow-left arrow-downV2" onclick="rankDropdownToggle(this)"></div>
                                         <div data-parent="#collapseRank" style="top: 405px;" id="collapseRankSpecific10" class="collapse profileRankSpecificDropdown">
                                             <div class="valorantDropdownItem">
                                                 <img style="height: 30px;" class="valorantRankImg" src="https://cdn.aquaplays.xyz/ranks/27.png">
