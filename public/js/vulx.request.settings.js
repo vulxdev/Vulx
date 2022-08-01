@@ -50,18 +50,18 @@ fetch("http://127.0.0.1:/currentSettings").then(function(response) {
         var playerTitleId = document.getElementById("valorantTitle");
             playerTitleId.textContent = await getTitleText(data.playerTitleId);
         var rankImg = document.getElementById("valorantRankImg")
-            if(data.competitiveTier == 0 || data.competitiveTier == 1 || data.competitiveTier == 2) { 
+            if(data.competitiveTier <= 2 || data.competitiveTier >= 28) { 
                 rankImg.src = "https://cdn.aquaplays.xyz/ranks/0.png";
             } else {
                 rankImg.src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier}.png`;
             }
+		var rankPositionSpan = document.createElement("span");
+			rankPositionSpan.textContent = ` #${data.leaderboardPosition}`;
+			rankPositionSpan.style.fontSize = "14px";
         var rank = document.getElementById("valorantRank");
-            if(data.leaderboardPosition != 0) {
-                rank.textContent = resolveRank(data.competitiveTier) + '#' + data.leaderboardPosition;
-            } else {
-                rank.textContent = resolveRank(data.competitiveTier);
-            }
-            console.log(resolveRank(data.competitiveTier));
+			rank.textContent = data.competitiveTier <= 0 || data.competitiveTier >= 28 ? resolveRank(0) : resolveRank(data.competitiveTier);
+			if (data.leaderboardPosition != 0) rank.appendChild(rankPositionSpan);
+
         var position = document.getElementById("position");
             position.value = data.leaderboardPosition;
         var level = document.getElementById("level");
