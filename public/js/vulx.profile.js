@@ -1,4 +1,5 @@
 const searchBar = document.querySelector('input[type="text"]');
+import ranksJson from './ranks.json' assert {type: 'json'};
 
 function delay(time) {
     return new Promise(function (resolve) {
@@ -35,8 +36,76 @@ function closeSearchBar() {
         searchBar.classList.add("hidden");
         searchBar.classList.add("fadeout");
         
+} window.closeSearchBar = closeSearchBar;
+
+let dropLoc = 0;
+for(var i = 0; i < ranksJson.length; i++) {
+    var ranksDropdown = document.getElementById("collapseRank");
+    var rank = document.createElement("div");
+    rank.setAttribute("class", "valorantDropdownItem");
+    rank.setAttribute("id", i);
+
+    var rankImg = document.createElement("img");
+    rankImg.setAttribute("style", "height: 30px;");
+    rankImg.setAttribute("class", "valorantRankImg");
+    rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id}.png`);
+    rank.appendChild(rankImg);
+
+    var rankName = document.createElement("h4");
+    rankName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
+    rankName.setAttribute("class", "valorantRank");
+    rankName.innerHTML = Object.keys(ranksJson[i])[1];
+    rank.appendChild(rankName);
+
+    var rankArrow = document.createElement("div");
+    rankArrow.setAttribute("style", `top: ${dropLoc}px !important;`);
+    rankArrow.setAttribute("data-toggle", "collapse");
+    rankArrow.setAttribute("href", "#collapseRankSpecific" + i);
+    rankArrow.setAttribute("role", "button");
+    rankArrow.setAttribute("aria-expanded", "false");
+    rankArrow.setAttribute("aria-controls", "collapseRankSpecific" + i);
+    rankArrow.setAttribute("class", "arrow-left arrow-downV2");
+    rankArrow.setAttribute("onclick", "this.classList.toggle('active')");
+    rankArrow.setAttribute("id", "rankArrow" + i);
+    rank.appendChild(rankArrow);
+          
+    var rankSpecificDropdown = document.createElement("div");
+    rankSpecificDropdown.setAttribute("data-parent", "#collapseRank");
+    rankSpecificDropdown.setAttribute("style", `top: ${dropLoc}px !important;`);
+    rankSpecificDropdown.setAttribute("id", "collapseRankSpecific" + i);
+    rankSpecificDropdown.setAttribute("class", "collapse profileRankSpecificDropdown");
+    rank.appendChild(rankSpecificDropdown);
+
+    for(var j = 0; j < Object.values(ranksJson[i])[1].length; j++) {
+        let rank = Object.values(ranksJson[i])[1][j];
+        
+        var rankSpecific = document.createElement("div");
+        rankSpecific.setAttribute("class", "valorantDropdownItem");
+        rankSpecific.setAttribute("id", j);
+        rankSpecific.addEventListener('click', async (event) => {
+            await selectRank(rank);
+        });
+        rankSpecificDropdown.appendChild(rankSpecific);
+
+        var rankSpecificImg = document.createElement("img");
+        rankSpecificImg.setAttribute("style", "height: 30px;");
+        rankSpecificImg.setAttribute("class", "valorantRankImg");
+        rankSpecificImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${rankName.innerHTML == "Special" ? 0 : rank}.png`);
+        rankSpecific.appendChild(rankSpecificImg);
+
+        const num = j+1;
+        var rankSpecificName = document.createElement("h4");
+        rankSpecificName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
+        rankSpecificName.setAttribute("class", "valorantRank");
+        rankSpecificName.innerHTML = rankName.innerHTML + " " + num;
+        rankSpecific.appendChild(rankSpecificName);
+    }
+
+    dropLoc += 45;
+    ranksDropdown.appendChild(rank);
 }
 
+<<<<<<< Updated upstream
 function rankDropdownToggle(el) {
 	var rankDropdowns = document.querySelectorAll(".arrow-downV2");
 	rankDropdowns.forEach(rankDropdown => {
@@ -45,6 +114,24 @@ function rankDropdownToggle(el) {
 	})
 	el.classList.toggle("active")
 }
+=======
+async function selectRank(id) {
+    await fetch('http://127.0.0.1:/updatePresence', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                flag: 2,
+                rank: id
+            }
+        )
+    })
+    getProfile();
+} window.selectRank = selectRank;
+>>>>>>> Stashed changes
 
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
     const isHover = e => e.parentElement.querySelector(':hover') === e;    

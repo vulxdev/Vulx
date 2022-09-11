@@ -88,6 +88,7 @@
                         <div class="valorantRankContainer">
                             <div class="flexCont">
                                 <img id="valorantRankImg" class="valorantRankImg">
+<<<<<<< Updated upstream
                                 <h4 id="valorantRank" class="valorantRank">Ascendant 3</h4>
                                 <div id="mainRankDropdown" data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
                                 <div id="collapseRank" class="collapse profileRankDropdown">
@@ -273,6 +274,11 @@
                                             </div>
                                         </div>
                                     </div>
+=======
+                                <h4 id="valorantRank" class="valorantRank">Unranked</h4>
+                                <div data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
+                                <div id="collapseRank" class="collapse profileRankDropdown">
+>>>>>>> Stashed changes
                                 </div>
                             </div>
                             <br>
@@ -281,13 +287,13 @@
                         <hr style="top: 257px !important;" class="spacer">
                         <div class="valorantInfoContainer">
                             <h4 style="font-size: 18px;">Highlights</h4>
-                            <h5 class="valorantHighlightTag">🔹 Developerk</h5>
+                            <h5 class="valorantHighlightTag">🔹 Developer</h5>
                             <h5 class="valorantHighlightTag">🔹 Beta Tester</h5>
                             <h5 class="valorantHighlightTag">🔹 User</h5>
                         </div>
                         <hr style="top: 362px !important;" class="spacer">
                         <div class="valorantMatchContainer">
-                            <h5 class="valorantMatchInfo textOverflow">Fracture • 433 - 343</h5>
+                            <h5 class="valorantMatchInfo textOverflow">Valorant • <a id="ally"></a> - <a id="enemy"></a></h5>
                         </div>
                         <hr style="top: 407px !important;" class="spacer">
                         <div id="valorantMatchStatusContainer" class="valorantMatchStatusContainer">
@@ -376,6 +382,6 @@
 <script src="js/vulx.request.session.js"></script>
 <script src="js/vulx.request.settings.js"></script>
 <script src="js/vulx.request.friends.js"></script>
-<script src="js/vulx.profile.js"></script>
+<script type="module" src="js/vulx.profile.js"></script>
 <script src="js/vulx.search.js"></script>
 </html>
