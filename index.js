@@ -30,7 +30,7 @@ const readline = require('readline').createInterface({
 	output: process.stdout
 });
 
-async function licenseCheck(licenseKey) {
+/*async function licenseCheck(licenseKey) {
 	LicenseHelper.license = licenseKey;
 	if (await LicenseHelper.checkLicense()) {
 		logger.info("License key accepted, starting Vulx...");
@@ -39,7 +39,6 @@ async function licenseCheck(licenseKey) {
 		}
 		await LicenseHelper.checkDev();
 		await LicenseHelper.checkBeta();
-		Vulx();
 	} else {
 		process.exit(1);
 	}
@@ -55,4 +54,6 @@ try {
 	}
 } catch (err) {
 	logger.error(err);
-}
+}*/
+
+Vulx();

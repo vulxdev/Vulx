@@ -10,19 +10,32 @@ const discord = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
 
 const updatePresence = catchAsync(async (req, res) => {
+	let flag = req.body.flag;
     const valConfig = await meHelper.getValorantJson();
 
-	valConfig.queueId = req.body.status;
-	valConfig.competitiveTier = req.body.rank;
-	valConfig.leaderboardPosition = req.body.position;
-	valConfig.accountLevel = req.body.level;
-	valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
-	valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
+	console.log(flag)
 
-	await discord.update();
-	
+	if (flag & 1) {
+		valConfig.queueId = req.body.status;
+	}
+	if (flag & 2) {
+		valConfig.competitiveTier = req.body.rank;
+	}
+	if (flag & 4) {
+		valConfig.leaderboardPosition = req.body.position;
+	}
+	if (flag & 8) {
+		valConfig.accountLevel = req.body.level;
+	}
+	if (flag & 16) {
+		valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
+	}
+	if (flag & 32) {
+		valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
+	}
+
 	await meHelper.updateRequest(valConfig);
-        
+	await discord.update(); 
     await res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 

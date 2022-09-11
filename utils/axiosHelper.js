@@ -64,7 +64,6 @@ class Helper {
 
 	async getVulxAxios() {
 		await this._initialize();
-
 		return this.axios;
 	}
 }

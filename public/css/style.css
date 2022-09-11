@@ -72,6 +72,7 @@ a {
 }
 
 .valorantRankInfo {
+  width: 100px;
   position: absolute;
   top: 23px;
   font-size: 17px;
@@ -87,7 +88,7 @@ a {
 .profileRankDropdown {
   background-color: #0c0c0e;
   position: absolute;
-  z-index: 4;
+  z-index: 1;
   top: 60px;
   left: 0px;
   width: 352px;
@@ -97,7 +98,7 @@ a {
 .profileRankSpecificDropdown {
   background-color: #0c0c0e;
   position: absolute;
-  z-index: 4;
+  z-index: 1;
   top: 0px;
   left: 360px;
   width: 352px;
