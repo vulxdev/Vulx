@@ -37,42 +37,7 @@ function resolveRank(rankId) {
       }
       return rankNames[rankId];
 }
-<<<<<<< Updated upstream
 
-fetch("http://127.0.0.1:/currentSettings").then(function(response) {
-    return response.json();
-    }).then(async function(data) {
-        var status = document.getElementById("valorantMatchStatus");
-            status.textContent = data.queueId;
-        var playerCardId = document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
-        var playerCardSmallId = document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
-        var playerTitleId = document.getElementById("valorantTitle");
-            playerTitleId.textContent = await getTitleText(data.playerTitleId);
-        var rankImg = document.getElementById("valorantRankImg")
-            if(data.competitiveTier <= 2 || data.competitiveTier >= 28) { 
-                rankImg.src = "https://cdn.aquaplays.xyz/ranks/0.png";
-            } else {
-                rankImg.src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier}.png`;
-            }
-		var rankPositionSpan = document.createElement("span");
-			rankPositionSpan.textContent = ` #${data.leaderboardPosition}`;
-			rankPositionSpan.style.fontSize = "14px";
-        var rank = document.getElementById("valorantRank");
-			rank.textContent = data.competitiveTier <= 0 || data.competitiveTier >= 28 ? resolveRank(0) : resolveRank(data.competitiveTier);
-			if (data.leaderboardPosition != 0) rank.appendChild(rankPositionSpan);
-
-        var position = document.getElementById("position");
-            position.value = data.leaderboardPosition;
-        var level = document.getElementById("level");
-            level.value = data.accountLevel;
-        var ally = document.getElementById("ally");
-            ally.value = data.partyOwnerMatchScoreAllyTeam;
-        var enemy = document.getElementById("enemy");
-            enemy.value = data.partyOwnerMatchScoreEnemyTeam;
-    }).catch(function(error) {
-    console.log(error);
-});
-=======
 function getProfile() {
     fetch("http://127.0.0.1:/currentSettings").then(function(response) {
         return response.json();
@@ -103,5 +68,5 @@ function getProfile() {
         console.log(error);
     });
 } window.getProfile = getProfile;
+
 getProfile();
->>>>>>> Stashed changes
