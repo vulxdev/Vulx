@@ -65,7 +65,7 @@ for(var i = 0; i < ranksJson.length; i++) {
     rankArrow.setAttribute("aria-expanded", "false");
     rankArrow.setAttribute("aria-controls", "collapseRankSpecific" + i);
     rankArrow.setAttribute("class", "arrow-left arrow-downV2");
-    rankArrow.setAttribute("onclick", "this.classList.toggle('active')");
+    rankArrow.setAttribute("onclick", "rankDropdownToggle(this)");
     rankArrow.setAttribute("id", "rankArrow" + i);
     rank.appendChild(rankArrow);
           
@@ -105,7 +105,6 @@ for(var i = 0; i < ranksJson.length; i++) {
     ranksDropdown.appendChild(rank);
 }
 
-<<<<<<< Updated upstream
 function rankDropdownToggle(el) {
 	var rankDropdowns = document.querySelectorAll(".arrow-downV2");
 	rankDropdowns.forEach(rankDropdown => {
@@ -113,8 +112,8 @@ function rankDropdownToggle(el) {
 			rankDropdown.classList.remove("active")
 	})
 	el.classList.toggle("active")
-}
-=======
+} window.rankDropdownToggle = rankDropdownToggle;
+
 async function selectRank(id) {
     await fetch('http://127.0.0.1:/updatePresence', {
         method: 'POST',
@@ -131,7 +130,6 @@ async function selectRank(id) {
     })
     getProfile();
 } window.selectRank = selectRank;
->>>>>>> Stashed changes
 
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
     const isHover = e => e.parentElement.querySelector(':hover') === e;    
@@ -164,3 +162,27 @@ if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer'
         }
     });
 }   
+
+function setupSlip(list) {       
+    list.addEventListener('slip:beforewait', function(e){
+        if (e.target.classList.contains('instant')) e.preventDefault();
+    }, false);
+
+    list.addEventListener('slip:beforeswipe', function(e){
+        e.preventDefault();
+    }, false);
+
+    list.addEventListener('slip:reorder', function(e){                             
+        e.target.parentNode.insertBefore(e.target, e.detail.insertBefore);
+
+        var olArray = []         
+        var olChilds = document.getElementById("profileThemes").querySelectorAll('li');
+
+        olChilds.forEach(child => olArray.push(child.id))
+
+        return false;
+    }, false);
+    
+    return new Slip(list);
+}
+setupSlip(document.getElementById('profileThemes'));

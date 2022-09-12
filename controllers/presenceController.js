@@ -13,9 +13,9 @@ const updatePresence = catchAsync(async (req, res) => {
 	let flag = req.body.flag;
     const valConfig = await meHelper.getValorantJson();
 
-	console.log(flag)
-
 	if (flag & 1) {
+		console.log(req.body.status + " status") // debug
+		if(req.body.status) 
 		valConfig.queueId = req.body.status;
 	}
 	if (flag & 2) {
@@ -28,15 +28,19 @@ const updatePresence = catchAsync(async (req, res) => {
 		valConfig.accountLevel = req.body.level;
 	}
 	if (flag & 16) {
+		console.log(req.body.ally + " ally") // debug
+		if(req.body.ally) 
 		valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 	}
 	if (flag & 32) {
+		console.log(req.body.enemy + " enemy") // debug
+		if(req.body.enemy) 
 		valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
 	}
 
 	await meHelper.updateRequest(valConfig);
 	await discord.update(); 
-    await res.sendFile(path.join(__dirname, '../public/index.html'));
+    await res.status(httpStatus.OK).send();
 });
 
 const currentSettings = catchAsync(async (req, res) => {
