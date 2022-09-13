@@ -38,6 +38,10 @@ function resolveRank(rankId) {
       return rankNames[rankId];
 }
 
+function resolveIntComma(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function getProfile() {
     fetch("http://127.0.0.1:/currentSettings").then(function(response) {
         return response.json();
@@ -50,6 +54,7 @@ function getProfile() {
             var playerCardSmallId = document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
             var playerTitleId = document.getElementById("valorantTitle");
                 playerTitleId.textContent = await getTitleText(data.playerTitleId);
+                window.playerTitleId = data.playerTitleId;
             var rankImg = document.getElementById("valorantRankImg")
                 if(data.competitiveTier == 0 || data.competitiveTier == 1 || data.competitiveTier == 2) { 
                     rankImg.src = "https://cdn.aquaplays.xyz/ranks/0.png";
@@ -58,10 +63,14 @@ function getProfile() {
                 }
             var rank = document.getElementById("valorantRank");
                 if(data.leaderboardPosition != 0) {
-                    rank.textContent = resolveRank(data.competitiveTier) + ' #' + parseInt(data.leaderboardPosition.toLocaleString("en-US"));
+                    rank.textContent = resolveRank(data.competitiveTier) + ' #' + resolveIntComma(data.leaderboardPosition);;
                 } else {
                     rank.textContent = resolveRank(data.competitiveTier);
                 }
+            var valorantLeaderboard = document.getElementById("valorantLeaderboard");
+                valorantLeaderboard.value = data.leaderboardPosition;
+            var valorantLevel = document.getElementById("valorantLevel");
+                valorantLevel.value = data.accountLevel;
             var ally = document.getElementById("ally");
             var dashAlly = document.getElementById("valorantAlly");
                 dashAlly.value = data.partyOwnerMatchScoreAllyTeam;
