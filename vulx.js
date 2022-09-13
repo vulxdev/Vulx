@@ -10,6 +10,8 @@ const logger = require('./utils/logger');
 const configHelper = require('./utils/configHelper');
 const routes = require('./routes');
 const MeHelper = require('./utils/meHelper');
+const SystemMessageHelper = require('./utils/SystemMessageHelper');
+const ValorantAPI = require('./utils/ValorantAPI');
 
 module.exports = async function() {
 	const config = await configHelper.getVulxConfig();
@@ -30,6 +32,15 @@ module.exports = async function() {
 		port = await portfinder.getPortPromise();
 		await MeHelper._initialize();
 		await discord.update();
+
+		const valorantConfig = await configHelper.getValorantConfig();
+
+		await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
+		await SystemMessageHelper.sendSystemMessage(`♡ Welcome to Vulx ${await ValorantAPI.getGameName()}`);
+		await SystemMessageHelper.sendSystemMessage(`♡      Your current rank is ${await discord.rankIdToName[valorantConfig.competitiveTier]}`);
+		await SystemMessageHelper.sendSystemMessage(`♡      For support join discord.gg/aquaplays`);
+		await SystemMessageHelper.sendSystemMessage(`♡ Made with love by Aqua & Syfe`);
+		await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
 
 		if (port != config.port)
 			logger.info(`Dashboard port changed from ${config.port} to ${port}`);
