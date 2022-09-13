@@ -43,6 +43,8 @@ function getProfile() {
         return response.json();
         }).then(async function(data) {
             var status = document.getElementById("valorantMatchStatus");
+            var dashStatus = document.getElementById("valorantStatus");
+                dashStatus.value = data.queueId;
                 status.textContent = data.queueId;
             var playerCardId = document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
             var playerCardSmallId = document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
@@ -61,8 +63,12 @@ function getProfile() {
                     rank.textContent = resolveRank(data.competitiveTier);
                 }
             var ally = document.getElementById("ally");
+            var dashAlly = document.getElementById("valorantAlly");
+                dashAlly.value = data.partyOwnerMatchScoreAllyTeam;
                 ally.textContent = data.partyOwnerMatchScoreAllyTeam;
             var enemy = document.getElementById("enemy");
+            var dashEnenmy = document.getElementById("valorantEnemy");
+                dashEnenmy.value = data.partyOwnerMatchScoreEnemyTeam;
                 enemy.textContent = data.partyOwnerMatchScoreEnemyTeam;
         }).catch(function(error) {
         console.log(error);

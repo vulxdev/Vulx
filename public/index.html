@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Vulx</title>
 </head>
 <body class="bootstrap-dark">
@@ -15,7 +16,7 @@
         <div class="title show3">
             <h1 class="vulxTitle">VULX</h1>
         </div>
-        <h1 style="margin-left: -10px;" class="show3">Updating Presence</h1>
+        <h1 style="margin-left: 5px;" class="show3">Loading Profile...</h1>
         <img class="show3" style="height: 40px; margin: 15px;" id="loading-image" src="https://d2w9rnfcy7mm78.cloudfront.net/11137417/original_8019249c9ae1d7d7c575d4d3bb2ce0b6.gif?1615501067?bc=0" alt="Loading..." />
     </div>
     <div class="wrapper">
@@ -120,8 +121,8 @@
                                     <details>
                                         <summary>Status <span class="instant"></span></summary>
                                         <div class="textBoxCont">
-                                            <div class="textBox">
-                                                <h5 class="textLabel">Status</h5>
+                                            <div style="width: 50%;" class="textBox">
+                                                <h5 class="textLabel">Profile Status</h5>
                                                 <input class="searchBarInput" type="text" name="status" id="valorantStatus" placeholder="Status.." value="default" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
                                             </div>
                                             <div class="textBox">
@@ -133,7 +134,6 @@
                                                 <input class="searchBarInput" type="number" name="enemy" id="valorantEnemy" placeholder="Enemy.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
                                             </div>
                                         </div>
-                                        <div class="autosave-message"></div>
                                     </details>                                       
                                 </li>
                                 <li class="profile-no-swipe" id="Account">
@@ -225,6 +225,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script type="module" src="js/vulx.profile.js"></script>
 <script src="js/vulx.request.reset.js"></script>
 <script src="js/vulx.request.session.js"></script>
@@ -233,50 +234,4 @@
 <script src="js/vulx.search.js"></script>
 <script src="js/vulx.load.js"></script>
 <script src="js/slip.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const SAVING_MESSAGE = "Saving...";
-        const SAVED_MESSAGE = "All changes saved.";
-
-        document
-            .querySelectorAll(".autosave-message")
-            .forEach((el) => (el.textContent = SAVED_MESSAGE));
-
-        document.querySelectorAll("[data-autosave-url]").forEach((inputField) => {
-            inputField.addEventListener("change", async () => {
-            const name = inputField.getAttribute("name");
-            const value = inputField.value;
-            const url = inputField.dataset.autosaveUrl;
-            const autosaveMessageEl = inputField
-                .closest(".container")
-                .querySelector(".autosave-message");
-            const formData = new FormData();
-
-            formData.append(name, value);
-            autosaveMessageEl.classList.add("autosave-message--saving");
-            autosaveMessageEl.textContent = SAVING_MESSAGE;
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        flag: 49,
-                        status: formData.get("status"),
-                        ally: formData.get("ally"),
-                        enemy: formData.get("enemy"),
-                    }
-                )
-            });
-
-            autosaveMessageEl.classList.remove("autosave-message--saving");
-            autosaveMessageEl.textContent = SAVED_MESSAGE;
-            getProfile();
-            });
-        });
-    });
-</script>
 </html>

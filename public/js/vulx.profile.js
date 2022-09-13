@@ -114,6 +114,31 @@ function rankDropdownToggle(el) {
 	el.classList.toggle("active")
 } window.rankDropdownToggle = rankDropdownToggle;
 
+function Notification(type, message) {
+    if(type == true) {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+        }).showToast();
+    } else {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+            style: {
+                background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            }
+        }).showToast();
+    }
+}
+
 async function selectRank(id) {
     await fetch('http://127.0.0.1:/updatePresence', {
         method: 'POST',
@@ -127,8 +152,12 @@ async function selectRank(id) {
                 rank: id
             }
         )
-    })
-    getProfile();
+    }).then((response) => {
+        Notification(true, "Rank updated successfully!");
+        getProfile();
+    }).catch((error) => {
+        Notification(false, "An error occured while updating your rank!");
+    });  
 } window.selectRank = selectRank;
 
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
@@ -162,6 +191,39 @@ if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer'
         }
     });
 }   
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-autosave-url]").forEach((inputField) => {
+        inputField.addEventListener("change", async () => {
+        const name = inputField.getAttribute("name");
+        const value = inputField.value;
+        const url = inputField.dataset.autosaveUrl;
+
+        const formData = new FormData();
+        formData.append(name, value);
+    
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    flag: 49,
+                    status: formData.get("status"),
+                    ally: formData.get("ally"),
+                    enemy: formData.get("enemy"),
+                }
+            )
+        }).then((response) => {
+            Notification(true, "Profile updated successfully!");
+            getProfile();
+        }).catch((error) => {
+            Notification(false, "An error occured while updating your profile!");
+        })});
+    });
+});
 
 function setupSlip(list) {       
     list.addEventListener('slip:beforewait', function(e){

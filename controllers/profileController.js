@@ -54,6 +54,7 @@ const updateSettings = catchAsync(async (req, res) => {
 });
 
 const resetAccount = catchAsync(async (req, res) => {
+	logger.debug("Resetting account");
     if(req.body.resetAccount == true) {
         logger.debug("Account reset")
         fs.unlinkSync("./cfg/valorant.json");
