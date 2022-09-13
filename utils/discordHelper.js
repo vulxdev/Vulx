@@ -37,6 +37,8 @@ const rankIdToName = {
     27: "Radiant",
 }
 
+exports.rankIdToName = rankIdToName;
+
 client.on('ready', async () => {
     const config = await configHelper.getVulxConfig();
     logger.discord(`Authed as ${client.user.username}#${client.user.discriminator}`);
