@@ -25,17 +25,20 @@ const updatePresence = catchAsync(async (req, res) => {
 		valConfig.leaderboardPosition = req.body.position;
 	}
 	if (flag & 8) {
+		console.log("level " + req.body.level) // debug
 		valConfig.accountLevel = req.body.level;
 	}
 	if (flag & 16) {
-		console.log(req.body.ally + " ally") // debug
 		if(req.body.ally) 
 		valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 	}
 	if (flag & 32) {
-		console.log(req.body.enemy + " enemy") // debug
 		if(req.body.enemy) 
 		valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
+	}
+	if (flag & 64) {
+		if(req.body.playerTitleId) 
+		valConfig.playerTitleId = req.body.playerTitleId;
 	}
 
 	await meHelper.updateRequest(valConfig);

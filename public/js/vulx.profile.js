@@ -1,5 +1,7 @@
 const searchBar = document.querySelector('input[type="text"]');
-import ranksJson from './ranks.json' assert {type: 'json'};
+import ranksJson from '../json/ranks.json' assert {type: 'json'};
+
+window.autosaveUrl = "http://127.0.0.1:/updatePresence";
 
 function delay(time) {
     return new Promise(function (resolve) {
@@ -43,6 +45,12 @@ for(var i = 0; i < ranksJson.length; i++) {
     var ranksDropdown = document.getElementById("collapseRank");
     var rank = document.createElement("div");
     rank.setAttribute("class", "valorantDropdownItem");
+    rank.setAttribute("data-toggle", "collapse");
+    rank.setAttribute("href", "#collapseRankSpecific" + i);
+    rank.setAttribute("role", "button");
+    rank.setAttribute("aria-expanded", "false");
+    rank.setAttribute("aria-controls", "collapseRankSpecific" + i);
+    rank.setAttribute("onclick", "rankDropdownToggle(this.children[2])");
     rank.setAttribute("id", i);
 
     var rankImg = document.createElement("img");
@@ -59,13 +67,7 @@ for(var i = 0; i < ranksJson.length; i++) {
 
     var rankArrow = document.createElement("div");
     rankArrow.setAttribute("style", `top: ${dropLoc}px !important;`);
-    rankArrow.setAttribute("data-toggle", "collapse");
-    rankArrow.setAttribute("href", "#collapseRankSpecific" + i);
-    rankArrow.setAttribute("role", "button");
-    rankArrow.setAttribute("aria-expanded", "false");
-    rankArrow.setAttribute("aria-controls", "collapseRankSpecific" + i);
     rankArrow.setAttribute("class", "arrow-left arrow-downV2");
-    rankArrow.setAttribute("onclick", "rankDropdownToggle(this)");
     rankArrow.setAttribute("id", "rankArrow" + i);
     rank.appendChild(rankArrow);
           
@@ -190,39 +192,88 @@ if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer'
             }
         }
     });
-}   
+}   //
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[data-autosave-url]").forEach((inputField) => {
-        inputField.addEventListener("change", async () => {
-        const name = inputField.getAttribute("name");
-        const value = inputField.value;
-        const url = inputField.dataset.autosaveUrl;
+var titlesDropdown = document.getElementById("titleDropdown");
+var dropdownSelect = document.getElementById("dropdownButton");
+var response = fetch('https://valorant-api.com/v1/playertitles').then(res => res.json()).then(response => {
+    response.data = [{ "displayName": "No Title", "uuid": "null" }, ...response.data];
+        response.data.forEach(title => {
+            var dropdownItem = document.createElement("a");
+            if (window.playerTitleId == title.uuid) {
+                dropdownItem.setAttribute("class", "dropdown-item active");
+                dropdownSelect.textContent = title.displayName;
+            }
+            else dropdownItem.setAttribute("class", "dropdown-item");
+            dropdownItem.setAttribute("href", "#");
+            dropdownItem.setAttribute("data-value", title.uuid);
+            dropdownItem.addEventListener('click', async (event) => {
+                selectTitle(title.uuid);
+            });
+            dropdownItem.innerHTML = title.displayName;
+            titlesDropdown.appendChild(dropdownItem);
+        });
+});
 
-        const formData = new FormData();
-        formData.append(name, value);
-    
-        const response = await fetch(url, {
-            method: 'POST',
+function selectTitle(playerTitleId) {
+    fetch(window.autosaveUrl, {
+        method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
                 {
-                    flag: 49,
-                    status: formData.get("status"),
-                    ally: formData.get("ally"),
-                    enemy: formData.get("enemy"),
+                    flag: 64,
+                    playerTitleId,
                 }
             )
-        }).then((response) => {
-            Notification(true, "Profile updated successfully!");
-            getProfile();
-        }).catch((error) => {
-            Notification(false, "An error occured while updating your profile!");
-        })});
-    });
+    }).then(() => {
+        Notification(true, "Profile updated successfully!");
+        getProfile();
+    }).catch(() => {
+        Notification(false, "An error occured while updating your profile!");
+    })
+}
+
+document.querySelectorAll(".searchBarInput").forEach((inputField) => {
+    inputField.addEventListener("change", () => {
+    const name = inputField.getAttribute("name");
+    const value = inputField.value;
+
+    const formData = new FormData();
+    formData.append(name, value);
+
+    const flagConversion = {
+        status: 1,
+        rank: 2,
+        position: 4,
+        level: 8,
+        ally: 16,
+        enemy: 32,
+        playerTitleId: 64,
+    }
+
+    var autosaveJson = { flag: 0 };
+
+    for (const pair of formData.entries()) {
+        autosaveJson.flag += flagConversion[pair[0]];
+        autosaveJson[pair[0]] = pair[1];
+    }
+
+    fetch(window.autosaveUrl, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(autosaveJson)
+    }).then(() => {
+        Notification(true, "Profile updated successfully!");
+        getProfile();
+    }).catch(() => {
+        Notification(false, "An error occured while updating your profile!");
+    })});
 });
 
 function setupSlip(list) {       

@@ -74,6 +74,10 @@ a {
   padding: 0;
 }
 
+.draggable {
+  transition: transform 2s;
+}
+
 .slippylist .instant::after {
   content: " \2261";
 }
@@ -81,13 +85,13 @@ a {
   float: right;
 }
 
-
 .profileBanner {
   background-color: #14151c;
   height: 505px;
   transition: height 0.1s ease-in-out;
   border-radius: 15px;
   box-shadow: 5px 5px #0c0c0e;
+  /*overflow-x: hidden;*/
 }
 
 .valorantBanner {
@@ -133,6 +137,7 @@ a {
   top: 219px;
   left: 16px;
   display: flex;
+  width: 350px;
 }
 
 .valorantRankImg {
@@ -151,6 +156,10 @@ a {
 .valorantRank {
   font-size: 19px;
   padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .profileRankDropdown {
@@ -234,6 +243,7 @@ a {
 
 .flexCont {
   display: flex;
+  width: 300px;
 }
 
 .spacer {
@@ -296,6 +306,9 @@ a {
 .arrow-down {
   position: relative;
   top: -50px;
+  height: 50px;
+  width: 50px;
+  margin-left: -50px;
 }
 
 .arrow-downV2 {
@@ -469,10 +482,26 @@ a {
   margin-left: 0px;
 }
 
+.dropdownTitles {
+  width: 100% !important;
+  margin-top: 10px !important;
+  height: 50px !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 18px !important;
+  border: 0px solid #d3d3d3 !important;
+  text-align: left !important;
+  background-color: #101116 !important;
+}
+
+.dropdownTitles:hover {
+  color: #fff !important;
+  border-bottom: 2px solid #d3d3d3 !important;
+}
+
 .searchBarInput {
   color: white;
   padding: 0.5rem 18px;
-  border-bottom: 0px solid #d3d3d3;
+  border: 0px solid #d3d3d3;
   font-size: 16px;
   background-color: #101116;
   border-radius: 10px;

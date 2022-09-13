@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/hierarchy-select.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -19,6 +20,9 @@
         <h1 style="margin-left: 5px;" class="show3">Loading Profile...</h1>
         <img class="show3" style="height: 40px; margin: 15px;" id="loading-image" src="https://d2w9rnfcy7mm78.cloudfront.net/11137417/original_8019249c9ae1d7d7c575d4d3bb2ce0b6.gif?1615501067?bc=0" alt="Loading..." />
     </div>
+    <style>
+        
+    </style>
     <div class="wrapper">
         <div class="main">
             <div style="background-color: #0000005f; position: absolute; height: 100%; width: 100%; margin: -20px;" id="overlay" class="hidden" onclick="closeSearchBar()"></div>
@@ -71,8 +75,8 @@
                 </div>
             </div>
             <div style="margin-top: 2rem;" class="container">
-                <div class="row">
-                    <div id="profile" class="col-6 col-md-4 profileBanner">
+                <div class="row" id="demo">
+                    <div id="profile" class="draggable col-6 col-md-4 profileBanner">
                         <div class="valorantBanner">
                             <img id="playerCard" class="valorantBanner">
                         </div>
@@ -114,7 +118,7 @@
                         <hr id="bottomSpacer" style="top: 452px !important;" class="spacer">
                         <h5 class="vulxAdvertising"><b>Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;" href="https://github.com/itssyfe">Syfe</a></b></h5>
                     </div>
-                    <div class="col-12 col-md-8">
+                    <div class="draggable col-12 col-md-8">
                         <div class="profile-themes-container">
                             <ol id="profileThemes" class="listCont slippylist">
                                 <li class="profile-no-swipe" id="Status">
@@ -123,15 +127,15 @@
                                         <div class="textBoxCont">
                                             <div style="width: 50%;" class="textBox">
                                                 <h5 class="textLabel">Profile Status</h5>
-                                                <input class="searchBarInput" type="text" name="status" id="valorantStatus" placeholder="Status.." value="default" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <input class="searchBarInput" type="text" name="status" id="valorantStatus" placeholder="Status.." value="default" autofocus> 
                                             </div>
                                             <div class="textBox">
                                                 <h5 class="textLabel">Score Ally</h5>
-                                                <input class="searchBarInput" type="number" name="ally" id="valorantAlly" placeholder="Ally.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <input class="searchBarInput" type="number" name="ally" id="valorantAlly" placeholder="Ally.." value="0" autofocus> 
                                             </div>
                                             <div class="textBox">
                                                 <h5 class="textLabel">Score Enemy</h5>
-                                                <input class="searchBarInput" type="number" name="enemy" id="valorantEnemy" placeholder="Enemy.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <input class="searchBarInput" type="number" name="enemy" id="valorantEnemy" placeholder="Enemy.." value="0" autofocus> 
                                             </div>
                                         </div>
                                     </details>                                       
@@ -139,7 +143,30 @@
                                 <li class="profile-no-swipe" id="Account">
                                     <details>
                                         <summary>Account <span class="instant"></span></summary>
-                                        <h1>Test2</h1>
+                                        <div class="textBoxCont">
+                                            <div style="width: 50%;" class="textBox">
+                                                <h5 class="textLabel">Profile Title</h5>
+                                                <div class="dropdown hierarchy-select" id="dropdownTitles">
+                                                    <button type="button" class="dropdownTitles btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                    <div style="width: 100%; background-color: #101116;" class="dropdown-menu" aria-labelledby="dropdownButton">
+                                                        <div class="hs-searchbox">
+                                                            <input type="text" class="form-control" autocomplete="off">
+                                                        </div>
+                                                        <div id="titleDropdown" class="hs-menu-inner">
+
+                                                        </div>
+                                                    </div>
+                                                    <input class="d-none" name="dropdownInput" readonly="readonly" aria-hidden="true" type="text"/>
+                                                </div>                                     
+                                            </div>
+                                            <div class="textBox">
+                                                <h5 class="textLabel">Leaderboard</h5>
+                                                <input class="searchBarInput" type="number" name="position" id="valorantLeaderboard" placeholder="Position.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                            </div>
+                                            <div class="textBox">
+                                                <h5 class="textLabel">Account Level</h5>
+                                                <input class="searchBarInput" type="number" name="level" id="valorantLevel" placeholder="Level.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                            </div>
                                     </details>                                       
                                 </li>  
                                 <li class="profile-no-swipe" id="Preset">
@@ -226,7 +253,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
 <script type="module" src="js/vulx.profile.js"></script>
+<script src="js/hierarchy-select.min.js"></script>
 <script src="js/vulx.request.reset.js"></script>
 <script src="js/vulx.request.session.js"></script>
 <script src="js/vulx.request.settings.js"></script>
@@ -234,4 +263,20 @@
 <script src="js/vulx.search.js"></script>
 <script src="js/vulx.load.js"></script>
 <script src="js/slip.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#dropdownTitles').hierarchySelect({
+            hierarchy: false,
+            width: 'auto'
+        });
+    });
+    YUI().use('sortable', function(Y) {
+        var sortable = new Y.Sortable({
+            container: '#demo',
+            nodes: '.draggable',
+            opacity: '.1'
+        });
+    });
+</script>
+
 </html>
