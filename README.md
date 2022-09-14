@@ -39,6 +39,29 @@ To get started simply head over to [releases](https://github.com/vulxdev/Vulx/re
 
 Our Discord has a dedicated channel for support and help, if you have any issues or questions make sure to join and ask away!
 
+# License
+
+Vulx is under exclusive copyright and is not to be redistributed without the owners permission. If you wish to use anything from Vulx please contact us [here](mailto:xexstudiosinc@gmail.com) to get written permission.
+
+# Contributing
+
+If you wish to contribute to Vulx you can, however please note that since Vulx is under exclusive copyright protection any contributions will become the property of Vulx and will be used at the discretion of the owners.
+
+If that's okay with you then feel free to make a pull request and we'll review it as soon as possible!
+
+# Contact
+
+To get into direct contact with us you can use our [email](mailto:xexstudiosinc@gmail.com) or talk to us on [Discord](https://discord.gg/gHWTGbqZ3y).
+
+You'll get faster responses on Discord so if you'd like to make a request or report a bug please use that!
+
+# Acknowledgements
+
+* [Aqua](https://github.com/AquaPlaysYT) - Project Owner
+* [Syfe](https://github.com/ItsSyfe) - Project Owner
+* [Discreet](https://github.com/discreet-pc) - Beta tester and very helpful for ideas
+* [NotOfficer](https://github.com/NotOfficer) - Providing us with the extremely useful [Valorant-API](https://valorant-api.com/)
+
 ---
 
 <h2 align="center">⚠️ FOR RIOT GAMES EMPLOYEES ⚠️</h2>
