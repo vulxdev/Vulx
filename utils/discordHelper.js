@@ -41,7 +41,7 @@ exports.rankIdToName = rankIdToName;
 
 client.on('ready', async () => {
     const config = await configHelper.getVulxConfig();
-    logger.discord(`Authed as ${client.user.username}#${client.user.discriminator}`);
+    logger.debug(`Authed as ${client.user.username}#${client.user.discriminator}`);
 
     if (config.discordRpc)
         await client.request('SET_ACTIVITY', {
@@ -83,7 +83,7 @@ module.exports.update = async function() {
 				}
 			})
     } catch (err) {
-        logger.discord("Failed to update RPC Client status");
+        logger.debug("Failed to update RPC Client status");
 		console.log(err)
     }
 }
@@ -98,7 +98,7 @@ module.exports.startRPC = async function() {
     try {
         await client.login({ clientId });
     } catch (err) {
-        logger.discord("Failed to start RPC Client");
+        logger.debug("Failed to start RPC Client");
         try {
             await client.destroy();
         } catch (err) {

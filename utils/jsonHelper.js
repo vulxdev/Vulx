@@ -1,15 +1,10 @@
 const ValorantAPI = require('./ValorantAPI');
-const StatusHelper = require('./statusHelper');
-const LicenseHelper = require('./LicenseHelper');
 
 module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(settings).toString()
 	const config = Object.assign({}, settings);
 
 	config.partyClientVersion = await ValorantAPI.getClientVersion();
-	if (LicenseHelper.isBeta) config.queueId = await StatusHelper.formatStatus(settings.queueId);
-	else if (!LicenseHelper.isDev) config.queueId = settings.queueId;//await StatusHelper.formatSmallStatus(settings.queueId);
-	//config.queueId = '\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
 	return {
 			state: "chat",
 			msg: "get vulx at discord.gg/aquaplays",

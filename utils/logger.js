@@ -1,45 +1,34 @@
-/* print stacktrace for all logs
-var logg = console.log;
-console.log = function() {
-    logg.apply(console, arguments);
-    console.trace();
-};
-*/
+const winston = require("winston");
+const os = require("os");
 
-function log(logtype, str, projectType="Vulx") {
-	const date_ob = new Date();
-	const date = ('0' + date_ob.getDate()).slice(-2);
-	const month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
-	const year = date_ob.getFullYear();
-	const hours = date_ob.getHours();
-	const minutes = date_ob.getMinutes();
-	const seconds = date_ob.getSeconds();
+const isDevelopment = process.env.NODE_ENV == "development";
+const hostname = os.hostname();
 
-	console.log(`\u001b[31m[\u001b[36m${year}-${month}-${date} \u001b[35m${hours}:${minutes}:${seconds}\u001b[31m] \u001b[0m${logtype} - \u001b[35m${projectType} \u001b[31m<3 \u001b[34m: \u001b[0m${typeof str === 'string' || str instanceof String ? str : JSON.stringify(str)}`);
+const Logger = winston.createLogger({
+  level: isDevelopment ? "debug" : "info",
+  format: winston.format.json(),
+  defaultMeta: { service: 'vulx' },
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log", level: "debug" }),
+	new winston.transports.Console({
+		format: winston.format.combine(
+			winston.format.timestamp(),
+			winston.format.metadata({
+				fillExcept: ["timestamp", "service", "level", "message"],
+		}),
+		winston.format.colorize(),
+		winstonConsoleFormat()
+		),
+	}),
+  ],
+});
+
+
+function winstonConsoleFormat() {
+  return winston.format.printf(({ timestamp, service, level, message }) => {
+    return `[${timestamp}][${level}][${service}@${hostname}] ${message}`;
+  });
 }
 
-exports.debugMode = false;
-
-exports.info = (str) => {
-	const logtype = '\u001b[34mINFO\u001b[0m';
-	log(logtype, str);
-};
-
-exports.discord = (str) => {
-	const logtype = '\u001b[34mRPC\u001b[0m';
-	log(logtype, str, "Discord");
-};
-
-exports.error = (str) => {
-	const logtype = '\u001b[31mERROR\u001b[0m';
-	log(logtype, str);
-};
-
-exports.debug = (str) => {
-	if (this.debugMode) {
-		const logtype = '\u001b[35mDEBUG\u001b[0m';
-		log(logtype, str);
-	}
-};
-
-//Created by Syfe (Thank you Syfe :D)
+module.exports = Logger;
