@@ -99,6 +99,23 @@ a {
   position: absolute;
   left: 0px;
   border-radius: 15px;
+  -webkit-filter: brightness(100%);
+  transition-delay:1s;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;  
+}
+
+.valorantBanner:hover{
+  transition-delay:1s;
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;    
 }
 
 .valorantPfp {
@@ -117,6 +134,12 @@ a {
   height: 20px;
   top: 110px;
   left: 75px;
+}
+
+.valorantActivityDropdown {
+  height: 12px;
+  margin-top: 9px;
+  padding-left: 10px;
 }
 
 .valorantName {
@@ -182,10 +205,23 @@ a {
   border-radius: 15px;
 }
 
+.profileStatusDropdown {
+  background-color: #0c0c0e;
+  position: absolute;
+  z-index: 2;
+  top: 130px;
+  left: 86px;
+  width: 285px;
+  border-radius: 15px;
+}
+
 .valorantDropdownItem {
-  display: flex;
   padding: 5px;
   display: flex;
+}
+
+.valorantDropdownItem:hover {
+  background-color: #00141e;
 }
 
 .collapsing {
@@ -361,6 +397,10 @@ a {
   flex-grow: 1;
   padding: 20px;
   position: relative;
+}
+
+.margin {
+  margin: 5px;
 }
   
 .navbar-brand {

@@ -16,6 +16,10 @@ router
   .route('/resetAccount')
   .post(profileController.resetAccount);
 
+router 
+  .route('/updateStatus')
+  .post(profileController.updateStatus);
+
 router
   .route('/updatePresence')
   .post(presenceController.updatePresence);
@@ -27,5 +31,13 @@ router
 router
   .route('/friends')
   .get(profileController.getFriends);
+
+router
+  .route('/timePlaying')
+  .get(profileController.timePlaying);
+
+router
+  .route('/requests')
+  .get(profileController.getRequestsCount);
 
 module.exports = router;

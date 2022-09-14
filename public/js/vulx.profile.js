@@ -162,6 +162,26 @@ async function selectRank(id) {
     });  
 } window.selectRank = selectRank;
 
+function selectStatus(id) {
+    fetch('http://127.0.0.1:/updateStatus', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                status: id
+            }
+        )
+    }).then((response) => {
+        Notification(true, "Status updated successfully!");
+        getProfile();
+    }).catch((error) => {
+        Notification(false, "An error occured while updating your Status!");
+    });  
+} window.selectStatus = selectStatus;
+
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
     const isHover = e => e.parentElement.querySelector(':hover') === e;    
     const valorantStatus = document.getElementById('valorantMatchStatus');
@@ -236,6 +256,40 @@ function selectTitle(playerTitleId) {
     })
 }
 
+var response = fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).then(response => {
+    var display = document.querySelector('#time');
+    function startTimer(display) {
+        var diff, hours, minutes, seconds;
+        function timer() {
+            diff = (((Date.now() - response.time) / 1000) | 0);
+            
+            // Setting and displaying hours, minutes, seconds
+            hours = (diff / 3600) | 0;
+            minutes = ((diff % 3600) / 60) | 0;
+            seconds = (diff % 60) | 0;
+            
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            
+            display.textContent = hours + ":" + minutes + ":" + seconds;
+        };
+        timer();
+        setInterval(timer, 1000);
+    }
+    startTimer(display);
+});
+
+var response = fetch('http://127.0.0.1:/friends').then(res => res.json()).then(response => {
+    var friends = document.querySelector('#friendsCount');
+    friends.textContent = response.friends.length;
+});
+
+var response = fetch('http://127.0.0.1:/requests').then(res => res.json()).then(response => {
+    var friends = document.querySelector('#requestsCount');
+    friends.textContent = response.count;
+});
+
 document.querySelectorAll(".searchBarInput").forEach((inputField) => {
     inputField.addEventListener("change", () => {
     const name = inputField.getAttribute("name");
@@ -255,10 +309,20 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
     }
 
     var autosaveJson = { flag: 0 };
+    var bodyRes;
 
     for (const pair of formData.entries()) {
         autosaveJson.flag += flagConversion[pair[0]];
         autosaveJson[pair[0]] = pair[1];
+    }
+
+    if(name == "systemMessage") {
+        window.autosaveUrl = "http://127.0.0.1:/sendSystemMessage";
+        bodyRes = JSON.stringify({
+            message: value,
+        });
+    } else {
+        bodyRes = JSON.stringify(autosaveJson);
     }
 
     fetch(window.autosaveUrl, {
@@ -267,7 +331,7 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(autosaveJson)
+        body: bodyRes
     }).then(() => {
         Notification(true, "Profile updated successfully!");
         getProfile();

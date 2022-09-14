@@ -6,6 +6,12 @@ const axios = require('axios');
 const ValorantAPI = require('../utils/ValorantAPI');
 const LookupAPI = require('../utils/LookupAPI');
 const catchAsync = require('../utils/catchAsync');
+const SystemMessageHelper = require('../utils/SystemMessageHelper');
+
+const sendSystemMessage = catchAsync(async (req, res) => {
+    await SystemMessageHelper.sendSystemMessage(req.body.message);
+    res.status(httpStatus.OK).send("Message sent");
+});
 
 const getLoadouts = catchAsync(async (req, res) => {
     const weaponSkins = await LookupAPI.getWeaponSkins();
@@ -50,5 +56,6 @@ const getLoadouts = catchAsync(async (req, res) => {
 })
 
 module.exports = {
-    getLoadouts
+    getLoadouts,
+    sendSystemMessage
 }

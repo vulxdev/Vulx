@@ -46,10 +46,10 @@ function getProfile() {
     fetch("http://127.0.0.1:/currentSettings").then(function(response) {
         return response.json();
         }).then(async function(data) {
-            var status = document.getElementById("valorantMatchStatus");
+            var valorantStatus = document.getElementById("valorantMatchStatus");
             var dashStatus = document.getElementById("valorantStatus");
                 dashStatus.value = data.queueId;
-                status.textContent = data.queueId;
+                valorantStatus.textContent = data.queueId;
             var playerCardId = document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
             var playerCardSmallId = document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
             var playerTitleId = document.getElementById("valorantTitle");
@@ -79,6 +79,12 @@ function getProfile() {
             var dashEnenmy = document.getElementById("valorantEnemy");
                 dashEnenmy.value = data.partyOwnerMatchScoreEnemyTeam;
                 enemy.textContent = data.partyOwnerMatchScoreEnemyTeam;
+            var status = document.getElementById("activity"); 
+                if(data.status == "dnd") {
+                    status.src = "https://cdn.discordapp.com/attachments/808062997180317767/1019725640326467664/dnd.png";
+                } else {
+                    status.src = `https://cdn.aquaplays.xyz/user/${data.status}.png`;
+                }
         }).catch(function(error) {
         console.log(error);
     });

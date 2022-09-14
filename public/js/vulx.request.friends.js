@@ -37,6 +37,10 @@ fetch("http://127.0.0.1:/friends") //Add PUUID to div to allow for on click to l
             var searchBarResults = document.getElementsByClassName("search-bar-results")[0]
                 var friendCard = document.createElement("div");
                 friendCard.className = "search-bar-results-card";
+                friendCard.id = onlineFriends[j].puuid;
+                friendCard.addEventListener('click', async (event) => {
+                    window.location.href = `http://127.0.0.1:/user/${event.path[2].id}`; //Bad way to do this, if friend redirect ever breaks, this is why.
+                });
                 searchBarResults.appendChild(friendCard);
 
                 var friendPrivate = JSON.parse(atob(onlineFriends[j].private));

@@ -48,6 +48,14 @@ const updatePresence = catchAsync(async (req, res) => {
 
 const currentSettings = catchAsync(async (req, res) => {
     const valConfig = await meHelper.getValorantJson();
+	
+	let status;
+	if(valConfig.sessionLoopState == "INGAME") status = "online";
+	if(valConfig.partyId == "" || valConfig.partyId == null) status = "offline"; 
+	if(valConfig.sessionLoopState !== "MENUS" && valConfig.sessionLoopState !== "INGAME") status = "stream";
+	if(valConfig.isValid == false) status = "dnd";
+	if(valConfig.sessionLoopState == "MENUS" && valConfig.isIdle == true) status = "away";
+
 	const data = {
 		queueId: valConfig.queueId,
 		competitiveTier: valConfig.competitiveTier,
@@ -56,7 +64,8 @@ const currentSettings = catchAsync(async (req, res) => {
 		partyOwnerMatchScoreAllyTeam: valConfig.partyOwnerMatchScoreAllyTeam,
 		partyOwnerMatchScoreEnemyTeam: valConfig.partyOwnerMatchScoreEnemyTeam,
 		playerCardId: valConfig.playerCardId,
-		playerTitleId: valConfig.playerTitleId
+		playerTitleId: valConfig.playerTitleId,
+		status: status
 	}
 
 	logger.debug(`Sending current settings to client, ${JSON.stringify(data)}`);

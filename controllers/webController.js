@@ -5,12 +5,12 @@ const path = require('path');
 const catchAsync = require('../utils/catchAsync');
 
 const dashboard = catchAsync(async (req, res) => {
-    await res.sendFile(path.join(__dirname, '../public/dashboard.html'));
+    await res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 const setup = catchAsync(async (req, res) => {
         
-    await res.sendFile(path.join(__dirname, '../public/setup.html'));
+    await res.sendFile(path.join(__dirname, '../public/welcome.html'));
 });
 
 const info = catchAsync(async (req, res) => {

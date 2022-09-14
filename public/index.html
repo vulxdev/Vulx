@@ -75,14 +75,36 @@
                 </div>
             </div>
             <div style="margin-top: 2rem;" class="container">
-                <div class="row" id="demo">
+                <div class="row" id="main">
                     <div id="profile" class="draggable col-6 col-md-4 profileBanner">
                         <div class="valorantBanner">
-                            <img id="playerCard" class="valorantBanner">
+                            <img id="playerCard" class="valorantBanner" type="button" data-toggle="modal" data-target="#bannerModal">
                         </div>
                         <div id="valorantPfp">
                             <img id="playerCardSmall" class="valorantPfp">
-                            <img class="valorantActivity" src="https://cdn.aquaplays.xyz/user/online.png">
+                            <img class="valorantActivity" data-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus" id="activity" src="https://cdn.aquaplays.xyz/user/online.png">
+                        </div>
+                        <div id="collapseStatus" class="collapse profileStatusDropdown" data-bs-parent="main">
+                            <div class="margin valorantDropdownItem" onclick="selectStatus('online')">
+                                <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/online.png">
+                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Online</h4>
+                            </div>
+                            <div class="margin valorantDropdownItem" onclick="selectStatus('away')">
+                                <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/away.png">
+                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Away</h4>
+                            </div>
+                            <div class="margin valorantDropdownItem" onclick="selectStatus('stream')">
+                                <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/stream.png">
+                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Stream</h4>
+                            </div>
+                            <div class="margin valorantDropdownItem" onclick="selectStatus('dnd')">
+                                <img class="valorantActivityDropdown" src="https://cdn.discordapp.com/attachments/808062997180317767/1019725640326467664/dnd.png">
+                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">DND</h4>
+                            </div>
+                            <div class="margin valorantDropdownItem" onclick="selectStatus('offline')">
+                                <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/offline.png">
+                                <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Offline</h4>
+                            </div>
                         </div>
                         <div id="valorantName">
                             <h3 class="valorantName textOverflow"><b><a id="username"></a></b></h3>
@@ -94,7 +116,7 @@
                                 <img id="valorantRankImg" class="valorantRankImg">
                                 <h4 id="valorantRank" class="valorantRank">Ascendant 3</h4>
                                 <div id="mainRankDropdown" data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
-                                <div id="collapseRank" class="collapse profileRankDropdown">
+                                <div id="collapseRank" class="collapse profileRankDropdown" data-bs-parent="main">
                                 </div>
                             </div>
                             <br>
@@ -102,10 +124,10 @@
                         </div>
                         <hr style="top: 257px !important;" class="spacer">
                         <div class="valorantInfoContainer">
-                            <h4 style="font-size: 18px;">Highlights</h4>
-                            <h5 class="valorantHighlightTag">🔹 Developer</h5>
-                            <h5 class="valorantHighlightTag">🔹 Beta Tester</h5>
-                            <h5 class="valorantHighlightTag">🔹 User</h5>
+                            <h4 style="font-size: 18px;">Statistics</h4>
+                            <h5 class="valorantHighlightTag">🔹 Friends: <span id="friendsCount"></span></h5>
+                            <h5 class="valorantHighlightTag">🔹 Requests: <span id="requestsCount"></span></h5>
+                            <h5 class="valorantHighlightTag">🔹 Time Elapsed: <span id="time"></span></h5>
                         </div>
                         <hr style="top: 362px !important;" class="spacer">
                         <div class="valorantMatchContainer">
@@ -171,8 +193,11 @@
                                 </li>  
                                 <li class="profile-no-swipe" id="Preset">
                                     <details>
-                                        <summary>Preset <span class="instant"></span></summary>
-                                        <h1>Test2</h1>
+                                        <summary>System Message <span class="instant"></span></summary>
+                                        <div style="width: 100%;" class="textBox">
+                                            <h5 class="textLabel">Message</h5>
+                                            <input class="searchBarInput" type="text" name="systemMessage" id="systemMessage" placeholder="Message.." value="" autofocus> 
+                                        </div>
                                     </details>                                       
                                 </li>                                   
                             </ol> 
@@ -183,6 +208,24 @@
         </div>
         <div class="footer">
             <p style="padding-top: 15px;"><b>Vulx Profile Editor - Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;"  href="https://github.com/itssyfe">Syfe</a></b></p>
+        </div>
+        <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="bannerLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="bannerLabel">Vulx Banner List</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <h3>bee-doo-boop</h3>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
         </div>
         <div class="modal fade" id="debugModal" tabindex="-1" role="dialog" aria-labelledby="connectionLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -272,7 +315,7 @@
     });
     YUI().use('sortable', function(Y) {
         var sortable = new Y.Sortable({
-            container: '#demo',
+            container: '#main',
             nodes: '.draggable',
             opacity: '.1'
         });

@@ -7,4 +7,8 @@ router
   .route('/getLoadouts')
   .get(gameController.getLoadouts);
 
+router
+  .route('/sendSystemMessage')
+  .post(gameController.sendSystemMessage);
+
 module.exports = router;
