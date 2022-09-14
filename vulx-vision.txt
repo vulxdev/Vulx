@@ -1,3 +1,5 @@
+---- This was the initial idea we used for creating Vulx ----
+
 Project Description / Revision
 
 How will the frontend work?
@@ -58,40 +60,5 @@ Note: This code will be easily accessible and will most likely be prone to skidd
     "accountLevel": 720, //Users account level, this will only display for other users (Buggy / inconsistent)
     "competitiveTier": 24, //Rank displayed under the profile, EG: Diamond, Immortal, Radiant
     "leaderboardPosition": 1, //Position that will display next to the rank, EG: Radiant (#1) Note: 0 will remove the number
-    "isIdle": true
-}
-
-{
-    "isValid": true,
-    "sessionLoopState": "INGAME", 
-    "partyOwnerSessionLoopState": "INGAME", 
-    "customGameName": "",
-    "customGameTeam": "",
-    "partyOwnerMatchMap": "",
-    "partyOwnerMatchCurrentTeam": "",
-    "partyOwnerMatchScoreAllyTeam": -1, 
-    "partyOwnerMatchScoreEnemyTeam": -1, 
-    "partyOwnerProvisioningFlow": "Invalid",
-    "provisioningFlow": "Invalid",
-    "matchMap": "", 
-    "partyId": "58DsGJ20-9prT-7Jy8-h7hS-YXF1YXBsYXlz",
-    "isPartyOwner": true, 
-    "partyState": "DEFAULT",
-    "partyAccessibility": "", 
-    "maxPartySize": 5,
-    "queueId": "Vulx™ Beta | Vulx is currently in private beta.\r\n\rListening to Music :D\n\r\nFind out more at youtube.com/aqua",
-    "partyLFM": false,
-    "partyClientVersion": "release-04.07-shipping-15-699063", 
-    "partySize": 1, 
-    "tournamentId": "",
-    "rosterId": "",
-    "partyVersion": 1650719279092,
-    "queueEntryTime": "0001.01.01-00.00.00",
-    "playerCardId": "30b64514-440d-1261-f863-6bbb180263f9", 
-    "playerTitleId": "00d4d326-4edc-3229-7c28-129d3374e3ad", 
-    "preferredLevelBorderId": "",
-    "accountLevel": 720, 
-    "competitiveTier": 24, 
-    "leaderboardPosition": 1, 
     "isIdle": true
 }
