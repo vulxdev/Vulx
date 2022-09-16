@@ -3,9 +3,7 @@ const logger = require('./logger')
 
 class Helper {
 	constructor() {
-		this.port = null;
-		this.password = null;
-		this.protocol = null;
+		this.port, this.password, this.protocol;
 		this.LockfilePath = process.env.LOCALAPPDATA + '\\Riot Games\\Riot Client\\Config\\lockfile';
 		this.RetryAmount = 40;
 		this.RetryTimeout = 2000;

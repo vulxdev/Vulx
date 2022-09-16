@@ -1,33 +1,24 @@
-const ConfigHelper = require('./configHelper');
+const ConfigHelper = require('./ConfigHelper');
 const { createJson } = require('./jsonHelper');
-const AxiosHelper = require('./axiosHelper');
+const AxiosHelper = require('./AxiosHelper');
 const logger = require('./logger');
-const fs = require('fs/promises');
 
 class Helper {
 	constructor() {
-		this.valorantJson = null;
-		this.leagueJson = null;
 		this.timer = null;
 		this.leagueExperiment = false;
 	}
 
 	async _doInitialize() {
-		await this._initializeConfig();
 		await this._initializeTimer();
 	}
 
-	async _initialize() {
+	async init() {
         if(!this.initializationPromise) {
             this.initializationPromise = this._doInitialize();
         }
         return this.initializationPromise;
     }
-
-	async _initializeConfig() {
-		this.valorantJson = await ConfigHelper.getValorantConfig();
-		this.leagueJson = await ConfigHelper.getLeagueConfig();
-	}
 
 	async _initializeTimer() {
 		await this.emitMeRequest();
@@ -35,17 +26,17 @@ class Helper {
 	}
 
 	async _updateConfig(valorantConfig) {
-		this.valorantJson = valorantConfig;
-		await fs.writeFile("./cfg/valorant.json", JSON.stringify(valorantConfig), (err) => console.log(err));
+		ConfigHelper.valorantConfig = valorantConfig;
+		await ConfigHelper.saveConfig();
 	}
 
 	async _updateConfigLeague(leagueConfig) {
-		this.leagueJson = leagueConfig;
-		await fs.writeFile("./cfg/league.json", JSON.stringify(leagueConfig), (err) => console.log(err));
+		ConfigHelper.leagueConfig = leagueConfig;
+		await ConfigHelper.saveConfig();
 	}
 
 	async emitMeRequest() {
-		const json = await createJson(this.valorantJson, this.leagueExperiment);
+		const json = await createJson(await ConfigHelper.getValorantConfig(), this.leagueExperiment);
 		if (!this.vulxAxios) this.vulxAxios = await AxiosHelper.getVulxAxios();
 		this.vulxAxios.put("/chat/v2/me", json)
 			.then((res) => {
@@ -64,10 +55,6 @@ class Helper {
 	async updateRequestLeague(leagueConfig) {
 		await this._updateConfigLeague(leagueConfig);
 		await this.emitMeRequest();
-	}
-
-	async getValorantJson() {
-		return this.valorantJson;
 	}
 
 	async toggleLeagueExperiment() {

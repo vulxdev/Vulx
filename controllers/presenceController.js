@@ -8,10 +8,11 @@ const catchAsync = require('../utils/catchAsync');
 const logger = require('../utils/logger');
 const discord = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
+const ConfigHelper = require('../utils/ConfigHelper');
 
 const updatePresence = catchAsync(async (req, res) => {
 	let flag = req.body.flag;
-    const valConfig = await meHelper.getValorantJson();
+    const valConfig = await ConfigHelper.getValorantConfig();
 
 	if (flag & 1) {
 		console.log(req.body.status + " status") // debug
@@ -47,7 +48,7 @@ const updatePresence = catchAsync(async (req, res) => {
 });
 
 const currentSettings = catchAsync(async (req, res) => {
-    const valConfig = await meHelper.getValorantJson();
+    const valConfig = await ConfigHelper.getValorantConfig();
 	
 	let status;
 	if(valConfig.sessionLoopState == "INGAME") status = "online";

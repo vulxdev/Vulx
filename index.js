@@ -1,19 +1,52 @@
+// library definitions
 const path = require('path');
+const open = require('open');
+const express = require('express');
+
+// local imports
+const DiscordRPC = require("./utils/discordHelper");
 const logger = require('./utils/logger');
+const ConfigHelper = require('./utils/ConfigHelper');
+const routes = require('./routes');
+const MeHelper = require('./utils/meHelper');
+const SystemMessageHelper = require('./utils/SystemMessageHelper');
+const ValorantAPI = require('./utils/ValorantAPI');
 
-// TODO: Figure out why the actual fuck pkg doesn't include this in the compiled exe even after having it included through pkg config
-path.join(__dirname, 'public/css/style.css');
-path.join(__dirname, 'public/js/vulx.load.js');
-path.join(__dirname, 'public/js/vulx.request.reset.js');
-path.join(__dirname, 'public/js/vulx.request.session.js');
-path.join(__dirname, 'public/js/vulx.request.settings.js');
-path.join(__dirname, 'public/js/vulx.request.friends.js');
-path.join(__dirname, 'public/js/vulx.welcome.js'); 
-path.join(__dirname, 'public/experimental.html');
-path.join(__dirname, 'public/gamefeed.html');
-path.join(__dirname, 'public/dashboard.html');
-path.join(__dirname, 'public/index.html');
-path.join(__dirname, 'public/welcome.html');
+// definitions
+const isDevelopment = process.env.NODE_ENV === 'development';
+const port = 80;
+const link = `127.0.0.1:${port}`;
 
-logger.debug("You are in debug mode, this is a feature to print verbose debug information to the console.");
-require('./vulx')();
+// express definition
+const app = express();
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use('/', routes);
+
+MeHelper.init();
+DiscordRPC.init();
+
+(async () => {
+	const valorantConfig = await ConfigHelper.getValorantConfig();
+
+	// welcome message
+	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
+	await SystemMessageHelper.sendSystemMessage(`♡ Welcome to Vulx ${await ValorantAPI.getGameName()}`);
+	await SystemMessageHelper.sendSystemMessage(`♡ Your current rank is ${DiscordRPC.rankIdToName[valorantConfig.competitiveTier]}`);
+	await SystemMessageHelper.sendSystemMessage(`♡ For support join discord.gg/aquaplays`);
+	await SystemMessageHelper.sendSystemMessage(`♡ Made with love by Aqua & Syfe`);
+	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
+})();
+
+app.get("/", (req, res) => {
+	res.set({ "Allow-access-Allow-Origin": "*" });
+	res.sendFile(path.join(__dirname, '/public/welcome.html'));
+});
+
+app.listen(port, () => {
+	logger.info('Vulx has finished loading! Welcome to Vulx.')
+	logger.debug(`Vulx initialized on port ${port}`);
+	if(process.pkg)
+		open(`http://${link}`);
+});

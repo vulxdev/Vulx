@@ -1,6 +1,6 @@
-const ConfigHelper = require('./configHelper');
+const ConfigHelper = require('./ConfigHelper');
 const { createJson } = require('./jsonHelper');
-const AxiosHelper = require('./axiosHelper');
+const AxiosHelper = require('./AxiosHelper');
 const logger = require('./logger');
 const fs = require('fs/promises');
 

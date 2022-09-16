@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 // local definitions
-const AxiosHelper = require('./axiosHelper');
+const AxiosHelper = require('./AxiosHelper');
 const logger = require('./logger');
 
 class Client {

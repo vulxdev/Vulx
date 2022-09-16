@@ -34,6 +34,7 @@ class Helper {
 			return response;
 		  }, function (error) {
 			const originalRequest = error.config;
+			console.log(error)
 			if (error.response.status === 401) {
 				LockFile._initializeLockFile();
 				this._doInitialize();
@@ -49,6 +50,7 @@ class Helper {
 	// initialization functions
 	async _doInitialize() {
 		await this._initializeLockfile();
+		await this._initializeChatSession();
     }
 
     async _initialize() {
@@ -60,6 +62,12 @@ class Helper {
 
 	async _initializeLockfile() {
 		await LockFile.getLockfile();
+	}
+
+	async _initializeChatSession() {
+		const response = await this.axios.get('/chat/v1/session').then(res => res.data);
+		if (response.loaded === true && response.state === 'connected') return true;
+		else return this._initializeChatSession();
 	}
 
 	async getVulxAxios() {

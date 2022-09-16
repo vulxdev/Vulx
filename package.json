@@ -5,10 +5,12 @@
     "main": "index.js",
     "scripts": {
         "dev": "SET NODE_ENV=development&& nodemon index.js",
-        "build": "pkg -t node17-win-x64 -o build/Vulx index.js"
+        "build": "pkg -t node17-win-x64 -o build/Vulx index.js --config package.json"
     },
     "pkg": {
-        "assets": "public/**/*"
+        "assets": [
+			"public/**/*"
+		]
     },
     "author": "AquaPlays",
     "license": "MIT",

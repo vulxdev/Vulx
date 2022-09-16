@@ -1,10 +1,7 @@
 const RPC = require("discord-rpc")
 const logger = require('./logger')
-const configHelper = require('./configHelper');
+const ConfigHelper = require('./ConfigHelper');
 const meHelper = require("./meHelper");
-
-const clientId = "948363491100721242";
-let client = new RPC.Client({ transport: 'ipc' });
 
 const rankIdToName = {
     0: "Unranked",
@@ -36,73 +33,51 @@ const rankIdToName = {
     26: "Immortal 3",
     27: "Radiant",
 }
-
 exports.rankIdToName = rankIdToName;
 
-client.on('ready', async () => {
-    const config = await configHelper.getVulxConfig();
-    logger.debug(`Authed as ${client.user.username}#${client.user.discriminator}`);
+const clientId = "948363491100721242";
+const client = new RPC.Client({ transport: 'ipc' });
 
-    if (config.discordRpc)
-        await client.request('SET_ACTIVITY', {
-            pid: process.pid,
-            activity : {
-                details : "Valorant Profile Editor",
-                assets : {
-                    large_image : "logo",
-                    large_text : "Vulx",
-                },
-                buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
-            }
-        })
-})
-
-module.exports.update = async function() {
-    const config = await configHelper.getVulxConfig();
-    try {
-		meHelper.getValorantJson()
-			.then(valorantConfig => {
+module.exports.refreshActivity = function() {
+	try {
+		if (!client) return;
+		ConfigHelper.getVulxConfig().then(config => {
+			ConfigHelper.getValorantConfig().then(valorantConfig => {
 				if(config.discordRpc) {
+					const activity = {
+						details : "Valorant Profile Editor",
+						state : `${valorantConfig.queueId.length < 128 ? valorantConfig.queueId : 'Playing Valorant' || 'Playing Valorant'}`,
+						assets : {
+							large_image : "logo",
+							large_text : "Vulx",
+							small_image: `${valorantConfig.competitiveTier || 'logo2'}`,
+							small_text: `${rankIdToName[valorantConfig.competitiveTier]}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : '' || 'Cannot get rank.'}`,
+						},
+						buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
+					}
 					client.request('SET_ACTIVITY', {
 						pid: process.pid,
-						activity : {
-							details : "Valorant Profile Editor",
-							state : `${valorantConfig.queueId.length < 128 ? valorantConfig.queueId : 'Playing Valorant'}`,
-							assets : {
-								large_image : "logo",
-								large_text : "Vulx",
-								small_image: `${valorantConfig.competitiveTier}`,
-								small_text: `${rankIdToName[valorantConfig.competitiveTier]}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : ''}`,
-							},
-							buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
-						}
+						activity,
 					})
-					logger.debug("Discord RPC status has been updated")
-				} else {
+					logger.debug(`Updated Discord RPC :: ${JSON.stringify(activity)}`);
+				}
+				else {
 					client.clearActivity();
 				}
 			})
+		})
     } catch (err) {
-        logger.debug("Failed to update RPC Client status");
-		console.log(err)
+        logger.debug(`Failed refresh Discord RPC activity :: ${err}`);
     }
 }
 
-module.exports.startRPC = async function() {
-    client = new RPC.Client({ transport: 'ipc' })
-
-    client.on('disconnected', async () => {
-        await client.destroy();
-    })
-
-    try {
-        await client.login({ clientId });
-    } catch (err) {
-        logger.debug("Failed to start RPC Client");
-        try {
-            await client.destroy();
-        } catch (err) {
-            logger.error("Failed to find Discord")
-        }
-    }
+module.exports.init = function() {
+	client.login({ clientId })
+		.then(() => {
+			logger.debug(`Initialised Discord RPC | Client ID: ${clientId}`);
+			this.refreshActivity();
+		})
+		.catch(err => {
+			logger.debug(`Failed to initialise Discord RPC :: ${err}`);
+		});
 }

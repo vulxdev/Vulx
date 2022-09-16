@@ -88,14 +88,13 @@ class Helper {
 			partyOwnerProvisioningFlow:'Invalid',
 			provisioningFlow:'Invalid',
 			matchMap:'',
-			partyId:'58DsGJ20-9prT-7Jy8-h7hS-YXF1YXBsYXlz',
+			partyId:'727',
 			isPartyOwner:true,
 			partyState:'DEFAULT',
 			partyAccessibility:'CLOSED',
 			maxPartySize:5,
-			queueId:'Valorant Profile Editor',
+			queueId:'Vulx - Valorant Profile Editor',
 			partyLFM:false,
-			partyClientVersion:'release-04.08-shipping-15-701907',
 			partySize:1,
 			tournamentId:'',
 			rosterId:'',
@@ -104,8 +103,8 @@ class Helper {
 			playerCardId:'30b64514-440d-1261-f863-6bbb180263f9',
 			playerTitleId:'00d4d326-4edc-3229-7c28-129d3374e3ad',
 			preferredLevelBorderId:'',
-			accountLevel:200,
-			competitiveTier:2,
+			accountLevel:727,
+			competitiveTier:25,
 			leaderboardPosition:0,
 			isIdle:true
 		}
@@ -216,6 +215,20 @@ class Helper {
 		await this._initialize();
 
 		return this.experimentsConfig;
+	}
+
+	async resetConfig() {
+		await this._createValorantConfig();
+		await this._createLeagueConfig();
+		await this._createVulxConfig();
+		await this._createExperimentsConfig();
+	}
+
+	async saveConfig() {
+		await fs.writeFileSync("./cfg/valorant.json", JSON.stringify(this.valorantConfig));
+		await fs.writeFileSync("./cfg/league.json", JSON.stringify(this.leagueConfig));
+		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(this.vulxConfig));
+		await fs.writeFileSync("./cfg/experiments.json", JSON.stringify(this.experimentsConfig));
 	}
 }
 

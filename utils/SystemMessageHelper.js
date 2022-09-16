@@ -1,4 +1,4 @@
-const axiosHelper = require("./axiosHelper");
+const AxiosHelper = require("./AxiosHelper");
 const Logger = require("./logger");
 
 class SystemMessageHelper {
@@ -16,7 +16,7 @@ class SystemMessageHelper {
     }
 
 	async _initializeVulxAxios() {
-		this.vulxAxios = await axiosHelper.getVulxAxios();
+		this.vulxAxios = await AxiosHelper.getVulxAxios();
 	}
 
 	async sendSystemMessage(message) {
@@ -24,7 +24,7 @@ class SystemMessageHelper {
 		const conversations = await this.vulxAxios.get("/chat/v6/conversations").then(res => res.data);
 		await this.vulxAxios.post("/chat/v6/messages", {
 			cid: conversations.conversations[0].cid,
-			type: "system",
+			type: "system", // suprised this is undocumented, ok thanks, this is now kyles, yoink, k bi thx x
 			message
 		}).catch(() => Logger.error("Failed to send system message"));
 	}

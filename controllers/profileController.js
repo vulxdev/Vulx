@@ -5,15 +5,15 @@ const path = require('path');
 
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
-const AxiosHelper = require('../utils/axiosHelper');
+const AxiosHelper = require('../utils/AxiosHelper');
 const Lockfile = require('../utils/lockfile');
-const configHelper = require('../utils/configHelper');
+const ConfigHelper = require('../utils/ConfigHelper');
 const FriendHelper = require('../utils/FriendHelper');
 const meHelper = require('../utils/meHelper');
 const logger = require('../utils/logger');
 
 const updateStatus = catchAsync(async (req, res) => {
-    const valConfig = await meHelper.getValorantJson();
+    const valConfig = await ConfigHelper.getValorantConfig();
 
 	switch (req.body.status) {
 		case "online":
@@ -74,7 +74,7 @@ const timePlaying = catchAsync(async (req, res) => {
 });
 
 const userSession = catchAsync(async (req, res) => {
-    const config = await configHelper.getVulxConfig();
+    const config = await ConfigHelper.getVulxConfig();
 
     const response = await (await AxiosHelper.getVulxAxios()).get("/chat/v1/session");
     const returnJson = {
@@ -89,7 +89,7 @@ const userSession = catchAsync(async (req, res) => {
 });
 
 const updateSettings = catchAsync(async (req, res) => {
-    const valConfig = await configHelper.getVulxConfig();
+    const valConfig = await ConfigHelper.getVulxConfig();
 
 	logger.debug(`Updated settings:
         Experimental Features: ${valConfig.experimental} --> ${req.body.experimentalFeatures}
@@ -119,10 +119,7 @@ const resetAccount = catchAsync(async (req, res) => {
 	logger.debug("Resetting account");
     if(req.body.resetAccount == true) {
         logger.debug("Account reset")
-        fs.unlinkSync("./cfg/valorant.json");
-        fs.unlinkSync("./cfg/vulx.json");
-        fs.unlinkSync("./cfg/league.json");
-		fs.unlinkSync("./cfg/experiments.json");
+        await ConfigHelper.resetConfig();
         res.status(httpStatus.OK).send();
     }
     res.status(httpStatus.IM_A_TEAPOT).send();
