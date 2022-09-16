@@ -1,5 +1,5 @@
 const RPC = require("discord-rpc")
-const logger = require('./logger')
+const Logger = require('./Logger')
 const ConfigHelper = require('./ConfigHelper');
 const meHelper = require("./meHelper");
 
@@ -59,7 +59,7 @@ module.exports.refreshActivity = function() {
 						pid: process.pid,
 						activity,
 					})
-					logger.debug(`Updated Discord RPC :: ${JSON.stringify(activity)}`);
+					Logger.debug(`Updated Discord RPC :: ${JSON.stringify(activity)}`);
 				}
 				else {
 					client.clearActivity();
@@ -67,17 +67,17 @@ module.exports.refreshActivity = function() {
 			})
 		})
     } catch (err) {
-        logger.debug(`Failed refresh Discord RPC activity :: ${err}`);
+        Logger.debug(`Failed refresh Discord RPC activity :: ${err}`);
     }
 }
 
 module.exports.init = function() {
 	client.login({ clientId })
 		.then(() => {
-			logger.debug(`Initialised Discord RPC | Client ID: ${clientId}`);
+			Logger.debug(`Initialised Discord RPC | Client ID: ${clientId}`);
 			this.refreshActivity();
 		})
 		.catch(err => {
-			logger.debug(`Failed to initialise Discord RPC :: ${err}`);
+			Logger.debug(`Failed to initialise Discord RPC :: ${err}`);
 		});
 }

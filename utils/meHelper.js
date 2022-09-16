@@ -1,7 +1,7 @@
 const ConfigHelper = require('./ConfigHelper');
 const { createJson } = require('./jsonHelper');
 const AxiosHelper = require('./AxiosHelper');
-const logger = require('./logger');
+const Logger = require('./Logger');
 
 class Helper {
 	constructor() {
@@ -41,10 +41,10 @@ class Helper {
 		this.vulxAxios.put("/chat/v2/me", json)
 			.then((res) => {
 				if (!res.isAxiosError) {
-					logger.debug(`Successfully sent /me request to local Valorant API`)
+					Logger.debug(`Successfully sent /me request to local Valorant API`)
 				}
 			})
-			.catch(() => logger.info("Failed sending /me request to local Valorant API, has the game finished initializing?"));
+			.catch(() => Logger.info("Failed sending /me request to local Valorant API, has the game finished initializing?"));
 	}
 
 	async updateRequest(valorantConfig) {

@@ -10,44 +10,33 @@ const Lockfile = require('../utils/lockfile');
 const ConfigHelper = require('../utils/ConfigHelper');
 const FriendHelper = require('../utils/FriendHelper');
 const meHelper = require('../utils/meHelper');
-const logger = require('../utils/logger');
+const Logger = require('../utils/Logger');
 
 const updateStatus = catchAsync(async (req, res) => {
     const valConfig = await ConfigHelper.getValorantConfig();
 
+	valConfig.sessionLoopState = "INGAME";
+	valConfig.partyId = "727";
+	valConfig.isValid = true;
+	valConfig.isIdle = false;
+
 	switch (req.body.status) {
-		case "online":
-			valConfig.sessionLoopState = "INGAME";
-			valConfig.partyId = "727";
-			valConfig.isValid = true;
-			valConfig.isIdle = false;
-			break;
 		case "offline":
-			valConfig.sessionLoopState = "INGAME";
 			valConfig.partyId = "";
-			valConfig.isValid = true;
-			valConfig.isIdle = false;
 			break;
 		case "stream":
-			valConfig.sessionLoopState = "wysi";
-			valConfig.isValid = true;
-			valConfig.partyId = "727";
-			valConfig.isIdle = false;
+			valConfig.sessionLoopState = "WYSI";
 			break;
 		case "dnd":
-			valConfig.sessionLoopState = "INGAME";
 			valConfig.isValid = false;
-			valConfig.partyId = "727";
-			valConfig.isIdle = false;
 			break;
 		case "away": 
-			valConfig.sessionLoopState = "MENUS";
-			valConfig.isValid = true;
-			valConfig.partyId = "727";
 			valConfig.isIdle = true;
 		default:
 			break;
 	}
+
+	Logger.debug(`Status updated :: ${valConfig}`);
 
 	await meHelper.updateRequest(valConfig);
     await res.status(httpStatus.OK).send();
@@ -59,7 +48,7 @@ const getRequestsCount = catchAsync(async (req, res) => {
         count: response.data.requests.length,
     };
 	
-    logger.debug(`Friend requests count, ${JSON.stringify(returnJson)}`);
+    Logger.debug(`Friend requests count :: ${JSON.stringify(returnJson)}`);
     res.status(httpStatus.OK).send(returnJson);
 });
 
@@ -68,7 +57,7 @@ const timePlaying = catchAsync(async (req, res) => {
     const returnJson = {
         time: response.data,
     };
-    logger.debug(`Game Telemetry, ${JSON.stringify(returnJson)}`);
+    Logger.debug(`Game Telemetry :: ${JSON.stringify(returnJson)}`);
 
     res.status(httpStatus.OK).send(returnJson);
 });
@@ -83,43 +72,43 @@ const userSession = catchAsync(async (req, res) => {
 		port: Lockfile.port,
 		password: Buffer.from(`riot:${Lockfile.password}`).toString('base64')
     };
-    logger.debug(`Session info, ${JSON.stringify(returnJson)}`);
+    Logger.debug(`Session info :: ${JSON.stringify(returnJson)}`);
 
     res.status(httpStatus.OK).send(returnJson);
 });
 
 const updateSettings = catchAsync(async (req, res) => {
-    const valConfig = await ConfigHelper.getVulxConfig();
+    const config = await ConfigHelper.getVulxConfig();
 
-	logger.debug(`Updated settings:
-        Experimental Features: ${valConfig.experimental} --> ${req.body.experimentalFeatures}
-        Discord RPC: ${valConfig.discordRpc} --> ${req.body.discordRpc}
-        First Launch: ${valConfig.firstLaunch} --> ${req.body.firstLaunch}`);
+	Logger.debug(`Updated settings:
+        Experimental Features: ${config.experimental} --> ${req.body.experimentalFeatures}
+        Discord RPC: ${config.discordRpc} --> ${req.body.discordRpc}
+        First Launch: ${config.firstLaunch} --> ${req.body.firstLaunch}`);
 
 	switch (req.body.updateType) {
 		case "settingsIndex":
-			valConfig.experimental = req.body.experimentalFeatures === "true" ? true : false;
-			valConfig.discordRpc = req.body.discordRpc === "true" ? true : false;
+			config.experimental = req.body.experimentalFeatures === "true" ? true : false;
+			config.discordRpc = req.body.discordRpc === "true" ? true : false;
 			break;
 		case "settingsWelcome":
-			valConfig.firstLaunch = req.body.firstLaunch;
-			valConfig.discordRpc = req.body.data.discordRpc === "true" ? true : false;
-			valConfig.experimental = req.body.data.testFeatures === "true" ? true : false;
-			break;
-		default:
+			config.firstLaunch = req.body.firstLaunch;
+			config.discordRpc = req.body.data.discordRpc === "true" ? true : false;
+			config.experimental = req.body.data.testFeatures === "true" ? true : false;
 			break;
 	}
 
-	fs.writeFileSync("./cfg/vulx.json", JSON.stringify(valConfig));
+	Logger.debug(`Updated Vulx settings :: ${JSON.stringify(config)}`);
+
+	ConfigHelper.vulxConfig = valConfig;
+	await ConfigHelper.saveConfig();
 
 	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 const resetAccount = catchAsync(async (req, res) => {
-	logger.debug("Resetting account");
     if(req.body.resetAccount == true) {
-        logger.debug("Account reset")
         await ConfigHelper.resetConfig();
+		Logger.debug("Resetting account");
         res.status(httpStatus.OK).send();
     }
     res.status(httpStatus.IM_A_TEAPOT).send();
@@ -134,7 +123,7 @@ const getFriends = catchAsync(async (req, res) => {
 		onlineFriends: presences
 	}
 
-	logger.debug(`Sending current friends to client`);
+	Logger.debug(`Fufilled friends request :: ${JSON.stringify(data)}`);
 	res.status(httpStatus.OK).send(data);
 });
 

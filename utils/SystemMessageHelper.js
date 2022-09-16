@@ -1,5 +1,5 @@
 const AxiosHelper = require("./AxiosHelper");
-const Logger = require("./logger");
+const Logger = require("./Logger");
 
 class SystemMessageHelper {
 	constructor() { }

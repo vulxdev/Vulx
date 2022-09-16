@@ -5,7 +5,7 @@ const express = require('express');
 
 // local imports
 const DiscordRPC = require("./utils/discordHelper");
-const logger = require('./utils/logger');
+const Logger = require('./utils/Logger');
 const ConfigHelper = require('./utils/ConfigHelper');
 const routes = require('./routes');
 const MeHelper = require('./utils/meHelper');
@@ -45,8 +45,8 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-	logger.info('Vulx has finished loading! Welcome to Vulx.')
-	logger.debug(`Vulx initialized on port ${port}`);
+	Logger.info('Vulx has finished loading! Welcome to Vulx.')
+	Logger.debug(`Vulx initialized on port ${port}`);
 	if(process.pkg)
 		open(`http://${link}`);
 });

@@ -5,7 +5,7 @@ const path = require('path');
 
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
-const logger = require('../utils/logger');
+const Logger = require('../utils/Logger');
 const discord = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
 const ConfigHelper = require('../utils/ConfigHelper');
@@ -42,6 +42,8 @@ const updatePresence = catchAsync(async (req, res) => {
 		valConfig.playerTitleId = req.body.playerTitleId;
 	}
 
+	Logger.debug(`Updating presence :: Flag: ${flag} | ${JSON.stringify(valConfig)}`);
+
 	await meHelper.updateRequest(valConfig);
 	await discord.update(); 
     await res.status(httpStatus.OK).send();
@@ -69,7 +71,7 @@ const currentSettings = catchAsync(async (req, res) => {
 		status: status
 	}
 
-	logger.debug(`Sending current settings to client, ${JSON.stringify(data)}`);
+	Logger.debug(`Fufilling current settings request :: ${JSON.stringify(data)}`);
 
 	res.status(httpStatus.OK).send(data);
 });

@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+// unused but might be useful in the future
 class User {
     constructor(puuid, name, teamID, accountLevel, character, playerCard, playerTitle, skins) {
         this.puuid = puuid;

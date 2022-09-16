@@ -1,11 +1,10 @@
 // library definitions
 const httpStatus = require('http-status');
-const fs = require('fs');
 const path = require('path');
 
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
-const logger = require('../utils/logger');
+const Logger = require('../utils/Logger');
 const discord = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
 
@@ -31,7 +30,7 @@ const currentExperiments = catchAsync(async (req, res) => {
 		leagueToggle: true,
 	}
 
-	logger.debug(`Sending current experiments to client, ${JSON.stringify(data)}`);
+	Logger.debug(`Sending current experiments to client, ${JSON.stringify(data)}`);
 
 	res.status(httpStatus.OK).send(data);
 });
