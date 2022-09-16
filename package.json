@@ -13,7 +13,7 @@
 		]
     },
     "author": "AquaPlays",
-    "license": "MIT",
+    "license": "All Rights Reserved",
     "dependencies": {
         "@forevolve/bootstrap-dark": "^2.1.0",
         "axios": "^0.26.1",

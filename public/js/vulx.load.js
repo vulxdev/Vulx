@@ -1,3 +1,10 @@
+/* 
+ * Copyright (C) Vulx - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Vulx Team <vulxdev@gmail.com>, 2022
+*/
+
 $(window).on('load', async function () {
     function delay(time) {
         return new Promise(function (resolve) {

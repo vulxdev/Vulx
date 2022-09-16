@@ -1,3 +1,10 @@
+/* 
+ * Copyright (C) Vulx - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Vulx Team <vulxdev@gmail.com>, 2022
+*/
+
 // library definitions
 const httpStatus = require('http-status');
 const fs = require('fs');

@@ -1,3 +1,10 @@
+/* 
+ * Copyright (C) Vulx - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Vulx Team <vulxdev@gmail.com>, 2022
+*/
+
 function getDifference(array1, array2) {
     return array1.filter(object1 => {
       return !array2.some(object2 => {
