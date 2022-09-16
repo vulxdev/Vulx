@@ -13,7 +13,7 @@ module.exports.createJson = async function(settings, leagueToggle) {
 
 	config.partyClientVersion = await ValorantAPI.getClientVersion();
 	return {
-			state: config.isIdle ? "away" : "chat",
+			state: config.isIdle ? "away" : !config.partyId ? "offline" : "chat",
 			msg: "get vulx at discord.gg/aquaplays",
 			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(config)).toString('base64'),
 			shared: {

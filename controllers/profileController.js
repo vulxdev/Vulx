@@ -29,7 +29,8 @@ const updateStatus = catchAsync(async (req, res) => {
 
 	switch (req.body.status) {
 		case "offline":
-			valConfig.partyId = "";
+			valConfig.sessionLoopState = "MENUS";
+			valConfig.partyId = undefined;
 			break;
 		case "stream":
 			valConfig.sessionLoopState = "WYSI";
@@ -39,11 +40,12 @@ const updateStatus = catchAsync(async (req, res) => {
 			break;
 		case "away": 
 			valConfig.isIdle = true;
+			valConfig.sessionLoopState = "MENUS";
 		default:
 			break;
 	}
 
-	Logger.debug(`Status updated :: ${valConfig}`);
+	Logger.debug(`Status updated :: ${JSON.stringify(valConfig)}`);
 
 	await meHelper.updateRequest(valConfig);
     await res.status(httpStatus.OK).send();

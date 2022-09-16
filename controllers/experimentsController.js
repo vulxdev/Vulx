@@ -12,7 +12,7 @@ const path = require('path');
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
 const Logger = require('../utils/Logger');
-const discord = require("../utils/discordHelper");
+const DiscordRPC = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
 
 const updateExperiments = catchAsync(async (req, res) => {
@@ -25,7 +25,7 @@ const updateExperiments = catchAsync(async (req, res) => {
 	valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 	valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
 
-	await discord.update();
+	await DiscordRPC.refreshActivity();
 	
 	await meHelper.updateRequest(valConfig);
         

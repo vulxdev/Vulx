@@ -13,7 +13,7 @@ const path = require('path');
 // helper definitions
 const catchAsync = require('../utils/catchAsync');
 const Logger = require('../utils/Logger');
-const discord = require("../utils/discordHelper");
+const DiscordRPC = require("../utils/discordHelper");
 const meHelper = require('../utils/meHelper');
 const ConfigHelper = require('../utils/ConfigHelper');
 
@@ -22,7 +22,6 @@ const updatePresence = catchAsync(async (req, res) => {
     const valConfig = await ConfigHelper.getValorantConfig();
 
 	if (flag & 1) {
-		console.log(req.body.status + " status") // debug
 		if(req.body.status) 
 		valConfig.queueId = req.body.status;
 	}
@@ -33,26 +32,22 @@ const updatePresence = catchAsync(async (req, res) => {
 		valConfig.leaderboardPosition = req.body.position;
 	}
 	if (flag & 8) {
-		console.log("level " + req.body.level) // debug
 		valConfig.accountLevel = req.body.level;
 	}
 	if (flag & 16) {
-		if(req.body.ally) 
 		valConfig.partyOwnerMatchScoreAllyTeam = req.body.ally;
 	}
 	if (flag & 32) {
-		if(req.body.enemy) 
 		valConfig.partyOwnerMatchScoreEnemyTeam = req.body.enemy;
 	}
 	if (flag & 64) {
-		if(req.body.playerTitleId) 
 		valConfig.playerTitleId = req.body.playerTitleId;
 	}
 
 	Logger.debug(`Updating presence :: Flag: ${flag} | ${JSON.stringify(valConfig)}`);
 
 	await meHelper.updateRequest(valConfig);
-	await discord.update(); 
+	await DiscordRPC.refreshActivity(); 
     await res.status(httpStatus.OK).send();
 });
 

@@ -98,7 +98,6 @@ class Helper {
 			partyId:'727',
 			isPartyOwner:true,
 			partyState:'DEFAULT',
-			partyAccessibility:'CLOSED',
 			maxPartySize:5,
 			queueId:'Vulx - Valorant Profile Editor',
 			partyLFM:false,
@@ -111,7 +110,7 @@ class Helper {
 			playerTitleId:'00d4d326-4edc-3229-7c28-129d3374e3ad',
 			preferredLevelBorderId:'',
 			accountLevel:727,
-			competitiveTier:25,
+			competitiveTier:23,
 			leaderboardPosition:0,
 			isIdle:true
 		}
