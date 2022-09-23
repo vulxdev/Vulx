@@ -47,6 +47,81 @@ function closeSearchBar() {
         
 } window.closeSearchBar = closeSearchBar;
 
+function Notification(type, message) {
+    if(type == true) {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+        }).showToast();
+    } else {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+            style: {
+                background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            }
+        }).showToast();
+    }
+}
+
+async function selectRank(id) {
+    await fetch('http://127.0.0.1:/updatePresence', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                flag: 2,
+                rank: id
+            }
+        )
+    }).then((response) => {
+        Notification(true, "Rank updated successfully!");
+        getProfile();
+    }).catch((error) => {
+        Notification(false, "An error occured while updating your rank!");
+    });  
+} window.selectRank = selectRank;
+
+function selectStatus(id) {
+    fetch('http://127.0.0.1:/updateStatus', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                status: id
+            }
+        )
+    }).then((response) => {
+        Notification(true, "Status updated successfully!");
+        getProfile();
+    }).catch((error) => {
+        Notification(false, "An error occured while updating your Status!");
+    });  
+} window.selectStatus = selectStatus;
+
+function rankDropdownToggle(el) {
+	var rankDropdowns = document.querySelectorAll(".arrow-downV2");
+	rankDropdowns.forEach(rankDropdown => {
+		if (rankDropdown.id != "mainRankDropdown" && rankDropdown != el)
+			rankDropdown.classList.remove("active")
+	})
+	el.classList.toggle("active")
+} window.rankDropdownToggle = rankDropdownToggle;
+
 let dropLoc = 0;
 for(var i = 0; i < ranksJson.length; i++) {
     var ranksDropdown = document.getElementById("collapseRank");
@@ -114,81 +189,6 @@ for(var i = 0; i < ranksJson.length; i++) {
     ranksDropdown.appendChild(rank);
 }
 
-function rankDropdownToggle(el) {
-	var rankDropdowns = document.querySelectorAll(".arrow-downV2");
-	rankDropdowns.forEach(rankDropdown => {
-		if (rankDropdown.id != "mainRankDropdown" && rankDropdown != el)
-			rankDropdown.classList.remove("active")
-	})
-	el.classList.toggle("active")
-} window.rankDropdownToggle = rankDropdownToggle;
-
-function Notification(type, message) {
-    if(type == true) {
-        Toastify({ text: message,
-            duration: 3000,
-            close: true,
-            gravity: "bottom",
-            position: "right",
-            stopOnFocus: true, 
-            className: "info",
-        }).showToast();
-    } else {
-        Toastify({ text: message,
-            duration: 3000,
-            close: true,
-            gravity: "bottom",
-            position: "right",
-            stopOnFocus: true, 
-            className: "info",
-            style: {
-                background: "linear-gradient(to right, #ff5f6d, #ffc371)",
-            }
-        }).showToast();
-    }
-}
-
-async function selectRank(id) {
-    await fetch('http://127.0.0.1:/updatePresence', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                flag: 2,
-                rank: id
-            }
-        )
-    }).then((response) => {
-        Notification(true, "Rank updated successfully!");
-        getProfile();
-    }).catch((error) => {
-        Notification(false, "An error occured while updating your rank!");
-    });  
-} window.selectRank = selectRank;
-
-function selectStatus(id) {
-    fetch('http://127.0.0.1:/updateStatus', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                status: id
-            }
-        )
-    }).then((response) => {
-        Notification(true, "Status updated successfully!");
-        getProfile();
-    }).catch((error) => {
-        Notification(false, "An error occured while updating your Status!");
-    });  
-} window.selectStatus = selectStatus;
-
 if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer').innerWidth()) {
     const isHover = e => e.parentElement.querySelector(':hover') === e;    
     const valorantStatus = document.getElementById('valorantMatchStatus');
@@ -196,34 +196,24 @@ if ($('#valorantMatchStatus')[0].scrollWidth > $('#valorantMatchStatusContainer'
     const hovered = isHover(valorantStatus);
         if (hovered !== checkHover.hovered) {
             if(hovered == true) {
-                var profile = document.getElementById("profile");
-                var spacer = document.getElementById("bottomSpacer");
-                var status = document.getElementById("valorantMatchStatus");
-                var advertising = document.getElementsByClassName("vulxAdvertising");
-                var background = document.getElementById('valorantMatchStatusContainer');
-                var bgimage = getComputedStyle(background);
-
-                profile.style.height = parseInt(bgimage.getPropertyValue('height')) + 505 - 37 + "px"
-                spacer.style.top = parseInt(bgimage.getPropertyValue('height')) + 452 - 37 + "px" 
-                status.style.whiteSpace = "normal";
-                advertising[0].style.top = parseInt(bgimage.getPropertyValue('height')) + 475 - 37 + "px" 
+                var background = getComputedStyle(document.getElementById('valorantMatchStatusContainer')).getPropertyValue('height');
+                document.getElementById("profile").style.height = parseInt(background) + 505 - 37 + "px";
+                document.getElementById("bottomSpacer").style.top = parseInt(background) + 452 - 37 + "px";
+                document.getElementById("valorantMatchStatus").style.whiteSpace = "normal";;
+                document.getElementsByClassName("vulxAdvertising")[0].style.top = parseInt(background) + 475 - 37 + "px";
             } else {
-                var profile = document.getElementById("profile");
-                var spacer = document.getElementById("bottomSpacer");
-                var status = document.getElementById("valorantMatchStatus");
-                var advertising = document.getElementsByClassName("vulxAdvertising");
-                profile.style.height = "505px";
-                spacer.style.top = "452px";
-                status.style.whiteSpace = "nowrap";
-                advertising[0].style.top = "475px";
+                document.getElementById("profile").style.height = "505px";
+                document.getElementById("bottomSpacer").style.top = "452px";
+                document.getElementById("valorantMatchStatus").style.whiteSpace = "nowrap";
+                document.getElementsByClassName("vulxAdvertising")[0].style.top = "475px";
             }
         }
     });
-}   //
+}  
 
 var titlesDropdown = document.getElementById("titleDropdown");
 var dropdownSelect = document.getElementById("dropdownButton");
-var response = fetch('https://valorant-api.com/v1/playertitles').then(res => res.json()).then(response => {
+fetch('https://valorant-api.com/v1/playertitles').then(res => res.json()).then(response => {
     response.data = [{ "displayName": "No Title", "uuid": "null" }, ...response.data];
         response.data.forEach(title => {
             var dropdownItem = document.createElement("a");
@@ -231,39 +221,20 @@ var response = fetch('https://valorant-api.com/v1/playertitles').then(res => res
                 dropdownItem.setAttribute("class", "dropdown-item active");
                 dropdownSelect.textContent = title.displayName;
             }
-            else dropdownItem.setAttribute("class", "dropdown-item");
-            dropdownItem.setAttribute("href", "#");
-            dropdownItem.setAttribute("data-value", title.uuid);
-            dropdownItem.addEventListener('click', async (event) => {
-                selectTitle(title.uuid);
-            });
-            dropdownItem.innerHTML = title.displayName;
-            titlesDropdown.appendChild(dropdownItem);
+            else {
+                dropdownItem.setAttribute("class", "dropdown-item");
+                dropdownItem.setAttribute("href", "#");
+                dropdownItem.setAttribute("data-value", title.uuid);
+                dropdownItem.addEventListener('click', async (event) => {
+                    selectTitle(title.uuid);
+                });
+                dropdownItem.innerHTML = title.displayName;
+                titlesDropdown.appendChild(dropdownItem);
+            }
         });
 });
 
-function selectTitle(playerTitleId) {
-    fetch(window.autosaveUrl, {
-        method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    flag: 64,
-                    playerTitleId,
-                }
-            )
-    }).then(() => {
-        Notification(true, "Profile updated successfully!");
-        getProfile();
-    }).catch(() => {
-        Notification(false, "An error occured while updating your profile!");
-    })
-}
-
-var response = fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).then(response => {
+fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).then(response => {
     var display = document.querySelector('#time');
     function startTimer(display) {
         var diff, hours, minutes, seconds;
@@ -287,14 +258,12 @@ var response = fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).th
     startTimer(display);
 });
 
-var response = fetch('http://127.0.0.1:/friends').then(res => res.json()).then(response => {
-    var friends = document.querySelector('#friendsCount');
-    friends.textContent = response.friends.length;
+fetch('http://127.0.0.1:/friends').then(res => res.json()).then(response => {
+    document.querySelector('#friendsCount').textContent = response.friends.length;
 });
 
-var response = fetch('http://127.0.0.1:/requests').then(res => res.json()).then(response => {
-    var friends = document.querySelector('#requestsCount');
-    friends.textContent = response.count;
+fetch('http://127.0.0.1:/requests').then(res => res.json()).then(response => {
+    document.querySelector('#requestsCount').textContent = response.count;
 });
 
 document.querySelectorAll(".searchBarInput").forEach((inputField) => {

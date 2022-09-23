@@ -17,5 +17,5 @@ async function resetAccount() {
                 resetAccount: true,
             }
         )
-    }).then(window.location.href = "welcome.html");
+    }).then(window.location.href = "setup");
 }

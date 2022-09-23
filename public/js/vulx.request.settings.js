@@ -62,34 +62,14 @@ function getProfile() {
             document.getElementById("valorantAlly").value = data.partyOwnerMatchScoreAllyTeam;
             document.getElementById("enemy").textContent = data.partyOwnerMatchScoreEnemyTeam;
             document.getElementById("valorantEnemy").value = data.partyOwnerMatchScoreEnemyTeam;
+            document.getElementById("activity").src = `https://cdn.aquaplays.xyz/user/${data.status}.png`;     
             document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
             document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
+            document.getElementById("valorantRankImg").src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier}.png`;
+            document.getElementById("valorantRank").textContent = `${resolveRank(data.competitiveTier)}${data.leaderboardPosition != 0 ? ` #${resolveIntComma(data.leaderboardPosition)}` : ''}`;
             document.getElementById("valorantTitle").textContent = await getTitleText(data.playerTitleId);
                 window.playerTitleId = data.playerTitleId;
 
-            //grabs & sets the rank image
-            var rankImg = document.getElementById("valorantRankImg")
-                if(data.competitiveTier == 0 || data.competitiveTier == 1 || data.competitiveTier == 2) { 
-                    rankImg.src = "https://cdn.aquaplays.xyz/ranks/0.png";
-                } else {
-                    rankImg.src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier}.png`;
-                }
-
-            //grabs & sets the rank name & leaderboard position
-            var rank = document.getElementById("valorantRank");
-                if(data.leaderboardPosition != 0) {
-                    rank.textContent = resolveRank(data.competitiveTier) + ' #' + resolveIntComma(data.leaderboardPosition);;
-                } else {
-                    rank.textContent = resolveRank(data.competitiveTier);
-                }
-                   
-            //grabs & sets the activity / status
-            var status = document.getElementById("activity"); 
-                if(data.status == "dnd") {
-                    status.src = "https://cdn.discordapp.com/attachments/808062997180317767/1019725640326467664/dnd.png";
-                } else {
-                    status.src = `https://cdn.aquaplays.xyz/user/${data.status}.png`;
-                }        
         }).catch(function(error) {
         console.log(error);
     });

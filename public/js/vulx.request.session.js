@@ -8,15 +8,15 @@
 fetch("http://127.0.0.1:/userSession").then(function(response) {
     return response.json();
     }).then(function(data) {
-        if(data.config.firstLaunch == false) {
-            window.location.href = "welcome.html";
+        if(data.config.firstLaunch == true) {
+            window.location.href = "setup";
         }
         if(data.config.experimental == true) {
             document.getElementById("experimentalNav").style.display = "flex";
             document.getElementById("gameFeedNav").style.display = "flex";
         } else {
-            if(!window.location.href.includes("index.html")) {
-                window.location.href = "index.html";
+            if(!window.location.href.includes("dashboard")) {
+                window.location.href = "dashboard";
             }
         }
         //grabs and sets the session data
