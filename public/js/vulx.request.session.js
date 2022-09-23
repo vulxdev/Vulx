@@ -19,26 +19,17 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
                 window.location.href = "index.html";
             }
         }
-        var username = document.getElementById("username");
-        var usernameNav = document.getElementById("usernameNav");
-            username.textContent = data.session.game_name + "#" + data.session.game_tag;
-            usernameNav.textContent = data.session.game_name + "#" + data.session.game_tag;
-        var connection = document.getElementById("connectionLabel");
-            connection.textContent = data.session.resource + " | " + data.session.state;
-        var account = document.getElementById("accountName");
-            account.textContent = `Account Name | ${data.session.name.length == 0 ? data.session.game_name : data.session.name}`;
-        var pid = document.getElementById("pid");
-            pid.textContent = "PlayerID | " + data.session.puuid;
-        var region = document.getElementById("region");
-            region.textContent = "Region | " + data.session.region;
-        var port = document.getElementById("port");
-            port.textContent = "Session Port | " + data.port;
-        var password = document.getElementById("password");
-            password.textContent = "Lockpass | " + data.password;
-        var discord = document.getElementById("discordRpc");
-            discord.value = data.config.discordRpc;
-        var experimental = document.getElementById("experimentalFeatures");
-            experimental.value = data.config.experimental;
+        //grabs and sets the session data
+        document.getElementById("username").textContent = data.session.game_name + "#" + data.session.game_tag;
+        document.getElementById("usernameNav").textContent = data.session.game_name + "#" + data.session.game_tag;
+        document.getElementById("connectionLabel").textContent = data.session.resource + " | " + data.session.state;
+        document.getElementById("accountName").textContent = `Account Name | ${data.session.name.length == 0 ? data.session.game_name : data.session.name}`;
+        document.getElementById("pid").textContent = "PlayerID | " + data.session.puuid;
+        document.getElementById("region").textContent = "Region | " + data.session.region;
+        document.getElementById("port").textContent = "Session Port | " + data.port;
+        document.getElementById("password").textContent = "Lockpass | " + data.password;
+        document.getElementById("discordRpc").value = data.config.discordRpc;
+        document.getElementById("experimentalFeatures").value = data.config.experimental;
     }).catch(function() {
     console.log("Error.");
 });

@@ -14,7 +14,7 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
         var username = document.getElementById("username");
             username.textContent = data.session.game_name;
     }).catch(function() {
-    console.log("Error.");
+    console.log("Error loading user session");
 });
 
 let discordRpc = false;
@@ -39,9 +39,9 @@ function stepFour() {
     postSettings();
     window.location.href = "index.html";
 }
-//Add a new function for stepFive, This will ask the user if they want ValorantAPI to be enabled or not.
-async function postSettings() {
-    await fetch('http://127.0.0.1:/updateSettings', {
+
+function postSettings() {
+    fetch('http://127.0.0.1:/updateSettings', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

@@ -5,6 +5,8 @@
  * Written by Vulx Team <vulxdev@gmail.com>, 2022
 */
 
+// Loading screen for Vulx, this is the first thing that will be loaded (may remove this later)
+
 $(window).on('load', async function () {
     function delay(time) {
         return new Promise(function (resolve) {
