@@ -9,8 +9,8 @@
     },
     "pkg": {
         "assets": [
-			"public/**/*"
-		]
+            "public/**/*"
+        ]
     },
     "author": "AquaPlays",
     "license": "All Rights Reserved",

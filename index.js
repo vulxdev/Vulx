@@ -48,7 +48,7 @@ DiscordRPC.init();
 
 app.get("/", (req, res) => {
 	res.set({ "Allow-access-Allow-Origin": "*" });
-	res.sendFile(path.join(__dirname, '/public/welcome.html'));
+	res.redirect("/setup");
 });
 
 app.listen(port, () => {

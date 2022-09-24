@@ -8,7 +8,7 @@
 fetch("http://127.0.0.1:/userSession").then(function(response) {
     return response.json();
     }).then(function(data) {
-        if(!data.config.firstLaunch == true) window.location.href = "index.html";
+        if(data.config.firstLaunch == false) window.location.href = "dashboard";
         document.getElementById("username").textContent = data.session.game_name;
     }).catch(function() {
     console.log("Error loading user session");
@@ -47,7 +47,7 @@ function postSettings() {
         body: JSON.stringify(
             {
                 updateType: "settingsWelcome",
-                firstLaunch: true,
+                firstLaunch: false,
                 data: {
                     discordRpc: discordRpc,
                     testFeatures: testFeatures

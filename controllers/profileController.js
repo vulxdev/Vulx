@@ -14,7 +14,7 @@ const path = require('path');
 const catchAsync = require('../utils/catchAsync');
 const AxiosHelper = require('../utils/AxiosHelper');
 const Lockfile = require('../utils/lockfile');
-const ConfigHelper = require('../utils/ConfigHelper');
+const ConfigHelper = require('../utils/configHelper');
 const FriendHelper = require('../utils/FriendHelper');
 const meHelper = require('../utils/meHelper');
 const Logger = require('../utils/Logger');
@@ -108,10 +108,10 @@ const updateSettings = catchAsync(async (req, res) => {
 
 	Logger.debug(`Updated Vulx settings :: ${JSON.stringify(config)}`);
 
-	ConfigHelper.vulxConfig = valConfig;
+	ConfigHelper.vulxConfig = config;
 	await ConfigHelper.saveConfig();
 
-	res.sendFile(path.join(__dirname, '../public/index.html'));
+	res.redirect("/dashboard");
 });
 
 const resetAccount = catchAsync(async (req, res) => {

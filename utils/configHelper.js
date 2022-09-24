@@ -159,7 +159,7 @@ class Helper {
 			port: 80,
 			discordRpc: false,
 			experimental: false,
-			firstLaunch: false
+			firstLaunch: true
 		}
 	
 		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(config));
@@ -234,6 +234,7 @@ class Helper {
 		await fs.writeFileSync("./cfg/valorant.json", JSON.stringify(this.valorantConfig));
 		await fs.writeFileSync("./cfg/league.json", JSON.stringify(this.leagueConfig));
 		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(this.vulxConfig));
+		console.log("Saved config" + this.vulxConfig);
 		await fs.writeFileSync("./cfg/experiments.json", JSON.stringify(this.experimentsConfig));
 	}
 }

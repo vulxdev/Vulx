@@ -13,7 +13,6 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
         }
         if(data.config.experimental == true) {
             document.getElementById("experimentalNav").style.display = "flex";
-            document.getElementById("gameFeedNav").style.display = "flex";
         } else {
             if(!window.location.href.includes("dashboard")) {
                 window.location.href = "dashboard";

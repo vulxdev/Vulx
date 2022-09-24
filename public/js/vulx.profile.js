@@ -122,6 +122,27 @@ function rankDropdownToggle(el) {
 	el.classList.toggle("active")
 } window.rankDropdownToggle = rankDropdownToggle;
 
+function selectTitle(playerTitleId) {
+    fetch(window.autosaveUrl, {
+        method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    flag: 64,
+                    playerTitleId,
+                }
+            )
+    }).then(() => {
+        Notification(true, "Profile updated successfully!");
+        getProfile();
+    }).catch(() => {
+        Notification(false, "An error occured while updating your profile!");
+    })
+}
+
 let dropLoc = 0;
 for(var i = 0; i < ranksJson.length; i++) {
     var ranksDropdown = document.getElementById("collapseRank");
