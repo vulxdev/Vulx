@@ -57,7 +57,9 @@ class Client {
             this._refreshEntitlement();
             Logger.info("Refreshing entitlements...");
             return this.axios(originalRequest);
-        }
+        } else if (error.response.status === 404) {
+			return this.axios(originalRequest);
+		}
 		return Promise.reject(error)
     }
     
