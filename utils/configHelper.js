@@ -228,13 +228,13 @@ class Helper {
 		await this._createLeagueConfig();
 		await this._createVulxConfig();
 		await this._createExperimentsConfig();
+		await this._initializeConfig();
 	}
 
 	async saveConfig() {
 		await fs.writeFileSync("./cfg/valorant.json", JSON.stringify(this.valorantConfig));
 		await fs.writeFileSync("./cfg/league.json", JSON.stringify(this.leagueConfig));
 		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(this.vulxConfig));
-		console.log("Saved config" + this.vulxConfig);
 		await fs.writeFileSync("./cfg/experiments.json", JSON.stringify(this.experimentsConfig));
 	}
 }

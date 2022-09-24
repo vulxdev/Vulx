@@ -41,8 +41,7 @@ class Helper {
 			return response;
 		  }, function (error) {
 			const originalRequest = error.config;
-			console.log(error)
-			if (error.response.status === 401) {
+			if (error.response && error.response.status === 401) {
 				LockFile._initializeLockFile();
 				this._doInitialize();
 				return this.axios(originalRequest);

@@ -58,14 +58,14 @@ module.exports.refreshActivity = function() {
 							large_image : "logo",
 							large_text : "Vulx",
 							small_image: `${valorantConfig.competitiveTier || 'logo2'}`,
-							small_text: `${rankIdToName[valorantConfig.competitiveTier]}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : '' || 'Cannot get rank.'}`,
+							small_text: `${rankIdToName[valorantConfig.competitiveTier] || 'Cannot get rank.'}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : ''}`,
 						},
-						buttons : [{label : "Discord" , url : "https://discord.com/aquaplays"},{label : "Website" , url : "https://aquaplays.xyz"}]
+						buttons : [{label : "Discord" , url : "https://dsc.gg/vulx"},{label : "YouTube" , url : "https://youtube.com/aqua"}]
 					}
 					client.request('SET_ACTIVITY', {
 						pid: process.pid,
 						activity,
-					})
+					}).catch(() => { })
 					Logger.debug(`Updated Discord RPC :: ${JSON.stringify(activity)}`);
 				}
 				else {

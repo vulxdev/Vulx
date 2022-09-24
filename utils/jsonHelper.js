@@ -11,9 +11,15 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(settings).toString()
 	const config = Object.assign({}, settings);
 
+	let status;
+	if(config.partyId == "" || config.partyId == null) status = "offline"; 
+	else if(config.isValid == false) status = "dnd";
+	else if(config.sessionLoopState == "MENUS" && config.isIdle == true) status = "away";
+	else status = "chat";
+
 	config.partyClientVersion = await ValorantAPI.getClientVersion();
 	return {
-			state: config.isIdle ? "away" : !config.partyId ? "offline" : "chat",
+			state: status,
 			msg: "get vulx at discord.gg/aquaplays",
 			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(config)).toString('base64'),
 			shared: {
