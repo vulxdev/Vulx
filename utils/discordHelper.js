@@ -60,7 +60,7 @@ module.exports.refreshActivity = function() {
 							small_image: `${valorantConfig.competitiveTier || 'logo2'}`,
 							small_text: `${rankIdToName[valorantConfig.competitiveTier] || 'Cannot get rank.'}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : ''}`,
 						},
-						buttons : [{label : "Discord" , url : "https://dsc.gg/vulx"},{label : "YouTube" , url : "https://youtube.com/aqua"}]
+						buttons : [{label : "Discord" , url : "https://discord.gg/vulx"},{label : "YouTube" , url : "https://youtube.com/aqua"}]
 					}
 					client.request('SET_ACTIVITY', {
 						pid: process.pid,

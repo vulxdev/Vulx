@@ -41,7 +41,7 @@ DiscordRPC.init();
 	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
 	await SystemMessageHelper.sendSystemMessage(`♡ Welcome to Vulx ${await ValorantAPI.getGameName()}`);
 	await SystemMessageHelper.sendSystemMessage(`♡ Your current rank is ${DiscordRPC.rankIdToName[valorantConfig.competitiveTier]}`);
-	await SystemMessageHelper.sendSystemMessage(`♡ For support join discord.gg/aquaplays`);
+	await SystemMessageHelper.sendSystemMessage(`♡ For support join discord.gg/vulx`);
 	await SystemMessageHelper.sendSystemMessage(`♡ Made with love by Aqua & Syfe`);
 	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
 })();
