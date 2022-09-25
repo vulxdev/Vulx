@@ -202,7 +202,7 @@ class Helper {
 	async getValorantConfig() {
 		await this._initialize();
 
-		return this.valorantConfig;
+		return await this._getValorantConfig();
 	}
 
 	async getLeagueConfig() {
@@ -214,7 +214,7 @@ class Helper {
 	async getVulxConfig() {
 		await this._initialize();
 
-		return this.vulxConfig;
+		return await this._getVulxConfig();
 	}
 
 	async getExperimentsConfig() {
@@ -228,7 +228,6 @@ class Helper {
 		await this._createLeagueConfig();
 		await this._createVulxConfig();
 		await this._createExperimentsConfig();
-		await this._initializeConfig();
 	}
 
 	async saveConfig() {

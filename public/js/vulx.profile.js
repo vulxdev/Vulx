@@ -319,6 +319,7 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
             message: value,
         });
     } else {
+		window.autosaveUrl = "http://127.0.0.1:/updatePresence";
         bodyRes = JSON.stringify(autosaveJson);
     }
 

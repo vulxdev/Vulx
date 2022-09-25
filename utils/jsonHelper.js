@@ -20,7 +20,6 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	config.partyClientVersion = await ValorantAPI.getClientVersion();
 	return {
 			state: status,
-			msg: "get vulx at discord.gg/aquaplays",
 			private: leagueToggle ? lolSettingsEncoded : Buffer.from(JSON.stringify(config)).toString('base64'),
 			shared: {
 				actor: "",
