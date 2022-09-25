@@ -44,6 +44,8 @@ DiscordRPC.init();
 	await SystemMessageHelper.sendSystemMessage(`♡ For support join discord.gg/vulx`);
 	await SystemMessageHelper.sendSystemMessage(`♡ Made with love by Aqua & Syfe`);
 	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
+
+	process.title = "Vulx";
 })();
 
 app.get("/", (req, res) => {
