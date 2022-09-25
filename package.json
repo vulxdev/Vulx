@@ -15,6 +15,7 @@
     "author": "AquaPlays",
     "license": "All Rights Reserved",
     "dependencies": {
+        "@angablue/exe": "^1.1.3",
         "@forevolve/bootstrap-dark": "^2.1.0",
         "axios": "^0.26.1",
         "discord-rpc": "^4.0.1",
