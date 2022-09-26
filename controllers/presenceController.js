@@ -56,10 +56,11 @@ const currentSettings = catchAsync(async (req, res) => {
 	
 	let status;
 	if(valConfig.sessionLoopState == "INGAME") status = "online";
-	if(valConfig.partyId == "" || valConfig.partyId == null) status = "offline"; 
-	if(valConfig.sessionLoopState !== "MENUS" && valConfig.sessionLoopState !== "INGAME") status = "stream";
-	if(valConfig.isValid == false) status = "dnd";
-	if(valConfig.sessionLoopState == "MENUS" && valConfig.isIdle == true) status = "away";
+	else if(valConfig.partyId == "" || valConfig.partyId == null) status = "offline"; 
+	else if(valConfig.sessionLoopState !== "MENUS" && valConfig.sessionLoopState !== "INGAME") status = "stream";
+	else if(valConfig.isValid == false) status = "dnd";
+	else if(valConfig.sessionLoopState == "MENUS" && valConfig.isIdle == true) status = "away";
+	else if (valConfig.sessionLoopState == "MENUS" && valConfig.partyId == "727") status = "available";
 
 	const data = {
 		queueId: valConfig.queueId,

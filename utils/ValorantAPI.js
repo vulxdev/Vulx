@@ -128,8 +128,8 @@ class Client {
         const response = await this.vulxAxios.get("/entitlements/v1/token");
         this.entitlementToken = response.data.token;
         this.accessToken = response.data.accessToken;
-        Logger.debug(`Entitlement token refreshed: ${this.entitlementToken}`);
-        Logger.debug(`Access token refreshed: ${this.accessToken}`);
+        //Logger.debug(`Entitlement token refreshed: ${this.entitlementToken}`);
+        //Logger.debug(`Access token refreshed: ${this.accessToken}`);
         return true;
     }
 

@@ -41,6 +41,8 @@ const updateStatus = catchAsync(async (req, res) => {
 		case "away": 
 			valConfig.isIdle = true;
 			valConfig.sessionLoopState = "MENUS";
+		case "available":
+			valConfig.sessionLoopState = "MENUS";
 		default:
 			break;
 	}

@@ -14,9 +14,7 @@ function delay(time) {
 }
 
 $(window).on('load', async function () {
-    await delay(1000);
+    await delay(500);
     document.getElementById("loading").classList.add("hide");
-	await delay(500);
-    $('#loading').hide(); 
-    //This is such a digusting way to make this work but fuck it
+	$('#loading').bind('animationend', function() { $(this).remove(); }); 
 }) 

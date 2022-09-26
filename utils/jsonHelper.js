@@ -26,7 +26,7 @@ module.exports.createJson = async function(settings, leagueToggle) {
 				details: "",
 				location: "",
 				product: leagueToggle ? "league_of_legends" : "valorant",
-				time: new Date().valueOf() + 10000000 //Extended timestamp to allow update bypass
+				time: new Date().valueOf() + 35000 //Extended timestamp to allow update bypass
 			}
 		}
 }
