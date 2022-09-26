@@ -46,8 +46,8 @@ const updatePresence = catchAsync(async (req, res) => {
 
 	Logger.debug(`Updating presence :: Flag: ${flag} | ${JSON.stringify(valConfig)}`);
 
-	await meHelper.updateRequest(valConfig);
 	await DiscordRPC.refreshActivity(); 
+	await meHelper.updateRequest(valConfig);
     await res.status(httpStatus.OK).send();
 });
 

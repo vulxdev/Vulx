@@ -65,7 +65,7 @@ module.exports.refreshActivity = function() {
 					client.request('SET_ACTIVITY', {
 						pid: process.pid,
 						activity,
-					}).catch(() => { })
+					}).catch((err) => { Logger.debug(`Failed to update Discord RPC :: ${err.message}`) })
 					Logger.debug(`Updated Discord RPC :: ${JSON.stringify(activity)}`);
 				}
 				else {
@@ -80,9 +80,9 @@ module.exports.refreshActivity = function() {
 
 module.exports.init = function() {
 	client.login({ clientId })
-		.then(() => {
+		.then(async () => {
 			Logger.debug(`Initialised Discord RPC | Client ID: ${clientId}`);
-			this.refreshActivity();
+			await this.refreshActivity();
 		})
 		.catch(err => {
 			Logger.debug(`Failed to initialise Discord RPC :: ${err}`);
