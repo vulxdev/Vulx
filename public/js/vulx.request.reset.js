@@ -18,4 +18,4 @@ async function resetAccount() {
             }
         )
     }).then(window.location.href = "setup");
-}
+} window.resetAccount = resetAccount;

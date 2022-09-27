@@ -8,7 +8,7 @@
 fetch("http://127.0.0.1:/userSession").then(function(response) {
     return response.json();
     }).then(function(data) {
-        if(data.config.firstLaunch == false) window.location.href = "dashboard";
+        if(data.config.firstLaunch == false && window.location.href != "http://127.0.0.1/dashboard") window.location.href = "dashboard";
         document.getElementById("username").textContent = data.session.game_name;
     }).catch(function() {
     console.log("Error loading user session");
