@@ -159,7 +159,7 @@ for(var i = 0; i < ranksJson.length; i++) {
     var rankImg = document.createElement("img");
     rankImg.setAttribute("style", "height: 30px;");
     rankImg.setAttribute("class", "valorantRankImg");
-    rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id}.png`);
+    rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id < 3 ? 0 : ranksJson[i].id}.png`);
     rank.appendChild(rankImg);
 
     var rankName = document.createElement("h4");

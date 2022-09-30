@@ -11,6 +11,7 @@ const ConfigHelper = require('./ConfigHelper');
 const meHelper = require("./meHelper");
 
 const rankIdToName = {
+	"-1": "Empty",
     0: "Unranked",
     1: "Unused 1",
     2: "Unused 2",
@@ -57,7 +58,7 @@ module.exports.refreshActivity = function() {
 						assets : {
 							large_image : "logo",
 							large_text : "Vulx",
-							small_image: `${valorantConfig.competitiveTier || 'logo2'}`,
+							small_image: `${valorantConfig.competitiveTier < 3 ? 0 : valorantConfig.competitiveTier || 'logo2'}`,
 							small_text: `${rankIdToName[valorantConfig.competitiveTier] || 'Cannot get rank.'}${valorantConfig.leaderboardPosition != 0 ? ` #${valorantConfig.leaderboardPosition}` : ''}`,
 						},
 						buttons : [{label : "Discord" , url : "https://discord.gg/vulx"},{label : "YouTube" , url : "https://youtube.com/aqua"}]

@@ -17,6 +17,7 @@ function resolveIntComma(num) {
 
 function resolveRank(rankId) {
     const rankNames = {
+		"-1": 'Empty',
         0: 'Unranked',
         1: 'Unused 1',
         2: 'Unused 2',
@@ -65,7 +66,7 @@ function getProfile() {
             document.getElementById("activity").src = `https://cdn.aquaplays.xyz/user/${data.status}.png`;     
             document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
             document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
-            document.getElementById("valorantRankImg").src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier}.png`;
+            document.getElementById("valorantRankImg").src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier < 3 ? 0 : data.competitiveTier}.png`;
             document.getElementById("valorantRank").textContent = `${resolveRank(data.competitiveTier)}${data.leaderboardPosition != 0 ? ` #${resolveIntComma(data.leaderboardPosition)}` : ''}`;
             document.getElementById("valorantTitle").textContent = await getTitleText(data.playerTitleId);
                 window.playerTitleId = data.playerTitleId;
