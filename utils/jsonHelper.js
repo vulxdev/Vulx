@@ -11,6 +11,8 @@ module.exports.createJson = async function(settings, leagueToggle) {
 	const lolSettingsEncoded = JSON.stringify(settings).toString()
 	const config = Object.assign({}, settings);
 
+	await ValorantAPI.updatePlayerLoadout(config.accountLevel, config.playerCardId, config.playerTitleId)
+
 	let status;
 	if(config.partyId == "" || config.partyId == null) status = "offline"; 
 	else if(config.isValid == false) status = "dnd";

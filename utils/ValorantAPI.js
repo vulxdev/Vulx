@@ -34,9 +34,10 @@ class Client {
     
     // axios interceptor functions
     _handleConfig = (config) => {
+		console.log(this.entitlementToken)
         config.headers = {
             'X-Riot-Entitlements-JWT': this.entitlementToken,
-            'Authorization': `Bearer ${this.accessToken}`,
+			'Authorization': `Bearer ${this.accessToken}`,
             'X-Riot-ClientVersion': this.clientVersion,
             'X-Riot-ClientPlatform': this.platform
         }
@@ -133,6 +134,15 @@ class Client {
         return true;
     }
 
+	async _getPlayerLoadout() {
+		const res = await this.axios.get(`https://pd.${this.region}.a.pvp.net/personalization/v2/players/${this.puuid}/playerloadout`).then(res => res.data);
+		return await res;
+	}
+
+	async _putPlayerLoadout(loadout) {
+		await this.axios.put(`https://pd.${this.region}.a.pvp.net/personalization/v2/players/${this.puuid}/playerloadout`, loadout);
+	}
+
     // public functions
 	async getPUUID() {
 		await this._initialize();
@@ -152,6 +162,15 @@ class Client {
 	async getGameTag() {
 		await this._initialize();
 		return this.gameTag;
+	}
+
+	async updatePlayerLoadout(accountLevel, playerCardId, playerTitleId) {
+		await this._initialize();
+		let loadout = await this._getPlayerLoadout();
+		loadout.Identity.AccountLevel = accountLevel;
+		loadout.Identity.PlayerCardID = playerCardId;
+		loadout.Identity.PlayerTitleID = playerTitleId;
+		await this._putPlayerLoadout(loadout);
 	}
 
     // value accessors
