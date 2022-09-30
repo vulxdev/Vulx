@@ -6,6 +6,9 @@
 */
 
 const fs = require('fs');
+const { homedir } = require('os');
+
+const vulxConfigPath = `${homedir()}/AppData/Local/Vulx/config/`;
 
 class Helper {
 	constructor() {
@@ -36,13 +39,13 @@ class Helper {
 	}
 
 	async _initializeDirectory() {
-		if (!fs.existsSync('./cfg')) {
-			fs.mkdirSync('./cfg');
+		if (!fs.existsSync(vulxConfigPath)) {
+			fs.mkdirSync(vulxConfigPath, { recursive: true });
 		}
 	}
 
 	async _getAndCreateIfNotExistsValorantConfig() {
-		if (!fs.existsSync('./cfg/valorant.json')) {
+		if (!fs.existsSync(vulxConfigPath + 'valorant.json')) {
 			await this._createValorantConfig();
 		} else {
 			await this._getValorantConfig();
@@ -52,7 +55,7 @@ class Helper {
 	}
 
 	async _getAndCreateIfNotExistsLeagueConfig() {
-		if (!fs.existsSync('./cfg/league.json')) {
+		if (!fs.existsSync(vulxConfigPath + 'league.json')) {
 			await this._createLeagueConfig();
 		} else {
 			await this._getLeagueConfig();
@@ -62,7 +65,7 @@ class Helper {
 	}
 
 	async _getAndCreateIfNotExistsVulxConfig() {
-		if (!fs.existsSync('./cfg/vulx.json')) {
+		if (!fs.existsSync(vulxConfigPath + 'vulx.json')) {
 			await this._createVulxConfig();
 		} else {
 			await this._getVulxConfig();
@@ -72,7 +75,7 @@ class Helper {
 	}
 
 	async _getAndCreateIfNotExistsExperimentsConfig() {
-		if (!fs.existsSync('./cfg/experiments.json')) {
+		if (!fs.existsSync(vulxConfigPath + 'experiments.json')) {
 			await this._createExperimentsConfig();
 		} else {
 			await this._getExperimentsConfig();
@@ -115,7 +118,7 @@ class Helper {
 			isIdle:true
 		}
 	
-		await fs.writeFileSync("./cfg/valorant.json", JSON.stringify(config));
+		await fs.writeFileSync(vulxConfigPath + "valorant.json", JSON.stringify(config));
 		this.valorantConfig = config;
 	}
 
@@ -150,7 +153,7 @@ class Helper {
 			"timeStamp":"1646014091142"
 		}
 	
-		await fs.writeFileSync("./cfg/league.json", JSON.stringify(config));
+		await fs.writeFileSync(vulxConfigPath + "league.json", JSON.stringify(config));
 		this.leagueConfig = config;
 	}
 
@@ -162,7 +165,7 @@ class Helper {
 			firstLaunch: true
 		}
 	
-		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(config));
+		await fs.writeFileSync(vulxConfigPath + "vulx.json", JSON.stringify(config));
 		this.vulxConfig = config;
 	}
 
@@ -171,30 +174,30 @@ class Helper {
 			league: false
 		}
 	
-		await fs.writeFileSync("./cfg/experiments.json", JSON.stringify(config));
+		await fs.writeFileSync(vulxConfigPath + "experiments.json", JSON.stringify(config));
 		this.experimentsConfig = config;
 	}
 
 	async _getValorantConfig() {
-		const config = JSON.parse(fs.readFileSync("./cfg/valorant.json"));
+		const config = JSON.parse(fs.readFileSync(vulxConfigPath + "valorant.json"));
 		this.valorantConfig = config;
 		return config;
 	}
 
 	async _getLeagueConfig() {
-		const config = JSON.parse(fs.readFileSync("./cfg/league.json"));
+		const config = JSON.parse(fs.readFileSync(vulxConfigPath + "league.json"));
 		this.leagueConfig = config;
 		return config;
 	}
 
 	async _getVulxConfig() {
-		const config = JSON.parse(fs.readFileSync("./cfg/vulx.json"));
+		const config = JSON.parse(fs.readFileSync(vulxConfigPath + "vulx.json"));
 		this.vulxConfig = config;
 		return config;
 	}
 
 	async _getExperimentsConfig() {
-		const config = JSON.parse(fs.readFileSync("./cfg/experiments.json"));
+		const config = JSON.parse(fs.readFileSync(vulxConfigPath + "experiments.json"));
 		this.experimentsConfig = config;
 		return config;
 	}
@@ -231,10 +234,10 @@ class Helper {
 	}
 
 	async saveConfig() {
-		await fs.writeFileSync("./cfg/valorant.json", JSON.stringify(this.valorantConfig));
-		await fs.writeFileSync("./cfg/league.json", JSON.stringify(this.leagueConfig));
-		await fs.writeFileSync("./cfg/vulx.json", JSON.stringify(this.vulxConfig));
-		await fs.writeFileSync("./cfg/experiments.json", JSON.stringify(this.experimentsConfig));
+		await fs.writeFileSync(vulxConfigPath + "valorant.json", JSON.stringify(this.valorantConfig));
+		await fs.writeFileSync(vulxConfigPath + "league.json", JSON.stringify(this.leagueConfig));
+		await fs.writeFileSync(vulxConfigPath + "vulx.json", JSON.stringify(this.vulxConfig));
+		await fs.writeFileSync(vulxConfigPath + "experiments.json", JSON.stringify(this.experimentsConfig));
 	}
 }
 
