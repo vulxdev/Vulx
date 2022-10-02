@@ -61,6 +61,7 @@ You'll get faster responses on Discord so if you'd like to make a request or rep
 * [Syfe](https://github.com/ItsSyfe) - Project Owner
 * [Discreet](https://github.com/discreet-pc) - Beta tester and very helpful for ideas
 * [NotOfficer](https://github.com/NotOfficer) - Providing us with the extremely useful [Valorant-API](https://valorant-api.com/)
+* Thank you for everyone who has helped each other solved issues esspeically the amazing staff team <3
 
 ---
 
