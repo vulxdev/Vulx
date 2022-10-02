@@ -184,13 +184,28 @@ for(var i = 0; i < ranksJson.length; i++) {
     for(var j = 0; j < Object.values(ranksJson[i])[1].length; j++) {
         let rank = Object.values(ranksJson[i])[1][j];
         
+        if(rankName.innerHTML == "Special") {
+            //add tooltips to special ranks
+            var rankSpecificTooltip = document.createElement("a");
+            rankSpecificTooltip.setAttribute("data-toggle", "tooltip");
+            rankSpecificTooltip.setAttribute("data-placement", "right");
+            rankSpecificTooltip.setAttribute("title", "This rank is usally unavailable.");
+            rankSpecificTooltip.setAttribute("class", "customTooltip");
+            rankSpecificDropdown.appendChild(rankSpecificTooltip);
+        }
+
         var rankSpecific = document.createElement("div");
         rankSpecific.setAttribute("class", "valorantDropdownItem");
         rankSpecific.setAttribute("id", j);
         rankSpecific.addEventListener('click', async (event) => {
             await selectRank(rank);
         });
-        rankSpecificDropdown.appendChild(rankSpecific);
+        
+        if(rankName.innerHTML == "Special") {
+            rankSpecificTooltip.appendChild(rankSpecific);
+        } else {
+            rankSpecificDropdown.appendChild(rankSpecific);
+        }
 
         var rankSpecificImg = document.createElement("img");
         rankSpecificImg.setAttribute("style", "height: 30px;");
@@ -300,7 +315,12 @@ $('#collapseStatus').click(function(event){
 document.querySelectorAll(".searchBarInput").forEach((inputField) => {
     inputField.addEventListener("change", () => {
     const name = inputField.getAttribute("name");
-    const value = inputField.value;
+    let value = inputField.value;
+
+    //if the value is over 100 characters, we want to trim it down and add an ellipsis
+    if (value.length > 100) {
+        value = value.substring(0, 100) + "...";
+    }
 
     const formData = new FormData();
     formData.append(name, value);
@@ -329,8 +349,8 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
             message: value,
         });
     } else {
-		window.autosaveUrl = "http://127.0.0.1:/updatePresence";
         bodyRes = JSON.stringify(autosaveJson);
+        console.log(bodyRes)
     }
 
     fetch(window.autosaveUrl, {

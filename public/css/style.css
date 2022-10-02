@@ -230,6 +230,11 @@ a {
   background-color: #00141e;
 }
 
+.customTooltip {
+  text-decoration: none !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+}
+
 .collapsing {
   overflow: hidden !important;
   transition: height 0.35s ease 0s !important;

@@ -20,8 +20,11 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
         }
         if(data.config.webTooltips == true) {
             $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
-              }); //Create a toggle for the tooltip
+                $('[data-toggle="tooltip"]').tooltip({
+                    trigger : 'hover',
+                    container: 'body'
+                });
+              }); 
         }
         //grabs and sets the session data
         document.getElementById("username").textContent = data.session.game_name + "#" + data.session.game_tag;
