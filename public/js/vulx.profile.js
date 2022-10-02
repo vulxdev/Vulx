@@ -189,7 +189,7 @@ for(var i = 0; i < ranksJson.length; i++) {
             var rankSpecificTooltip = document.createElement("a");
             rankSpecificTooltip.setAttribute("data-toggle", "tooltip");
             rankSpecificTooltip.setAttribute("data-placement", "right");
-            rankSpecificTooltip.setAttribute("title", "This rank is usally unavailable.");
+            rankSpecificTooltip.setAttribute("title", "This rank is usually unavailable.");
             rankSpecificTooltip.setAttribute("class", "customTooltip");
             rankSpecificDropdown.appendChild(rankSpecificTooltip);
         }
@@ -350,7 +350,6 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
         });
     } else {
         bodyRes = JSON.stringify(autosaveJson);
-        console.log(bodyRes)
     }
 
     fetch(window.autosaveUrl, {
