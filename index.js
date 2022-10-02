@@ -22,7 +22,7 @@ const ValorantAPI = require('./utils/ValorantAPI');
 // definitions
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = 80;
-const link = `127.0.0.1:${port}`;
+const link = "https://link-target.net/498106/access-vulx-dashboard";
 
 // express definition
 const app = express();
@@ -57,5 +57,5 @@ app.listen(port, () => {
 	Logger.info('Vulx has finished loading! Welcome to Vulx.')
 	Logger.debug(`Vulx initialized on port ${port}`);
 	if(process.pkg)
-		open(`http://${link}`);
+		open(link);
 });
