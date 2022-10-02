@@ -287,6 +287,16 @@ fetch('http://127.0.0.1:/requests').then(res => res.json()).then(response => {
     document.querySelector('#requestsCount').textContent = response.count;
 });
 
+$(window).click(function() {
+    if(document.getElementById("collapseStatus").classList.contains("show")) {
+        document.getElementById("collapseStatus").classList.remove("show");
+    }
+});
+
+$('#collapseStatus').click(function(event){
+    event.stopPropagation();
+});
+
 document.querySelectorAll(".searchBarInput").forEach((inputField) => {
     inputField.addEventListener("change", () => {
     const name = inputField.getAttribute("name");
