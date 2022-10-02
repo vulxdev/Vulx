@@ -37,6 +37,7 @@ const updateStatus = catchAsync(async (req, res) => {
 			break;
 		case "dnd":
 			valConfig.isValid = false;
+			valConfig.sessionLoopState = "MENUS";
 			break;
 		case "away": 
 			valConfig.isIdle = true;

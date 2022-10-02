@@ -214,7 +214,7 @@ a {
 .profileStatusDropdown {
   background-color: #0c0c0e;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 130px;
   left: 86px;
   width: 285px;
