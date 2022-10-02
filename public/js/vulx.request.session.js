@@ -18,6 +18,11 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
                 window.location.href = "dashboard";
             }
         }
+        if(data.config.webTooltips == true) {
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+              }); //Create a toggle for the tooltip
+        }
         //grabs and sets the session data
         document.getElementById("username").textContent = data.session.game_name + "#" + data.session.game_tag;
         document.getElementById("usernameNav").textContent = data.session.game_name + "#" + data.session.game_tag;
@@ -29,6 +34,7 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
         document.getElementById("password").textContent = "Lockpass | " + data.password;
         document.getElementById("discordRpc").value = data.config.discordRpc;
         document.getElementById("experimentalFeatures").value = data.config.experimental;
+        document.getElementById("webTooltips").value = data.config.webTooltips;
     }).catch(function() {
     console.log("Error.");
 });

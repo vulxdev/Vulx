@@ -162,7 +162,8 @@ class Helper {
 			port: 80,
 			discordRpc: false,
 			experimental: false,
-			firstLaunch: true
+			firstLaunch: true,
+			webTooltips: true
 		}
 	
 		await fs.writeFileSync(vulxConfigPath + "vulx.json", JSON.stringify(config));

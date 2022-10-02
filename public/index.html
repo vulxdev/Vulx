@@ -83,11 +83,15 @@
                 <div class="row" id="main">
                     <div id="profile" class="draggable col-6 col-md-4 profileBanner">
                         <div class="valorantBanner">
-                            <img id="playerCard" class="valorantBanner" type="button" data-toggle="modal" data-target="#bannerModal">
+                            <a href="#" data-placement="left" data-toggle="tooltip" title="This allows you to change your valorant banner client & server sided!">
+                                <img id="playerCard" class="valorantBanner" type="button" data-toggle="modal" data-target="#bannerModal">
+                            </a>
                         </div>
                         <div id="valorantPfp">
                             <img id="playerCardSmall" class="valorantPfp">
-                            <img class="valorantActivity" data-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus" id="activity" src="https://cdn.aquaplays.xyz/user/online.png">
+                            <a href="#" data-placement="top" data-toggle="tooltip" title="Here you can change your profiles activity allowing!">
+                                <img class="valorantActivity" data-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus" id="activity" src="https://cdn.aquaplays.xyz/user/online.png">
+                            </a>
                         </div>
                         <div id="collapseStatus" class="collapse profileStatusDropdown" data-bs-parent="main">
 							<div class="margin valorantDropdownItem" onclick="selectStatus('available')">
@@ -177,18 +181,20 @@
                                         <div class="textBoxCont">
                                             <div style="width: 50%;" class="textBox">
                                                 <h5 class="textLabel">Profile Title</h5>
-                                                <div class="dropdown hierarchy-select" id="dropdownTitles">
-                                                    <button type="button" class="dropdownTitles btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                                    <div style="width: 100%; background-color: #101116;" class="dropdown-menu" aria-labelledby="dropdownButton">
-                                                        <div class="hs-searchbox">
-                                                            <input type="text" class="form-control" autocomplete="off">
-                                                        </div>
-                                                        <div id="titleDropdown" class="hs-menu-inner">
+                                                <a href="#" data-placement="left" data-toggle="tooltip" title="Note: This value will only show for friends that are not in your party (This will not show on your client)">                                                       
+                                                    <div class="dropdown hierarchy-select" id="dropdownTitles">
+                                                        <button type="button" class="dropdownTitles btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                        <div style="width: 100%; background-color: #101116;" class="dropdown-menu" aria-labelledby="dropdownButton">
+                                                            <div class="hs-searchbox">
+                                                                <input type="text" class="form-control" autocomplete="off">
+                                                            </div>
+                                                            <div id="titleDropdown" class="hs-menu-inner">
 
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <input class="d-none" name="dropdownInput" readonly="readonly" aria-hidden="true" type="text"/>
-                                                </div>                                     
+                                                        <input class="d-none" name="dropdownInput" readonly="readonly" aria-hidden="true" type="text"/>
+                                                    </div>          
+                                                </a>                           
                                             </div>
                                             <div class="textBox">
                                                 <h5 class="textLabel">Leaderboard</h5>
@@ -196,7 +202,9 @@
                                             </div>
                                             <div class="textBox">
                                                 <h5 class="textLabel">Account Level</h5>
-                                                <input class="searchBarInput" type="number" name="level" id="valorantLevel" placeholder="Level.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <a href="#" data-placement="right" data-toggle="tooltip" title="Note: This value will only show for friends that are not in your party (This will not show on your client)">
+                                                    <input class="searchBarInput" type="number" name="level" id="valorantLevel" placeholder="Level.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                </a>
                                             </div>
                                     </details>                                       
                                 </li>  
@@ -205,7 +213,9 @@
                                         <summary>System Message <span class="instant"></span></summary>
                                         <div style="width: 100%;" class="textBox">
                                             <h5 class="textLabel">Message</h5>
-                                            <input class="searchBarInput" type="text" name="systemMessage" id="systemMessage" placeholder="Message.." value="" autofocus> 
+                                            <a href="#" data-placement="bottom" data-toggle="tooltip" title="This will send a system message in your party (client sided only)">
+                                                <input class="searchBarInput" type="text" name="systemMessage" id="systemMessage" placeholder="Message.." value="" autofocus> 
+                                            </a>
                                         </div>
                                     </details>                                       
                                 </li>                                   
@@ -278,9 +288,6 @@
                                     <option value="false">False</option>
                                 </select>
                             </div>
-
-                            <input type="hidden" id="updateType" name="updateType" value="settingsIndex">
-                            
                             <div class="form-group col-md-6">
                                 <label style="font-size: 23px" for="discordRpc">DiscordRPC</label>
                                     <select class="form-control" name="discordRpc" id="discordRpc">
@@ -288,6 +295,14 @@
                                         <option value="false">False</option>
                                     </select>
                               </div>
+                              <div class="form-group col-md-6">
+                                <label style="font-size: 23px" for="webTooltips">Tool Tips</label>
+                                    <select class="form-control" name="webTooltips" id="webTooltips">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                              </div>
+                              <input type="hidden" id="updateType" name="updateType" value="settingsIndex">
                         </div>
                 </div>
                 <div class="modal-footer">
