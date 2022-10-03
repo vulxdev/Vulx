@@ -211,13 +211,29 @@ for(var i = 0; i < ranksJson.length; i++) {
         rankSpecificImg.setAttribute("style", "height: 30px;");
         rankSpecificImg.setAttribute("class", "valorantRankImg");
         rankSpecificImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${rankName.innerHTML == "Special" ? 0 : rank}.png`);
-        rankSpecific.appendChild(rankSpecificImg);
+        if (rankName.innerHTML == "No Rank") {
+            //No rank needed
+        }
+        else if (rankName.innerHTML == "Special") {
+            //Unused ranks have no icon so it's not needed
+        }
+        else {
+            rankSpecific.appendChild(rankSpecificImg);
+        }
 
         const num = j+1;
         var rankSpecificName = document.createElement("h4");
         rankSpecificName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
         rankSpecificName.setAttribute("class", "valorantRank");
-        rankSpecificName.innerHTML = rankName.innerHTML + " " + num;
+        if (rankName.innerHTML == "No Rank") {
+            rankSpecificName.innerHTML = "Disable Rank Display"
+        }
+        else if (rankName.innerHTML == "Special") {
+            rankSpecificName.innerHTML = "Unused" + " " + num;
+        }
+        else {
+            rankSpecificName.innerHTML = rankName.innerHTML + " " + num;
+        }
         rankSpecific.appendChild(rankSpecificName);
     }
 
