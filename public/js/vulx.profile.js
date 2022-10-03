@@ -192,6 +192,16 @@ for(var i = 0; i < ranksJson.length; i++) {
 
     for(var j = 0; j < Object.values(ranksJson[i])[1].length; j++) {
         let rank = Object.values(ranksJson[i])[1][j];
+
+        if(rankName.innerHTML == "No Rank") {
+            //add tooltips for no rank display
+            var rankSpecificTooltip = document.createElement("a");
+            rankSpecificTooltip.setAttribute("data-toggle", "tooltip");
+            rankSpecificTooltip.setAttribute("data-placement", "right");
+            rankSpecificTooltip.setAttribute("title", "Use this to remove your rank from your profile completely");
+            rankSpecificTooltip.setAttribute("class", "customTooltip");
+            rankSpecificDropdown.appendChild(rankSpecificTooltip);
+        }
         
         if(rankName.innerHTML == "Special") {
             //add tooltips to special ranks
@@ -212,8 +222,12 @@ for(var i = 0; i < ranksJson.length; i++) {
         
         if(rankName.innerHTML == "Special") {
             rankSpecificTooltip.appendChild(rankSpecific);
-        } else {
+        }
+        else {
             rankSpecificDropdown.appendChild(rankSpecific);
+        }
+        if(rankName.innerHTML == "No Rank") {
+            rankSpecificTooltip.appendChild(rankSpecific);
         }
 
         var rankSpecificImg = document.createElement("img");
