@@ -254,6 +254,9 @@ for(var i = 0; i < ranksJson.length; i++) {
         else if (rankName.innerHTML == "Special") {
             rankSpecificName.innerHTML = "Unused" + " " + num;
         }
+        else if (rankName.innerHTML == "Unranked") {
+            rankSpecificName.innerHTML = rankName.innerHTML;
+        }
         else {
             rankSpecificName.innerHTML = rankName.innerHTML + " " + num;
         }
