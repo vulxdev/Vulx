@@ -160,21 +160,14 @@ for(var i = 0; i < ranksJson.length; i++) {
     rankImg.setAttribute("style", "height: 30px;");
     rankImg.setAttribute("class", "valorantRankImg");
     rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id < 3 ? 0 : ranksJson[i].id}.png`);
-    //rank.appendChild(rankImg);
 
     const rankName = document.createElement("h4");
     rankName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
     rankName.setAttribute("class", "valorantRank");
     rankName.innerHTML = Object.keys(ranksJson[i])[1];
-    if (rankName.innerHTML == "No Rank") {
-        //No rank needed
-    }
-    else if (rankName.innerHTML == "Special") {
-        //Unused ranks have no icon so it's not needed
-    }
-    else {
-        rank.appendChild(rankImg);
-    }
+    if(rankName.innerHTML != "No Rank" || rankName.innerHTML != "Special") { 
+        rank.appendChild(rankImg); 
+    };
     rank.appendChild(rankName);
 
     var rankArrow = document.createElement("div");
@@ -234,11 +227,8 @@ for(var i = 0; i < ranksJson.length; i++) {
         rankSpecificImg.setAttribute("style", "height: 30px;");
         rankSpecificImg.setAttribute("class", "valorantRankImg");
         rankSpecificImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${rankName.innerHTML == "Special" ? 0 : rank}.png`);
-        if (rankName.innerHTML == "No Rank") {
-            //No rank needed
-        }
-        else if (rankName.innerHTML == "Special") {
-            //Unused ranks have no icon so it's not needed
+        if(rankName.innerHTML == "No Rank" || rankName.innerHTML == "Special") {
+            //No rank images needed
         }
         else {
             rankSpecific.appendChild(rankSpecificImg);
