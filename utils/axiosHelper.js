@@ -71,7 +71,7 @@ class Helper {
 	}
 
 	async _initializeChatSession() {
-		const response = await this.axios.get('/chat/v1/session').then(res => res.data);
+		const response = await this.axios.get('/chat/v1/session').then(res => res.data).catch(this._initializeChatSession);
 		if (response.loaded === true && response.state === 'connected') return true;
 		else return this._initializeChatSession();
 	}

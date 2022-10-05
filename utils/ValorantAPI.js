@@ -34,9 +34,8 @@ class Client {
     
     // axios interceptor functions
     _handleConfig = (config) => {
-		console.log(this.entitlementToken)
         config.headers = {
-            'X-Riot-Entitlements-JWT': this.entitlementToken,
+            'X-Riot-Entitlements-JWT': this.entitlementToken || '',
 			'Authorization': `Bearer ${this.accessToken}`,
             'X-Riot-ClientVersion': this.clientVersion,
             'X-Riot-ClientPlatform': this.platform
@@ -68,6 +67,7 @@ class Client {
     async _doInitialize() {
 		await this._initializeVulxAxios();
         await this._initializeSession();
+		await this._initializeServiceURLs();
         await this._initializeAuth();
         await this._initializeVersion();
 		await this._initializeUserInfo();
@@ -83,9 +83,9 @@ class Client {
     }
 
 	async _initializeUserInfo() {
-		const userInfo = await this.vulxAxios.get('/chat/v1/session').then(res => res.data);
-		this.gameName = userInfo.game_name;
-		this.gameTag = userInfo.game_tag;
+		this.userInfo = await this.vulxAxios.get('/chat/v1/session').then(res => res.data).catch(this._initializeUserInfo);
+		this.gameName = this.userInfo.game_name;
+		this.gameTag = this.userInfo.game_tag;
 	}
 
 	async _initializeVulxAxios() {
@@ -100,17 +100,25 @@ class Client {
 				this.region = arg.split("=")[1];
 			} else if (arg.includes("-subject")) {
 				this.puuid = arg.split("=")[1];
+			} else if (arg.includes("-config-endpoint")) {
+				this.configEndpoint = arg.split("=")[1];
 			}
 		});
 		Logger.debug(`Got external session; Region: ${this.region} PUUID: ${this.puuid}`);
     }
+
+	async _initializeServiceURLs() {
+		const res = await this.axios.get(`${this.configEndpoint}/v1/config/${this.region}`).then(res => res.data);
+		this.coreGameURL = res.Collapsed.SERVICEURL_COREGAME;
+		this.playerURL = res.Collapsed.SERVICEURL_NAME;
+	}
 
     async _initializeAuth() {
         await this._refreshEntitlement();
     }
 
     async _initializeVersion() {
-        const res = await this.axios.get(`https://glz-${this.region}-1.${this.region}.a.pvp.net/session/v1/sessions/${this.puuid}`).then(res => res.data);
+        const res = await this.axios.get(`${this.coreGameURL}/session/v1/sessions/${this.puuid}`).then(res => res.data);
         this.clientVersion = await res.clientVersion;
     }
 
@@ -135,12 +143,12 @@ class Client {
     }
 
 	async _getPlayerLoadout() {
-		const res = await this.axios.get(`https://pd.${this.region}.a.pvp.net/personalization/v2/players/${this.puuid}/playerloadout`).then(res => res.data);
+		const res = await this.axios.get(`${this.playerURL}/personalization/v2/players/${this.puuid}/playerloadout`).then(res => res.data);
 		return await res;
 	}
 
 	async _putPlayerLoadout(loadout) {
-		await this.axios.put(`https://pd.${this.region}.a.pvp.net/personalization/v2/players/${this.puuid}/playerloadout`, loadout);
+		await this.axios.put(`${this.playerURL}/personalization/v2/players/${this.puuid}/playerloadout`, loadout);
 	}
 
     // public functions
@@ -178,6 +186,11 @@ class Client {
         await this._initialize();
         return await this.clientVersion;
     }
+
+	async getUserInfo() {
+		await this._initialize();
+		return await this.userInfo;
+	}
 }
 
 module.exports = new Client();

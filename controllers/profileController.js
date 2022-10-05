@@ -18,6 +18,7 @@ const ConfigHelper = require('../utils/configHelper');
 const FriendHelper = require('../utils/FriendHelper');
 const meHelper = require('../utils/meHelper');
 const Logger = require('../utils/Logger');
+const ValorantAPI = require('../utils/ValorantAPI');
 
 const updateStatus = catchAsync(async (req, res) => {
     const valConfig = await ConfigHelper.getValorantConfig();
@@ -77,9 +78,9 @@ const timePlaying = catchAsync(async (req, res) => {
 const userSession = catchAsync(async (req, res) => {
     const config = await ConfigHelper.getVulxConfig();
 
-    const response = await (await AxiosHelper.getVulxAxios()).get("/chat/v1/session");
+    const userInfo = await ValorantAPI.getUserInfo();
     const returnJson = {
-        session: response.data,
+        session: userInfo,
 		config: config,
 		port: Lockfile.port,
 		password: Buffer.from(`riot:${Lockfile.password}`).toString('base64')
