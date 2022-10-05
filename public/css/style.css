@@ -91,6 +91,87 @@ a {
   float: right;
 }
 
+.scriptsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
+}
+
+.scripts {
+  width: 40%;
+}
+
+.scriptCont {
+  border: none !important;
+  border-radius: 10px !important;
+  background-color: #101010 !important;
+  color: #b7b7b7ad !important;
+}
+
+.scriptProfilePicture {
+  height: 28px;
+  border-radius: 50%;
+}
+
+.scriptHeader {
+  color: #ffffff !important;
+  background-color: #202020 !important;
+  border-color: #337ab7 !important;
+}
+
+.scriptFooter {
+  display: flex;
+  height: 40px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+
+.footerLeft {
+  display: flex;
+  margin-top: 6px;
+}
+
+.footerRight {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.scriptAuthorText {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.scriptTextBox {
+  width: 50% !important;
+  padding: 0px 10px 0px 0px;
+  margin-top: 10px;
+}
+
+.scriptButton {
+  width: 100% !important; 
+  background-color: #202020 !important; 
+  border-radius: 10px; 
+  margin-top: 10px;
+}
+
+.scriptText {
+  background-color: #202020 !important;
+}
+
+.scriptContent {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.scriptsHr {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eeeeee61 !important; 
+}
+
 .profileBanner {
   background-color: #14151c;
   height: 505px;

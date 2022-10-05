@@ -18,6 +18,7 @@ const routes = require('./routes');
 const MeHelper = require('./utils/meHelper');
 const SystemMessageHelper = require('./utils/SystemMessageHelper');
 const ValorantAPI = require('./utils/ValorantAPI');
+const Script = require('./utils/scriptHelper');
 
 // definitions
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -45,6 +46,8 @@ DiscordRPC.init();
 	await SystemMessageHelper.sendSystemMessage(`♡ Made with love by Aqua & Syfe`);
 	await SystemMessageHelper.sendSystemMessage(`◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤`);
 
+	Script.load();
+	
 	process.title = "Vulx";
 })();
 

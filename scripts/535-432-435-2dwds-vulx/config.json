@@ -1,0 +1,23 @@
+{
+    "_comment": "If your unsure what to do next check out the documentation @ https://github.com/vulxdev/vulx",
+    "details": {
+        "name": "Vulx System Message",
+        "description": "This is an example script to demonstrate how to use the Vulx Framework",
+        "author": "Aqua",
+        "url": "https://github.com/aquaplaysyt",
+        "version": "1.0.0"
+    },
+    "settings": {
+        "enabled": true,
+        "debug": false
+    },
+    "dashboard": [
+        {
+            "name": "system_message",
+            "description": "System Message",
+            "placeholder": "System Message Text..",
+            "type": "textbox",
+            "onClick": "systemMessage"
+        }
+    ]
+}

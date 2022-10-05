@@ -1,0 +1,44 @@
+{
+    "_comment": "If your unsure what to do next check out the documentation @ https://github.com/vulxdev/vulx",
+    "details": {
+        "name": "Vulx Test Script",
+        "description": "Script information displays here and gives a simple understanding on how everything works and the point of it ect ect, make use of this space to describe your plugin so users are aware of its useage.",
+        "author": "Aqua",
+        "url": "https://github.com/aquaplaysyt",
+        "version": "1.0.0"
+    },
+    "settings": {
+        "enabled": true,
+        "debug": true
+    },
+    "dashboard": [
+        {
+            "name": "Button One",
+            "description": "This is a button.",
+            "placeholder": "Button One",
+            "type": "button",
+            "onClick": "vulxExample"
+        },
+        {
+            "name": "Button Two",
+            "description": "This is a button.",
+            "placeholder": "Button One",
+            "type": "button",
+            "onClick": "vulxExample"
+        },
+        {
+            "name": "Text One",
+            "description": "This is a Text Box.",
+            "placeholder": "Text Box One",
+            "type": "textbox",
+            "onClick": "vulxExampleText"
+        },
+        {
+            "name": "Text Two",
+            "description": "This is a Text Box.",
+            "placeholder": "Text Box Two",
+            "type": "textbox",
+            "onClick": "vulxExampleText"
+        }
+    ]
+}

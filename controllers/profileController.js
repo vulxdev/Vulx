@@ -96,13 +96,16 @@ const updateSettings = catchAsync(async (req, res) => {
         Experimental Features: ${config.experimental} --> ${req.body.experimentalFeatures}
         Discord RPC: ${config.discordRpc} --> ${req.body.discordRpc}
         First Launch: ${config.firstLaunch} --> ${req.body.firstLaunch}
-		Web ToolTips: ${config.webTooltips} --> ${req.body.webTooltips}`);
+		Web ToolTips: ${config.webTooltips} --> ${req.body.webTooltips}
+		Custom Scipts: ${config.scripts} --> ${req.body.scripts}
+	`);
 
 	switch (req.body.updateType) {
 		case "settingsIndex":
 			config.experimental = req.body.experimentalFeatures === "true" ? true : false;
 			config.discordRpc = req.body.discordRpc === "true" ? true : false;
 			config.webTooltips = req.body.webTooltips === "true" ? true : false;
+			config.scripts = req.body.scripts === "true" ? true : false;
 			break;
 		case "settingsWelcome":
 			config.firstLaunch = req.body.firstLaunch;

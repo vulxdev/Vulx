@@ -18,7 +18,7 @@ router
 router
   .route('/updateSettings')
   .post(profileController.updateSettings);
-
+  
 router
   .route('/resetAccount')
   .post(profileController.resetAccount);

@@ -5,6 +5,31 @@
  * Written by Vulx Team <vulxdev@gmail.com>, 2022
 */
 
+function Notification(type, message) {
+    if(type == true) {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+        }).showToast();
+    } else {
+        Toastify({ text: message,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            className: "info",
+            style: {
+                background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            }
+        }).showToast();
+    }
+} window.Notification = Notification;
+
 fetch("http://127.0.0.1:/userSession").then(function(response) {
     return response.json();
     }).then(function(data) {
@@ -24,7 +49,7 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
                     trigger : 'hover', 
                     container: 'body'
                 });
-              }); 
+            }); 
         }
         //grabs and sets the session data
         document.getElementById("username").textContent = data.session.game_name + "#" + data.session.game_tag;
@@ -38,6 +63,7 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
         document.getElementById("discordRpc").value = data.config.discordRpc;
         document.getElementById("experimentalFeatures").value = data.config.experimental;
         document.getElementById("webTooltips").value = data.config.webTooltips;
+        document.getElementById("scripts").value = data.config.scripts;
     }).catch(function() {
     console.log("Error.");
 });
