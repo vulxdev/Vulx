@@ -22,7 +22,7 @@ const ValorantAPI = require('./utils/ValorantAPI');
 // definitions
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = 80;
-const link = `127.0.0.1:${port}`;
+const link = `http://127.0.0.1:${port}/`;
 
 // express definition
 const app = express();
