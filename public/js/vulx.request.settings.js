@@ -51,7 +51,7 @@ function resolveRank(rankId) {
 }
 
 function resolveRankNumber(rankId) {
-	return rankId < 3 ? 0 : (rankId - 2) % 3;
+	return rankId < 3 ? 0 : (rankId - 2) % 3 == 0 ? 1 : (rankId - 2) % 3;
 }
 
 function getProfile() {
@@ -72,6 +72,7 @@ function getProfile() {
             document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
             document.getElementById("valorantRankImg").src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier < 3 ? 0 : data.competitiveTier}.png`;
             const rank = document.getElementById("valorantRank")
+			rank.innerHTML = '';
 
 			const rankTitleSpan = document.createElement("span");
 			rankTitleSpan.setAttribute("data-i18n", `ranks.${resolveRank(data.competitiveTier)}`);
@@ -89,10 +90,10 @@ function getProfile() {
 				rank.appendChild(rankPositionSpan);
 			}
 
-			//.textContent = `${resolveRank(data.competitiveTier)}${data.leaderboardPosition != 0 ? ` #${resolveIntComma(data.leaderboardPosition)}` : ''}`;
-
             document.getElementById("valorantTitle").textContent = await getTitleText(data.playerTitleId);
                 window.playerTitleId = data.playerTitleId;
+
+			$('body').localize();
 
         }).catch(function(error) {
         console.log(error);
