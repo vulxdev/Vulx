@@ -34,8 +34,24 @@
                 <div style="opacity: 0;" class="welcomeContent show6">
                     <h4>Hey <b><a id="username"></a></b>, Welcome to Vulx</h4>
                     <h4>Before we begin lets go over some basic configuration steps</h4>
-                    <button style="width: 150px; margin-top: 10px;" type="button" onclick="stepOne()" class="btn btn-primary">
+                    <button style="width: 150px; margin-top: 10px;" type="button" onclick="stepOne('english')" class="btn btn-primary">
                         Lets Go!
+                    </button>
+                </div>
+            </div>
+            <div style="display: none;" id="welcomeStepTwo" class="container centerBox mt-3">
+                <div class="welcomeTitle">
+                    <h1 class="vulxTitle">VULX</h1>
+                    <h3 style="font-size: 32px;">Valorant Profile Editor</h3>
+                </div>
+                <div style="opacity: 0;" class="welcomeContent show4">
+                    <h4>Discord Presence</h4>
+                    <h4>Would you like to use our custom Discord status?</h4>
+                    <button style="width: 150px; margin-top: 10px;" type="button" onclick="stepTwo('true')" class="btn btn-primary">
+                        Yes
+                    </button>
+                    <button style="width: 150px; margin-top: 10px;" type="button" onclick="stepTwo('false')" class="btn btn-danger">
+                        No
                     </button>
                 </div>
             </div>

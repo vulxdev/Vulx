@@ -163,7 +163,8 @@ class Helper {
 			discordRpc: false,
 			experimental: false,
 			firstLaunch: true,
-			webTooltips: true
+			webTooltips: true,
+			languageSelection: 'english',
 		}
 	
 		await fs.writeFileSync(vulxConfigPath + "vulx.json", JSON.stringify(config));

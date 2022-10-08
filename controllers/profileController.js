@@ -18,6 +18,7 @@ const ConfigHelper = require('../utils/configHelper');
 const FriendHelper = require('../utils/FriendHelper');
 const meHelper = require('../utils/meHelper');
 const Logger = require('../utils/Logger');
+const { generatePrimeSync } = require('crypto');
 
 const updateStatus = catchAsync(async (req, res) => {
     const valConfig = await ConfigHelper.getValorantConfig();
@@ -96,18 +97,25 @@ const updateSettings = catchAsync(async (req, res) => {
         Experimental Features: ${config.experimental} --> ${req.body.experimentalFeatures}
         Discord RPC: ${config.discordRpc} --> ${req.body.discordRpc}
         First Launch: ${config.firstLaunch} --> ${req.body.firstLaunch}
-		Web ToolTips: ${config.webTooltips} --> ${req.body.webTooltips}`);
+		Web ToolTips: ${config.webTooltips} --> ${req.body.webTooltips})
+		Language Selection: ${config.languageSelection} --> ${req.body.languageSelection}`);
 
 	switch (req.body.updateType) {
 		case "settingsIndex":
 			config.experimental = req.body.experimentalFeatures === "true" ? true : false;
 			config.discordRpc = req.body.discordRpc === "true" ? true : false;
 			config.webTooltips = req.body.webTooltips === "true" ? true : false;
+			config.languageSelection = req.body.languageSelection == "english" ? 'english' : 'german';
+			console.log(req.body.languageSelection)
+			console.log("1. " + req.body.languageSelection === 'english' ? 'english' : 'german');
+
 			break;
 		case "settingsWelcome":
 			config.firstLaunch = req.body.firstLaunch;
 			config.discordRpc = req.body.data.discordRpc === "true" ? true : false;
 			config.experimental = req.body.data.testFeatures === "true" ? true : false;
+			config.languageSelection = req.body.languageSelection === undefined ? 'english' : 'german';
+			console.log(req.body.languageSelection)
 			break;
 	}
 
