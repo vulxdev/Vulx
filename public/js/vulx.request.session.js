@@ -93,6 +93,14 @@ fetch("http://127.0.0.1:/userSession").then(function(response) {
             document.body.innerHTML = document.body.innerHTML.replace('Immortal 3', 'Unsterblicher 3');
             document.body.innerHTML = document.body.innerHTML.replace('Radiant 1', 'Radiant');
             document.body.innerHTML = document.body.innerHTML.replace('Vulx Profile Editor - Made with ♡ by', 'Vulx Profile Editor - Gemacht mit ♡ von ');
+            document.body.innerHTML = document.body.innerHTML.replace('Settings', 'Einstellungen');
+            document.body.innerHTML = document.body.innerHTML.replace('Session Stats', 'Sitzungsstatistik');
+            document.body.innerHTML = document.body.innerHTML.replace('Account Settings', 'Account Einstellungen');
+            document.body.innerHTML = document.body.innerHTML.replace('Experimental Features', '<font size="4px">Experimentelle Funktionen</font>');
+            document.body.innerHTML = document.body.innerHTML.replace('DiscordRPC', '<font size="4px">Discord Status</font>');
+            document.body.innerHTML = document.body.innerHTML.replace('Tool Tips', '<font size="4px">Tool-Tipps</font>');
+            document.body.innerHTML = document.body.innerHTML.replace('Language', '<font size="4px">Sprache</font>');
+            document.body.innerHTML = document.body.innerHTML.replace('Reset Account', '<font size="1px">Account zurücksetzen</font>');
         }
         else {
             console.log("Can't detect selected Language. Something broke?")
