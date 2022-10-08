@@ -31,4 +31,6 @@ defaultRoutes.forEach((route) => {
     router.use(route.path, route.route);
 });
 
+router.use('/locales', express.static('public/locales'))
+
 module.exports = router;

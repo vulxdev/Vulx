@@ -159,15 +159,16 @@ for(var i = 0; i < ranksJson.length; i++) {
     var rankImg = document.createElement("img");
     rankImg.setAttribute("style", "height: 30px;");
     rankImg.setAttribute("class", "valorantRankImg");
-    rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id < 3 ? 0 : ranksJson[i].id}.png`);
+    rankImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${ranksJson[i].id <= 2 ? 0 : ranksJson[i].id}.png`);
+
+	const rankNameText = Object.keys(ranksJson[i])[1];
 
     const rankName = document.createElement("h4");
     rankName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
     rankName.setAttribute("class", "valorantRank");
-    rankName.innerHTML = Object.keys(ranksJson[i])[1];
-    if(rankName.innerHTML != "No Rank" || rankName.innerHTML != "Special") { 
-        rank.appendChild(rankImg); 
-    };
+	rankName.setAttribute("data-i18n", `ranks.${rankNameText.toLowerCase().replace(' ', '')}`);
+    rank.appendChild(rankImg); 
+
     rank.appendChild(rankName);
 
     var rankArrow = document.createElement("div");
@@ -186,22 +187,22 @@ for(var i = 0; i < ranksJson.length; i++) {
     for(var j = 0; j < Object.values(ranksJson[i])[1].length; j++) {
         let rank = Object.values(ranksJson[i])[1][j];
 
-        if(rankName.innerHTML == "No Rank") {
+        if(rankNameText == "No Rank") {
             //add tooltips for no rank display
             var rankSpecificTooltip = document.createElement("a");
             rankSpecificTooltip.setAttribute("data-toggle", "tooltip");
             rankSpecificTooltip.setAttribute("data-placement", "right");
-            rankSpecificTooltip.setAttribute("title", "Use this to remove your rank from your profile completely");
+            rankSpecificTooltip.setAttribute("data-i18n", "[title]tooltip.noRank");
             rankSpecificTooltip.setAttribute("class", "customTooltip");
             rankSpecificDropdown.appendChild(rankSpecificTooltip);
         }
         
-        if(rankName.innerHTML == "Special") {
+        if(rankNameText == "Special") {
             //add tooltips to special ranks
             var rankSpecificTooltip = document.createElement("a");
             rankSpecificTooltip.setAttribute("data-toggle", "tooltip");
             rankSpecificTooltip.setAttribute("data-placement", "right");
-            rankSpecificTooltip.setAttribute("title", "This rank is usually unavailable.");
+            rankSpecificTooltip.setAttribute("data-i18n", "[title]tooltip.specialRank");
             rankSpecificTooltip.setAttribute("class", "customTooltip");
             rankSpecificDropdown.appendChild(rankSpecificTooltip);
         }
@@ -213,24 +214,17 @@ for(var i = 0; i < ranksJson.length; i++) {
             await selectRank(rank);
         });
         
-        if(rankName.innerHTML == "Special") {
+        if(i <= 1) {
             rankSpecificTooltip.appendChild(rankSpecific);
-        }
-        else {
+        } else {
             rankSpecificDropdown.appendChild(rankSpecific);
-        }
-        if(rankName.innerHTML == "No Rank") {
-            rankSpecificTooltip.appendChild(rankSpecific);
         }
 
         var rankSpecificImg = document.createElement("img");
         rankSpecificImg.setAttribute("style", "height: 30px;");
         rankSpecificImg.setAttribute("class", "valorantRankImg");
-        rankSpecificImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${rankName.innerHTML == "Special" ? 0 : rank}.png`);
-        if(rankName.innerHTML == "No Rank" || rankName.innerHTML == "Special") {
-            //No rank images needed
-        }
-        else {
+        rankSpecificImg.setAttribute("src", `https://cdn.aquaplays.xyz/ranks/${i <= 2 ? 0 : rank}.png`);
+        if(!(i <= 2)) {
             rankSpecific.appendChild(rankSpecificImg);
         }
 
@@ -238,18 +232,17 @@ for(var i = 0; i < ranksJson.length; i++) {
         var rankSpecificName = document.createElement("h4");
         rankSpecificName.setAttribute("style", "font-size: 20px; padding-top: 2px;");
         rankSpecificName.setAttribute("class", "valorantRank");
-        if (rankName.innerHTML == "No Rank") {
-            rankSpecificName.innerHTML = "Disable Rank Display"
-        }
-        else if (rankName.innerHTML == "Special") {
-            rankSpecificName.innerHTML = "Unused" + " " + num;
-        }
-        else if (rankName.innerHTML == "Unranked") {
-            rankSpecificName.innerHTML = rankName.innerHTML;
-        }
-        else {
-            rankSpecificName.innerHTML = rankName.innerHTML + " " + num;
-        }
+
+		const rankNameSpan = document.createElement("span");
+		rankNameSpan.setAttribute("data-i18n", `ranks.${rankNameText.toLowerCase().replace(' ', '')}`);
+		rankSpecificName.appendChild(rankNameSpan);
+
+		if (i >= 3 && i <= 10 || i == 1) {
+			var rankNumSpan = document.createElement("span");
+			rankNumSpan.innerText = ` ${num}`;
+			rankSpecificName.appendChild(rankNumSpan);
+		}
+
         rankSpecific.appendChild(rankSpecificName);
     }
 
