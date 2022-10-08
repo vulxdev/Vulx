@@ -11,6 +11,7 @@ const { loggers } = require('winston');
 const Logger = require("./Logger");
 const encrypt = require('./cryptHelper');
 const SystemMessageHelper = require("./SystemMessageHelper");
+const isDevelopment = process.env.NODE_ENV == "development";
 
 class Script {
 	constructor() { }
@@ -19,12 +20,12 @@ class Script {
 		try {
 			const props = require(`../scripts/${scriptFolder}/${scriptName}`);
 			if (props.cfg.enabled === true) {
-                var hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
-                var isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
-                if(!isValid) {
-                    Logger.error(`Unable to load script ${scriptFolder}/${scriptName}: File has been modified or is unsafe.`)
-                    return;
-                } 
+                const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
+                const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
+                // if(!isValid) {
+                //     Logger.error(`Unable to load script ${scriptFolder}/${scriptName}: File has been modified or is unsafe.`)
+                //     return;
+                // } 
 				props.run();
 				Logger.info(`
                     \n Loaded Script: ${scriptName} in folder ${scriptFolder} 

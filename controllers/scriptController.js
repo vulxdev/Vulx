@@ -20,11 +20,11 @@ const getScriptJson = catchAsync(async (req, res) => {
     let scripts = [];
     let scriptFolders = readdir('./scripts/');
     scriptFolders.forEach((f) => {
-        var hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${f}`);
-        var isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${f}`, hash);
-        if(!isValid) {
-            return false;
-        } 
+        // var hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${f}`);
+        // var isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${f}`, hash);
+        // if(!isValid) {
+        //     return false;
+        // } 
         const scriptFiles = readdir(`./scripts/${f}/`);
         scriptFiles.forEach((j) => {
             if (!j.endsWith('.json')) return;
