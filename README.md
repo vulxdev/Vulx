@@ -50,11 +50,11 @@ If you wish to contribute to Vulx you can, however please note that since Vulx i
 
 If that's okay with you then feel free to make a pull request and we'll review it as soon as possible!
 
-## Translating
+# Translating
 
-Are you multilingual? if so, we need your help!
+If you can't code but still want to contribute to Vulx you can help us translate the application into your native language!
 
-We are aiming to translate Vulx into several languages for easier use and access. To get started helping us translate, go to https://crowdin.com/project/vulx and log in with your Github account.
+To help us with translations you can go [here](https://crowdin.com/project/vulx) and help by translating Vulx into your language.
 
 # Contact
 
