@@ -1,4 +1,4 @@
-const loadPath = `/locales/{{lng}}/{{ns}}.json`;
+const loadPath = `/locales/{{lng}}/{{ns}}.lang`;
 
 $(function () {
 	i18next
@@ -7,8 +7,8 @@ $(function () {
 	  .init({
 		debug: true,
 		fallbackLng: 'en',
-		ns: ["default"],
-		defaultNS: "default",
+		ns: ["en-AU"],
+		defaultNS: "en-AU",
 		backend: {
 			loadPath: loadPath
 		}

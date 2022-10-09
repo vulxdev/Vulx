@@ -3,7 +3,7 @@
 		"profile": "Loading Profile..."
 	},
 	"input": {
-		"searchFriends": "Search Friends.."
+		"searchFriends": "Search Friends..."
 	},
 	"navbar": {
 		"presence": "Presence",
@@ -11,9 +11,9 @@
 		"sessionStats": "Session Stats"
 	},
 	"tooltip": {
-		"banner": "This let's you change your Valorant card.",
-		"activity": "This let's you change your Valorant activity.",
-		"availableActivity": "Changes your activity to avaliable (removes custom status).",
+		"banner": "This lets you change your Valorant card.",
+		"activity": "This lets you change your Valorant activity.",
+		"availableActivity": "Changes your activity to available (removes custom status).",
 		"onlineActivity": "Changes your activity to online (display custom status).",
 		"awayActivity": "Changes your activity to away (removes custom status).",
 		"streamActivity": "Changes your activity to purple (glitch visuals).",
@@ -45,24 +45,24 @@
 	"status": {
 		"status": "Status",
 		"profileStatus": "Profile Status",
-		"profileStatusPlaceholder": "Enter some text..",
+		"profileStatusPlaceholder": "Enter some text...",
 		"scoreAlly": "Score Ally",
-		"scoreAllyPlaceholder": "Enter a number..",
+		"scoreAllyPlaceholder": "Enter a number...",
 		"scoreEnemy": "Score Enemy",
-		"scoreEnemyPlaceholder": "Enter a number.."
+		"scoreEnemyPlaceholder": "Enter a number..."
 	},
 	"account": {
 		"account": "Status",
 		"title": "Profile Title",
 		"leaderboard": "Leaderboard",
-		"leaderboardPlaceholder": "Enter a number to be your position..",
+		"leaderboardPlaceholder": "Enter a number to be your position...",
 		"level": "Account Level",
-		"levelPlaceholder": "Enter a number.."
+		"levelPlaceholder": "Enter a number..."
 	},
 	"systemMessage": {
 		"systemMessage": "System Message",
 		"message": "Message",
-		"messagePlaceholder": "Enter some text.."
+		"messagePlaceholder": "Enter some text..."
 	},
 	"placeholder": {
 		"noUserFound": "Valorant Player"
