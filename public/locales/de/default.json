@@ -3,12 +3,12 @@
 		"profile": "Loading Profile..."
 	},
 	"input": {
-		"searchFriends": "Search Friends..."
+		"searchFriends": "Nach Freunden suchen..."
 	},
 	"navbar": {
-		"presence": "Presence",
-		"settings": "Settings",
-		"sessionStats": "Session Stats"
+		"presence": "Präsenz",
+		"settings": "Einstellungen",
+		"sessionStats": "Sitzungsstatistik"
 	},
 	"tooltip": {
 		"banner": "This lets you change your Valorant card.",
@@ -26,7 +26,7 @@
 		"specialRank": "This rank is usually unavailable."
 	},
 	"activity": {
-		"available": "Available",
+		"available": "Verfügbar",
 		"online": "Online",
 		"away": "Away",
 		"stream": "Stream",
@@ -34,10 +34,10 @@
 		"offline": "Offline"
 	},
 	"highlight": {
-		"statistics": "Statistics",
-		"friends": "Friends",
-		"requests": "Requests",
-		"timeElapsed": "Time Elapsed"
+		"statistics": "Statistiken",
+		"friends": "Freunde",
+		"requests": "Anfragen",
+		"timeElapsed": "Verstrichene Zeit"
 	},
 	"rankInfo": {
 		"rank": "Rank"
