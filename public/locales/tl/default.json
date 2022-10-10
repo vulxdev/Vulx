@@ -1,0 +1,105 @@
+{
+	"loading": {
+		"profile": "Loading Profile..."
+	},
+	"input": {
+		"searchFriends": "Search Friends..."
+	},
+	"navbar": {
+		"presence": "Presence",
+		"settings": "Settings",
+		"sessionStats": "Session Stats"
+	},
+	"tooltip": {
+		"banner": "This lets you change your Valorant card.",
+		"activity": "This lets you change your Valorant activity.",
+		"availableActivity": "Changes your activity to available (removes custom status).",
+		"onlineActivity": "Changes your activity to online (display custom status).",
+		"awayActivity": "Changes your activity to away (removes custom status).",
+		"streamActivity": "Changes your activity to purple (glitch visuals).",
+		"dndActivity": "Changes your activity to Do Not Disturb (removes custom status).",
+		"offlineActivity": "Changes your activity to offline (hides you offline).",
+		"title": "Note: This value will only show for friends that are not in your party (this will NOT show on your client!).",
+		"level": "Note: This value will only show for friends that are not in your party (this will NOT show on your client!).",
+		"systemMessage": "This will send a system message in your party (client sided only).",
+		"noRank": "Use this to remove your rank from your profile completely.",
+		"specialRank": "This rank is usually unavailable."
+	},
+	"activity": {
+		"available": "Available",
+		"online": "Online",
+		"away": "Away",
+		"stream": "Stream",
+		"dnd": "DND",
+		"offline": "Offline"
+	},
+	"highlight": {
+		"statistics": "Statistics",
+		"friends": "Friends",
+		"requests": "Requests",
+		"timeElapsed": "Time Elapsed"
+	},
+	"rankInfo": {
+		"rank": "Rank"
+	},
+	"status": {
+		"status": "Status",
+		"profileStatus": "Profile Status",
+		"profileStatusPlaceholder": "Enter some text...",
+		"scoreAlly": "Score Ally",
+		"scoreAllyPlaceholder": "Enter a number...",
+		"scoreEnemy": "Score Enemy",
+		"scoreEnemyPlaceholder": "Enter a number..."
+	},
+	"account": {
+		"account": "Status",
+		"title": "Profile Title",
+		"leaderboard": "Leaderboard",
+		"leaderboardPlaceholder": "Enter a number to be your position...",
+		"level": "Account Level",
+		"levelPlaceholder": "Enter a number..."
+	},
+	"systemMessage": {
+		"systemMessage": "System Message",
+		"message": "Message",
+		"messagePlaceholder": "Enter some text..."
+	},
+	"placeholder": {
+		"noUserFound": "Valorant Player"
+	},
+	"advertising": {
+		"text": "Made with ♡ by"
+	},
+	"footer": {
+		"text": "Vulx Profile Editor - Made with ♡ by"
+	},
+	"debugModal": {
+		"sessionDebug": "Session Debug",
+		"close": "Close"
+	},
+	"settings": {
+		"settings": "Account Settings",
+		"close": "Close",
+		"save": "Save",
+		"experimental": "Experimental Features",
+		"discord": "Discord RPC",
+		"tooltips": "Tool Tips",
+		"yes": "Yes",
+		"no": "No",
+		"reset": "Reset config"
+	},
+	"ranks": {
+		"norank": "No Rank",
+		"special": "Special",
+		"unranked": "Unranked",
+		"iron": "Iron",
+		"bronze": "Bronze",
+		"silver": "Silver",
+		"gold": "Gold",
+		"platinum": "Platinum",
+		"diamond": "Diamond",
+		"ascendant": "Ascendant",
+		"immortal": "Immortal",
+		"radiant": "Radiant"
+	}
+}
