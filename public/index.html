@@ -25,7 +25,7 @@
         <div class="title show3">
             <h1 class="vulxTitle">VULX</h1>
         </div>
-        <h1 style="margin-left: 5px;" class="show3">Loading Profile...</h1>
+        <h1 data-i18n="loading.profile" style="margin-left: 5px;" class="show3"></h1>
         <img class="show3" style="height: 40px; margin: 15px;" id="loading-image" src="https://d2w9rnfcy7mm78.cloudfront.net/11137417/original_8019249c9ae1d7d7c575d4d3bb2ce0b6.gif?1615501067?bc=0" alt="Loading..." />
     </div>
     <style>
@@ -44,10 +44,10 @@
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav w-100" id="navbarContent">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Presence <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="#" data-i18n="navbar.presence"></a>
                                 </li>
                                 <li class="nav-item" id="experimentalNav" style="display: none;">
-                                    <a class="nav-link" href="experimental.html">Experimental</span></a>
+                                    <a class="nav-link" href="experimental.html" data-i18n="navbar.experimental">Experimental</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://discord.gg/MR2brBAAdC">Discord</a>
@@ -58,8 +58,8 @@
                                 <li class="nav-item dropdown ml-auto">
                                     <a class="nav-link dropdown-toggle" href="#" id="usernameNav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                     <div id="navDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingsModal">Settings</a>
-                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#debugModal">Session Stats</a>
+                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingsModal" data-i18n="navbar.settings"></a>
+                                        <a class="dropdown-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#debugModal" data-i18n="navbar.sessionStats"></a>
                                     </div>
                                 </li>
                             </ul>
@@ -67,7 +67,7 @@
                       </nav>
                       <div style="padding: 0;" class="container">
                         <div style="position: relative; z-index: 2;" class="searchBox row">                  
-                            <input id="searchFriends" onkeyup="searchFriends()" class="searchBarInput" placeholder="Search Friends.." type="text">
+                            <input id="searchFriends" onkeyup="searchFriends()" class="searchBarInput" type="text" data-i18n="[placeholder]input.searchFriends">
                             <div id="searchBar" class="search-bar-cont hidden">
                                 <div class="search-bar-innerCont">
                                     <div class="search-bar-results">           
@@ -83,76 +83,76 @@
                 <div class="row" id="main">
                     <div id="profile" class="draggable col-6 col-md-4 profileBanner">
                         <div class="valorantBanner">
-                            <a href="#" data-placement="left" data-toggle="tooltip" title="This allows you to change your valorant banner client & server sided!">
+                            <a href="#" data-placement="left" data-toggle="tooltip" data-i18n="[title]tooltip.banner">
                                 <img id="playerCard" class="valorantBanner" type="button" data-toggle="modal" data-target="#bannerModal">
                             </a>
                         </div>
                         <div id="valorantPfp">
                             <img id="playerCardSmall" class="valorantPfp">
-                            <a href="#" data-placement="top" data-toggle="tooltip" title="Here you can change your profiles activity allowing!">
+                            <a href="#" data-placement="top" data-toggle="tooltip" data-i18n="[title]tooltip.activity">
                                 <img class="valorantActivity" data-toggle="collapse" href="#collapseStatus" role="button" aria-expanded="false" aria-controls="collapseStatus" id="activity" src="https://cdn.aquaplays.xyz/user/online.png">
                             </a>
                         </div>
                         <div id="collapseStatus" class="collapse profileStatusDropdown" data-bs-parent="main">
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to avaliable - Removes custom status">                                                       
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.availableActivity">                                                       
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('available')">
                                     <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/available.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Available</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.available"></h4>
                                 </div>
                             </a>
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to online - Shows custom status">
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.onlineActivity">
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('online')">
                                     <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/online.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Online</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.online"></h4>
                                 </div>
                             </a>
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to away - Removes custom status">
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.awayActivity">
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('away')">
                                     <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/away.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Away</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.away"></h4>
                                 </div>
                             </a>
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to purple (Glitches visuals) - Removes custom status">
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.streamActivity">
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('stream')">
                                     <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/stream.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Stream</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.stream"></h4>
                                 </div>
                             </a>
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to dnd (Version Mismatch) - Removes custom status">
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.dndActivity">
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('dnd')">
                                     <img class="valorantActivityDropdown" src="https://cdn.discordapp.com/attachments/808062997180317767/1019725640326467664/dnd.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">DND</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.dnd"></h4>
                                 </div>
                             </a>
-                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" title="Changes your activity to offline - Hides you offline">
+                            <a href="#" class="customTooltip" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.offlineActivity">
                                 <div class="margin valorantDropdownItem" onclick="selectStatus('offline')">
                                     <img class="valorantActivityDropdown" src="https://cdn.aquaplays.xyz/user/offline.png">
-                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank">Offline</h4>
+                                    <h4 style="font-size: 20px; padding-top: 2px;" class="valorantRank" data-i18n="activity.offline"></h4>
                                 </div>
                             </a>
                         </div>
                         <div id="valorantName">
-                            <h3 class="valorantName textOverflow"><b><a id="username">Valorant User</a></b></h3>
+                            <h3 class="valorantName textOverflow"><b><a id="username" data-i18n="placeholder.noUserFound"></a></b></h3>
                             <h5 id="valorantTitle" class="valorantTitle"></h5>
                         </div>
                         <hr class="spacer">
                         <div class="valorantRankContainer">
                             <div class="flexCont">
                                 <img id="valorantRankImg" class="valorantRankImg">
-                                <h4 id="valorantRank" class="valorantRank">Ascendant 3</h4>
+                                <h4 id="valorantRank" class="valorantRank"></h4>
                                 <div id="mainRankDropdown" data-toggle="collapse" href="#collapseRank" role="button" aria-expanded="false" aria-controls="collapseRank" class="arrow-down arrow-downV2" onclick="this.classList.toggle('active')"></div>
                                 <div id="collapseRank" class="collapse profileRankDropdown" data-bs-parent="main">
                                 </div>
                             </div>
                             <br>
-                            <h5 class="valorantRankInfo">Vulx Rank</h5>
+                            <h5 class="valorantRankInfo">Vulx <span data-i18n="rankInfo.rank"></span></h5>
                         </div>
                         <hr style="top: 257px !important;" class="spacer">
                         <div class="valorantInfoContainer">
-                            <h4 style="font-size: 18px;">Statistics</h4>
-                            <h5 class="valorantHighlightTag">🔹 Friends: <span id="friendsCount"></span></h5>
-                            <h5 class="valorantHighlightTag">🔹 Requests: <span id="requestsCount"></span></h5>
-                            <h5 class="valorantHighlightTag">🔹 Time Elapsed: <span id="time"></span></h5>
+                            <h4 style="font-size: 18px;" data-i18n="highlight.statistics"></h4>
+                            <h5 class="valorantHighlightTag">🔹 <span data-i18n="highlight.friends"></span>: <span id="friendsCount"></span></h5>
+                            <h5 class="valorantHighlightTag">🔹 <span data-i18n="highlight.requests"></span>: <span id="requestsCount"></span></h5>
+                            <h5 class="valorantHighlightTag">🔹 <span data-i18n="highlight.timeElapsed"></span>: <span id="time"></span></h5>
                         </div>
                         <hr style="top: 362px !important;" class="spacer">
                         <div class="valorantMatchContainer">
@@ -163,25 +163,25 @@
                             <h5 id="valorantMatchStatus" class="valorantMatchStatusInfo textOverflow"></h5>
                         </div>
                         <hr id="bottomSpacer" style="top: 452px !important;" class="spacer">
-                        <h5 class="vulxAdvertising"><b>Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;" href="https://github.com/itssyfe">Syfe</a></b></h5>
+                        <h5 class="vulxAdvertising"><b><span data-i18n="advertising.text"></span> <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;" href="https://github.com/itssyfe">Syfe</a></b></h5>
                     </div>
                     <div class="draggable col-12 col-md-8">
                         <div class="profile-themes-container">
                             <ol id="profileThemes" class="listCont slippylist">
                                 <li class="profile-no-swipe" id="Status">
                                     <details>
-                                        <summary>Status <span class="instant"></span></summary>
+                                        <summary data-i18n="status.status"> <span class="instant"></span></summary>
                                         <div class="textBoxCont">
                                             <div style="width: 50%;" class="textBox">
-                                                <h5 class="textLabel">Profile Status</h5>
-                                                <input class="searchBarInput" type="text" name="status" id="valorantStatus" placeholder="Status.." value="default" autofocus> 
+                                                <h5 class="textLabel" data-i18n="status.profileStatus"></h5>
+                                                <input class="searchBarInput" type="text" name="status" id="valorantStatus" data-i18n="[placeholder]status.profileStatusPlaceholder" value="default" autofocus> 
                                             </div>
                                             <div class="textBox">
-                                                <h5 class="textLabel">Score Ally</h5>
-                                                <input class="searchBarInput" type="number" name="ally" id="valorantAlly" placeholder="Ally.." value="0" autofocus> 
+                                                <h5 class="textLabel" data-i18n="status.scoreAlly"></h5>
+                                                <input class="searchBarInput" type="number" name="ally" id="valorantAlly" data-i18n="[placeholder]status.scoreAllyPlaceholder" value="0" autofocus> 
                                             </div>
                                             <div class="textBox">
-                                                <h5 class="textLabel">Score Enemy</h5>
+                                                <h5 class="textLabel" data-i18n="status.scoreEnemy"></h5>
                                                 <input class="searchBarInput" type="number" name="enemy" id="valorantEnemy" placeholder="Enemy.." value="0" autofocus> 
                                             </div>
                                         </div>
@@ -189,11 +189,11 @@
                                 </li>
                                 <li class="profile-no-swipe" id="Account">
                                     <details>
-                                        <summary>Account <span class="instant"></span></summary>
+                                        <summary data-i18n="account.account"> <span class="instant"></span></summary>
                                         <div class="textBoxCont">
                                             <div style="width: 50%;" class="textBox">
-                                                <h5 class="textLabel">Profile Title</h5>
-                                                <a href="#" data-placement="left" data-toggle="tooltip" title="Note: This value will only show for friends that are not in your party (This will not show on your client)">                                                       
+                                                <h5 class="textLabel" data-i18n="account.title"></h5>
+                                                <a href="#" data-placement="left" data-toggle="tooltip" data-i18n="[title]tooltip.title">                                                       
                                                     <div class="dropdown hierarchy-select" id="dropdownTitles">
                                                         <button type="button" class="dropdownTitles btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                                         <div style="width: 100%; background-color: #101116;" class="dropdown-menu" aria-labelledby="dropdownButton">
@@ -209,24 +209,24 @@
                                                 </a>                           
                                             </div>
                                             <div class="textBox">
-                                                <h5 class="textLabel">Leaderboard</h5>
-                                                <input class="searchBarInput" type="number" name="position" id="valorantLeaderboard" placeholder="Position.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <h5 class="textLabel" data-i18n="account.leaderboard"></h5>
+                                                <input class="searchBarInput" type="number" name="position" id="valorantLeaderboard" data-i18n="[placeholder]account.leaderboardPlaceholder" value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
                                             </div>
                                             <div class="textBox">
-                                                <h5 class="textLabel">Account Level</h5>
-                                                <a href="#" data-placement="right" data-toggle="tooltip" title="Note: This value will only show for friends that are not in your party (This will not show on your client)">
-                                                    <input class="searchBarInput" type="number" name="level" id="valorantLevel" placeholder="Level.." value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
+                                                <h5 class="textLabel" data-i18n="account.level"></h5>
+                                                <a href="#" data-placement="right" data-toggle="tooltip" data-i18n="[title]tooltip.level">
+                                                    <input class="searchBarInput" type="number" name="level" id="valorantLevel" data-i18n="[placeholder]account.levelPlaceholder" value="0" autofocus data-autosave-url="http://127.0.0.1:/updatePresence"> 
                                                 </a>
                                             </div>
                                     </details>                                       
                                 </li>  
                                 <li class="profile-no-swipe" id="Preset">
                                     <details>
-                                        <summary>System Message <span class="instant"></span></summary>
+                                        <summary data-i18n="systemMessage.systemMessage"> <span class="instant"></span></summary>
                                         <div style="width: 100%;" class="textBox">
-                                            <h5 class="textLabel">Message</h5>
-                                            <a href="#" data-placement="bottom" data-toggle="tooltip" title="This will send a system message in your party (client sided only)">
-                                                <input class="searchBarInput" type="text" name="systemMessage" id="systemMessage" placeholder="Message.." value="" autofocus> 
+                                            <h5 class="textLabel" data-i18n="systemMessage.message"></h5>
+                                            <a href="#" data-placement="bottom" data-toggle="tooltip" data-i18n="[title]tooltip.systemMessage">
+                                                <input class="searchBarInput" type="text" name="systemMessage" id="systemMessage" data-i18n="[placeholder]systemMessage.messagePlaceholder" value="" autofocus> 
                                             </a>
                                         </div>
                                     </details>                                       
@@ -238,7 +238,7 @@
             </div>
         </div>
         <div class="footer">
-            <p style="padding-top: 15px;"><b>Vulx Profile Editor - Made with ♡ by <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;"  href="https://github.com/itssyfe">Syfe</a></b></p>
+            <p style="padding-top: 15px;"><b><span data-i18n="footer.text"></span> <a style="color: #007bff !important;" href="https://github.com/aquaplaysyt">Aqua</a> & <a style="color: #007bff !important;"  href="https://github.com/itssyfe">Syfe</a></b></p>
         </div>
         <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="bannerLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -268,7 +268,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h4>Session Debug</h4>
+                  <h4 data-i18n="debugModal.sessionDebug"></h4>
                   <p id="accountName"></p>
                   <p id="pid"></p>
                   <p id="region"></p>
@@ -276,7 +276,7 @@
                   <p id="password"></p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" data-i18n="debugModal.close"></button>
                 </div>
               </div>
             </div>
@@ -285,8 +285,8 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Account Settings</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <h5 class="modal-title" data-i18n="settings.settings"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-i18n="[aria-label]settings.close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -294,33 +294,33 @@
                 <div class="modal-body">
                     <div class="form-row">
                            <div class="form-group col-md-6">
-                            <label style="font-size: 23px" for="experimentalFeatures">Experimental Features</label>
+                            <label style="font-size: 23px" for="experimentalFeatures" data-i18n="settings.experimental"></label>
                                 <select class="form-control" name="experimentalFeatures" id="experimentalFeatures">
-                                    <option value="true">True</option>
-                                    <option value="false">False</option>
+                                    <option value="true" data-i18n="settings.yes"></option>
+                                    <option value="false" data-i18n="settings.no"></option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label style="font-size: 23px" for="discordRpc">DiscordRPC</label>
+                                <label style="font-size: 23px" for="discordRpc" data-i18n="settings.discord"></label>
                                     <select class="form-control" name="discordRpc" id="discordRpc">
-                                        <option value="true">True</option>
-                                        <option value="false">False</option>
+                                        <option value="true" data-i18n="settings.yes"></option>
+                                        <option value="false" data-i18n="settings.no"></option>
                                     </select>
                               </div>
                               <div class="form-group col-md-6">
-                                <label style="font-size: 23px" for="webTooltips">Tool Tips</label>
+                                <label style="font-size: 23px" for="webTooltips" data-i18n="settings.tooltips"></label>
                                     <select class="form-control" name="webTooltips" id="webTooltips">
-                                        <option value="true">True</option>
-                                        <option value="false">False</option>
+                                        <option value="true" data-i18n="settings.yes"></option>
+                                        <option value="false" data-i18n="settings.no"></option>
                                     </select>
                               </div>
                               <input type="hidden" id="updateType" name="updateType" value="settingsIndex">
                         </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" style="margin-right: 43%;" onClick="resetAccount()" class="btn btn-danger" data-dismiss="modal">Reset Account</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" style="margin-right: 43%;" onClick="resetAccount()" class="btn btn-danger" data-dismiss="modal" data-i18n="settings.reset"></button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" data-i18n="settings.close"></button>
+                  <button type="submit" class="btn btn-primary" data-i18n="settings.save"></button>
                 </div>
                </form>
               </div>
@@ -331,6 +331,10 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.1/i18nextHttpBackend.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script type="module" src="/js/hierarchy.js"></script>
 <script type="module" src="js/app.js"></script>

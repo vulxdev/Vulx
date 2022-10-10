@@ -17,37 +17,41 @@ function resolveIntComma(num) {
 
 function resolveRank(rankId) {
     const rankNames = {
-		"-1": 'Empty',
-        0: 'Unranked',
-        1: 'Unused 1',
-        2: 'Unused 2',
-        3: 'Iron 1',
-        4: 'Iron 2',
-        5: 'Iron 3',
-        6: 'Bronze 1',
-        7: 'Bronze 2',
-        8: 'Bronze 3',
-        9: 'Silver 1',
-        10: 'Silver 2',
-        11: 'Silver 3',
-        12: 'Gold 1',
-        13: 'Gold 2',
-        14: 'Gold 3',
-        15: 'Platinum 1',
-        16: 'Platinum 2',
-        17: 'Platinum 3',
-        18: 'Diamond 1',
-        19: 'Diamond 2',
-        20: 'Diamond 3',
-        21: 'Ascendant 1',
-        22: 'Ascendant 2',
-        23: 'Ascendant 3',
-        24: 'Immortal 1',
-        25: 'Immortal 2',
-        26: 'Immortal 3',
-        27: 'Radiant'
+		"-1": 'norank',
+        0: 'unranked',
+        1: 'special',
+        2: 'special',
+        3: 'iron',
+        4: 'iron',
+        5: 'iron',
+        6: 'bronze',
+        7: 'bronze',
+        8: 'bronze',
+        9: 'silver',
+        10: 'silver',
+        11: 'silver',
+        12: 'gold',
+        13: 'gold',
+        14: 'gold',
+        15: 'platinum',
+        16: 'platinum',
+        17: 'platinum',
+        18: 'diamond',
+        19: 'diamond',
+        20: 'diamond',
+        21: 'ascendant',
+        22: 'ascendant',
+        23: 'ascendant',
+        24: 'immortal',
+        25: 'immortal',
+        26: 'immortal',
+        27: 'radiant'
       }
       return rankNames[rankId];
+}
+
+function resolveRankNumber(rankId) {
+	return rankId < 3 ? 0 : (rankId - 2) % 3 == 0 ? 3 : (rankId - 2) % 3;
 }
 
 function getProfile() {
@@ -67,9 +71,31 @@ function getProfile() {
             document.getElementById("playerCard").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/wideart.png`;
             document.getElementById("playerCardSmall").src = `https://media.valorant-api.com/playercards/${data.playerCardId}/smallart.png`;
             document.getElementById("valorantRankImg").src = `https://cdn.aquaplays.xyz/ranks/${data.competitiveTier < 3 ? 0 : data.competitiveTier}.png`;
-            document.getElementById("valorantRank").textContent = `${resolveRank(data.competitiveTier)}${data.leaderboardPosition != 0 ? ` #${resolveIntComma(data.leaderboardPosition)}` : ''}`;
+
+			window.playerTitleId = data.playerTitleId;
+            
+			const rank = document.getElementById("valorantRank")
+			rank.innerHTML = '';
+
+			const rankTitleSpan = document.createElement("span");
+			rankTitleSpan.setAttribute("data-i18n", `ranks.${resolveRank(data.competitiveTier)}`);
+			rank.appendChild(rankTitleSpan);
+
+			if (data.competitiveTier > 0 && data.competitiveTier < 27) {
+				const rankNumberSpan = document.createElement("span");
+				rankNumberSpan.innerText = ` ${resolveRankNumber(data.competitiveTier)}`;
+				rank.appendChild(rankNumberSpan);
+			}
+
+			if (data.leaderboardPosition) {
+				const rankPositionSpan = document.createElement("span");
+				rankPositionSpan.innerText = ` #${resolveIntComma(data.leaderboardPosition)}`;
+				rank.appendChild(rankPositionSpan);
+			}
+
             document.getElementById("valorantTitle").textContent = await getTitleText(data.playerTitleId);
-                window.playerTitleId = data.playerTitleId;
+
+			$('body').localize();
 
         }).catch(function(error) {
         console.log(error);
