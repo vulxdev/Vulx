@@ -74,7 +74,8 @@ function getProfile() {
 
 			window.playerTitleId = data.playerTitleId;
             
-			const rank = document.getElementById("valorantRank").innerHTML = '';
+			const rank = document.getElementById("valorantRank")
+			rank.innerHTML = '';
 
 			const rankTitleSpan = document.createElement("span");
 			rankTitleSpan.setAttribute("data-i18n", `ranks.${resolveRank(data.competitiveTier)}`);
