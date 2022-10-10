@@ -13,7 +13,6 @@ $(function () {
 			loadPath: loadPath
 		}
 	  }, (err, t) => {
-		if (err) return console.error(err);
 		jqueryI18next.init(i18next, $, { useOptionsAttr: true });
 		$('body').localize();
 	  });
