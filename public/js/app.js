@@ -8,6 +8,7 @@ let scripts = [
     '/js/vulx.request.settings.js',
     '/js/vulx.request.session.js',
     '/js/vulx.search.js',
+	'/js/vulx.localization.js',
 ];
 
 let create = (info) => {
