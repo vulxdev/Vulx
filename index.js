@@ -23,7 +23,7 @@ const Script = require('./utils/scriptHelper');
 // definitions
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = 80;
-const link = "https://link-target.net/498106/access-vulx-dashboard";
+const link = `http://127.0.0.1:${port}/`;
 
 // express definition
 const app = express();
