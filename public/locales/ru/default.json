@@ -1,105 +1,105 @@
 {
 	"loading": {
-		"profile": "Loading Profile..."
+		"profile": "Загрузка профиля..."
 	},
 	"input": {
-		"searchFriends": "Search Friends..."
+		"searchFriends": "Найти друзей..."
 	},
 	"navbar": {
-		"presence": "Presence",
-		"settings": "Settings",
-		"sessionStats": "Session Stats"
+		"presence": "Профиль",
+		"settings": "Настройки",
+		"sessionStats": "Статистика сессии"
 	},
 	"tooltip": {
-		"banner": "This lets you change your Valorant card.",
-		"activity": "This lets you change your Valorant activity.",
-		"availableActivity": "Changes your activity to available (removes custom status).",
-		"onlineActivity": "Changes your activity to online (display custom status).",
-		"awayActivity": "Changes your activity to away (removes custom status).",
-		"streamActivity": "Changes your activity to purple (glitch visuals).",
-		"dndActivity": "Changes your activity to Do Not Disturb (removes custom status).",
-		"offlineActivity": "Changes your activity to offline (hides you offline).",
-		"title": "Note: This value will only show for friends that are not in your party (this will NOT show on your client!).",
-		"level": "Note: This value will only show for friends that are not in your party (this will NOT show on your client!).",
-		"systemMessage": "This will send a system message in your party (client sided only).",
-		"noRank": "Use this to remove your rank from your profile completely.",
-		"specialRank": "This rank is usually unavailable."
+		"banner": "Это позволяет вам поменять баннер профиля.",
+		"activity": "Это позволяет вам поменять активность профиля.",
+		"availableActivity": "Изменяет вашу активность на \"Доступен\" (удаляет пользовательский статус).",
+		"onlineActivity": "Изменяет вашу активность на \"Онлайн\" (удаляет пользовательский статус).",
+		"awayActivity": "Изменяет вашу активность на \"Недоступен\" (удаляет пользовательский статус).",
+		"streamActivity": "Изменяет вашу активность на фиолетовую (сломанный визуальный эффект).",
+		"dndActivity": "Изменяет вашу активность на \"Не беспокоить\" (удаляет пользовательский статус).",
+		"offlineActivity": "Изменяет вашу активность на \"Не в сети\" (скрывает вас).",
+		"title": "Примечание: Это значение будет отображаться только для друзей, которые не находятся в вашем отряде (это НЕ будет отображаться в игре!).",
+		"level": "Примечание: Это значение будет отображаться только для друзей, которые не находятся в вашем отряде (это НЕ будет отображаться в игре!).",
+		"systemMessage": "Это отправит системное сообщение в чат отряда (только у локального игрока).",
+		"noRank": "Используйте это, чтобы полностью удалить свое звание из вашего профиля.",
+		"specialRank": "Это звание обычно недоступно."
 	},
 	"activity": {
-		"available": "Available",
-		"online": "Online",
-		"away": "Away",
-		"stream": "Stream",
-		"dnd": "DND",
-		"offline": "Offline"
+		"available": "Доступен",
+		"online": "В сети",
+		"away": "Недоступен",
+		"stream": "Стрим",
+		"dnd": "Не беспокоить",
+		"offline": "Не в сети"
 	},
 	"highlight": {
-		"statistics": "Statistics",
-		"friends": "Friends",
-		"requests": "Requests",
-		"timeElapsed": "Time Elapsed"
+		"statistics": "Статистика",
+		"friends": "Друзья",
+		"requests": "Запросы",
+		"timeElapsed": "Прошло времени"
 	},
 	"rankInfo": {
-		"rank": "Rank"
+		"rank": "Ранг"
 	},
 	"status": {
-		"status": "Status",
-		"profileStatus": "Profile Status",
-		"profileStatusPlaceholder": "Enter some text...",
-		"scoreAlly": "Score Ally",
-		"scoreAllyPlaceholder": "Enter a number...",
-		"scoreEnemy": "Score Enemy",
-		"scoreEnemyPlaceholder": "Enter a number..."
+		"status": "Статус",
+		"profileStatus": "Статус профиля",
+		"profileStatusPlaceholder": "Введите текст...",
+		"scoreAlly": "Счет союзников",
+		"scoreAllyPlaceholder": "Введите число...",
+		"scoreEnemy": "Счет врагов",
+		"scoreEnemyPlaceholder": "Введите число..."
 	},
 	"account": {
-		"account": "Status",
-		"title": "Profile Title",
-		"leaderboard": "Leaderboard",
-		"leaderboardPlaceholder": "Enter a number to be your position...",
-		"level": "Account Level",
-		"levelPlaceholder": "Enter a number..."
+		"account": "Статус",
+		"title": "Титул профиля",
+		"leaderboard": "Лидеры",
+		"leaderboardPlaceholder": "Введите число, которое будет вашей позицией...",
+		"level": "Уровень аккаунта",
+		"levelPlaceholder": "Введите число..."
 	},
 	"systemMessage": {
-		"systemMessage": "System Message",
-		"message": "Message",
-		"messagePlaceholder": "Enter some text..."
+		"systemMessage": "Системное сообщение",
+		"message": "Сообщение",
+		"messagePlaceholder": "Введите текст..."
 	},
 	"placeholder": {
-		"noUserFound": "Valorant Player"
+		"noUserFound": "Игрок Valorant"
 	},
 	"advertising": {
-		"text": "Made with ♡ by"
+		"text": "Сделано с любовью,"
 	},
 	"footer": {
-		"text": "Vulx Profile Editor - Made with ♡ by"
+		"text": "Редактор профиля Vulx - Сделан с любовью,"
 	},
 	"debugModal": {
-		"sessionDebug": "Session Debug",
-		"close": "Close"
+		"sessionDebug": "Отладка сессии",
+		"close": "Закрыть"
 	},
 	"settings": {
-		"settings": "Account Settings",
-		"close": "Close",
-		"save": "Save",
-		"experimental": "Experimental Features",
+		"settings": "Настройки аккаунта",
+		"close": "Закрыть",
+		"save": "Сохранить",
+		"experimental": "Экспериментальные функции",
 		"discord": "Discord RPC",
-		"tooltips": "Tool Tips",
-		"yes": "Yes",
-		"no": "No",
-		"reset": "Reset config"
+		"tooltips": "Подсказки",
+		"yes": "Да",
+		"no": "Нет",
+		"reset": "Перезагрузить конфиг"
 	},
 	"ranks": {
-		"norank": "No Rank",
-		"special": "Special",
-		"unranked": "Unranked",
-		"iron": "Iron",
-		"bronze": "Bronze",
-		"silver": "Silver",
-		"gold": "Gold",
-		"platinum": "Platinum",
-		"diamond": "Diamond",
-		"ascendant": "Ascendant",
-		"immortal": "Immortal",
-		"radiant": "Radiant"
+		"norank": "Без ранга",
+		"special": "Особый",
+		"unranked": "Без звания",
+		"iron": "Железо",
+		"bronze": "Бронза",
+		"silver": "Серебро",
+		"gold": "Золото",
+		"platinum": "Платина",
+		"diamond": "Алмаз",
+		"ascendant": "Расцвет",
+		"immortal": "Бессмертный",
+		"radiant": "Радиант"
 	}
 }
