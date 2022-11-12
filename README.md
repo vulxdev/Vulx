@@ -7,7 +7,6 @@
   [![Issues][issues-shield]][issues-url]
   [![Download][release-shield]][release-url]
   [![Discord][discord-shield]][discord-url]
-  [![Crowdin][crowdin-shield]][crowdin-url]
 
   <a href="https://github.com/vulxdev/vulx">
      <img src="https://i.imgur.com/LPivmd6.png">
