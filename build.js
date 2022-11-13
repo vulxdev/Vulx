@@ -6,7 +6,7 @@ const build = exe({
     out: './build/Vulx.exe',
     pkg: ['--config', 'package.json'],
     version: '1.0.0',
-    target: 'node17-win-x64',
+    target: 'latest-win-x64',
     icon: './public/icon.ico',
     properties: {
         FileDescription: 'Vulx',
