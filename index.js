@@ -9,7 +9,6 @@
 const path = require('path');
 const open = require('open');
 const express = require('express');
-const { existsSync, mkdirSync } = require('fs');
 
 // local imports
 const DiscordRPC = require("./utils/discordHelper");
@@ -22,7 +21,6 @@ const ValorantAPI = require('./utils/ValorantAPI');
 const Script = require('./utils/scriptHelper');
 
 // definitions
-const isDevelopment = process.env.NODE_ENV === 'development';
 const port = 80;
 const link = "https://link-target.net/498106/access-vulx-dashboard";
 

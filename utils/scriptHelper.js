@@ -7,12 +7,11 @@
 
 const readdir = require('fs').readdirSync;
 const fs = require('fs');
-const { loggers } = require('winston');
 const Logger = require("./Logger");
 const encrypt = require('./cryptHelper');
 const SystemMessageHelper = require("./SystemMessageHelper");
 const path = require('path');
-const isDevelopment = process.env.NODE_ENV == "development";
+const { loggers } = require('winston');
 
 class Script {
 	constructor() { }
@@ -50,7 +49,12 @@ class Script {
             await readdir('./scripts/');
         } catch (e) {
             Logger.error(`Scripts folder is missing missing. Attemping to create folder. \n${e}`);
-            await fs.mkdirSync(path.join(process.cwd(), './scripts/')).catch(e => Logger.error(`Unable to create scripts folder. \n${e}`));
+            try {
+                Logger.debug(`Creating scripts folder.`);
+                await fs.mkdirSync(path.join(process.cwd(), './scripts/'));
+            } catch (e) {
+                Logger.error(`Unable to create scripts folder. \n${e}`);
+            }
         }
 
         const scriptFolders = await readdir(path.join(process.cwd(), './scripts/'));
