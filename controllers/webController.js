@@ -15,6 +15,10 @@ const dashboard = catchAsync(async (req, res) => {
     await res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+const script = catchAsync(async (req, res) => {
+    await res.sendFile(path.join(__dirname, '../public/scripts.html'));
+});
+
 const setup = catchAsync(async (req, res) => {
     await res.sendFile(path.join(__dirname, '../public/welcome.html'));
 });
@@ -29,6 +33,7 @@ const user = catchAsync(async (req, res) => {
 
 module.exports = {
     dashboard,
+    script,
 	setup,
 	info,
 	user,

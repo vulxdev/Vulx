@@ -24,6 +24,7 @@
         "express": "^4.17.3",
         "http-status": "^1.5.1",
         "i18next": "^21.10.0",
+        "live-plugin-manager": "^0.17.1",
         "nodemon": "^2.0.15",
         "open": "^8.4.0",
         "portfinder": "^1.0.28",

@@ -15,6 +15,10 @@ router
   .get(webController.dashboard);
 
 router
+  .route('/scripts')
+  .get(webController.script);
+
+router
   .route('/setup')
   .get(webController.setup);
 

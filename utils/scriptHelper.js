@@ -18,14 +18,14 @@ class Script {
 	async loadScript (scriptFolder, scriptName) {
 		try {
 			const props = require(process.pkg ? path.join(process.cwd(), `../scripts/${scriptFolder}/${scriptName}`) : `../scripts/${scriptFolder}/${scriptName}`);
-			if (props.cfg.enabled === true) {
+            if (props.cfg.enabled === true) {
                 // const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
                 // const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
                 // if(!isValid) {
                 //     Logger.error(`Unable to load script ${scriptFolder}/${scriptName}: File has been modified or is unsafe.`)
                 //     return;
                 // } 
-				props.run();
+                props.run();
 				Logger.info(`
                     \n Loaded Script: ${scriptName} in folder ${scriptFolder} 
                     \n Name: ${props.cfg.name} 

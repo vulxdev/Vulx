@@ -130,6 +130,8 @@ dist
 .pnp.*
 
 build/
+plugin_packages/
+scripts/
 cfg/
 hash.js
 scripts/*
