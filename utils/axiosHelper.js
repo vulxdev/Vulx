@@ -7,7 +7,6 @@
 
 const axios = require('axios');
 const https = require('https');
-
 const LockFile = require('./lockfile');
 
 class Helper {

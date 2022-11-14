@@ -8,7 +8,6 @@
 const RPC = require("discord-rpc")
 const Logger = require('./Logger')
 const ConfigHelper = require('./ConfigHelper');
-const meHelper = require("./meHelper");
 
 const rankIdToName = {
 	"-1": "Empty",
