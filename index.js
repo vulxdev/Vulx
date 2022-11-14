@@ -21,7 +21,6 @@ const ValorantAPI = require('./utils/ValorantAPI');
 const Script = require('./utils/scriptHelper');
 
 // definitions
-const isDevelopment = process.env.NODE_ENV === 'development';
 const port = 80;
 const link = `http://127.0.0.1:${port}/`;
 
@@ -62,3 +61,4 @@ app.listen(port, () => {
 	if(process.pkg)
 		open(link);
 });
+module.exports = app;

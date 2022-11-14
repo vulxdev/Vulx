@@ -7,21 +7,21 @@
 
 const readdir = require('fs').readdirSync;
 const fs = require('fs');
-const { loggers } = require('winston');
 const Logger = require("./Logger");
 const encrypt = require('./cryptHelper');
 const SystemMessageHelper = require("./SystemMessageHelper");
-const isDevelopment = process.env.NODE_ENV == "development";
+const path = require('path');
+const { loggers } = require('winston');
 
 class Script {
 	constructor() { }
 
 	async loadScript (scriptFolder, scriptName) {
 		try {
-			const props = require(`../scripts/${scriptFolder}/${scriptName}`);
+			const props = require(path.join(process.cwd(), `../scripts/${scriptFolder}/${scriptName}`));
 			if (props.cfg.enabled === true) {
-                const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
-                const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
+                // const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
+                // const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
                 // if(!isValid) {
                 //     Logger.error(`Unable to load script ${scriptFolder}/${scriptName}: File has been modified or is unsafe.`)
                 //     return;
@@ -49,13 +49,18 @@ class Script {
             await readdir('./scripts/');
         } catch (e) {
             Logger.error(`Scripts folder is missing missing. Attemping to create folder. \n${e}`);
-            await fs.mkdirSync('./scripts/').catch(e => Logger.error(`Unable to create scripts folder. \n${e}`));
+            try {
+                Logger.debug(`Creating scripts folder.`);
+                await fs.mkdirSync(path.join(process.cwd(), './scripts/'));
+            } catch (e) {
+                Logger.error(`Unable to create scripts folder. \n${e}`);
+            }
         }
 
-        const scriptFolders = await readdir('./scripts/');
+        const scriptFolders = await readdir(path.join(process.cwd(), './scripts/'));
         Logger.info(`Loading a total of ${scriptFolders.length} scripts.`);
         scriptFolders.forEach(async (f) => {
-            const scriptFiles = await readdir(`./scripts/${f}/`);
+            const scriptFiles = await readdir(path.join(process.cwd(), `./scripts/${f}/`));
             scriptFiles.forEach(async (j) => {
                 if (!j.endsWith('.js')) return;
                 const response = await this.loadScript(f, j);
