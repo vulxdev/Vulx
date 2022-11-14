@@ -9,6 +9,7 @@
 const path = require('path');
 const open = require('open');
 const express = require('express');
+const { existsSync, mkdirSync } = require('fs');
 
 // local imports
 const DiscordRPC = require("./utils/discordHelper");
@@ -62,3 +63,4 @@ app.listen(port, () => {
 	if(process.pkg)
 		open(link);
 });
+module.exports = app;

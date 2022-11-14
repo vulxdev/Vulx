@@ -132,3 +132,4 @@ dist
 build/
 cfg/
 hash.js
+scripts/*
