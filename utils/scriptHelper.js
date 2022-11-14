@@ -11,14 +11,13 @@ const Logger = require("./Logger");
 const encrypt = require('./cryptHelper');
 const SystemMessageHelper = require("./SystemMessageHelper");
 const path = require('path');
-const { loggers } = require('winston');
 
 class Script {
 	constructor() { }
 
 	async loadScript (scriptFolder, scriptName) {
 		try {
-			const props = require(path.join(process.cwd(), `../scripts/${scriptFolder}/${scriptName}`));
+			const props = require(process.pkg ? path.join(process.cwd(), `../scripts/${scriptFolder}/${scriptName}`) : `../scripts/${scriptFolder}/${scriptName}`);
 			if (props.cfg.enabled === true) {
                 // const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
                 // const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
