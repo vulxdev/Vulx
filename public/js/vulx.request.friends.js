@@ -22,7 +22,7 @@ function getTitleText(title) {
 }
 
 function getSelfPuuid() {
-    return fetch('http://127.0.0.1:/userSession')
+    return fetch("http://" + window.location.host + "/userSession")
         .then(res => res.json())
         .then(res => res.session.puuid)
 }
@@ -37,7 +37,7 @@ function newElement(type, className, id, src, style, textContent) {
     return element;
 }
 
-fetch("http://127.0.0.1:/friends")
+fetch("http://" + window.location.host + "/friends")
     .then(res => res.json())
     .then(async res => {
         var selfPuuid = await getSelfPuuid()

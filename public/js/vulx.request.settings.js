@@ -55,7 +55,7 @@ function resolveRankNumber(rankId) {
 }
 
 function getProfile() {
-    fetch("http://127.0.0.1:/currentSettings").then(function(response) {
+    fetch("http://" + window.location.host + "/currentSettings").then(function(response) {
         return response.json();
         }).then(async function(data) {
             //grabs & sets the profile variables

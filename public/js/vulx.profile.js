@@ -1,4 +1,4 @@
-/* 
+/* resolve
  * Copyright (C) Vulx - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -8,7 +8,7 @@
 const searchBar = document.querySelector('input[type="text"]');
 import ranksJson from '../json/ranks.json' assert {type: 'json'};
 
-window.autosaveUrl = "http://127.0.0.1:/updatePresence";
+window.autosaveUrl = "http://" + window.location.host + "/updatePresence";
 
 function delay(time) {
     return new Promise(function (resolve) {
@@ -48,7 +48,7 @@ function closeSearchBar() {
 } window.closeSearchBar = closeSearchBar;
 
 async function selectRank(id) {
-    await fetch('http://127.0.0.1:/updatePresence', {
+    await fetch("http://" + window.location.host + "/updatePresence", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -69,7 +69,7 @@ async function selectRank(id) {
 } window.selectRank = selectRank;
 
 function selectStatus(id) {
-    fetch('http://127.0.0.1:/updateStatus', {
+    fetch("http://" + window.location.host + "/updateStatus", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -270,7 +270,7 @@ fetch('https://valorant-api.com/v1/playertitles').then(res => res.json()).then(r
         });
 });
 
-fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).then(response => {
+fetch("http://" + window.location.host + "/timePlaying").then(res => res.json()).then(response => {
     var display = document.querySelector('#time');
     function startTimer(display) {
         var diff, hours, minutes, seconds;
@@ -294,11 +294,11 @@ fetch('http://127.0.0.1:/timePlaying').then(res => res.json()).then(response => 
     startTimer(display);
 });
 
-fetch('http://127.0.0.1:/friends').then(res => res.json()).then(response => {
+fetch("http://" + window.location.host + "/friends").then(res => res.json()).then(response => {
     document.querySelector('#friendsCount').textContent = response.friends.length;
 });
 
-fetch('http://127.0.0.1:/requests').then(res => res.json()).then(response => {
+fetch("http://" + window.location.host + "/requests").then(res => res.json()).then(response => {
     document.querySelector('#requestsCount').textContent = response.count;
 });
 
@@ -344,7 +344,7 @@ document.querySelectorAll(".searchBarInput").forEach((inputField) => {
     }
 
     if(name == "systemMessage") {
-        window.autosaveUrl = "http://127.0.0.1:/sendSystemMessage";
+        window.autosaveUrl = "http://" + window.location.host + "/sendSystemMessage";
         bodyRes = JSON.stringify({
             message: value,
         });

@@ -6,7 +6,7 @@
 */
 
 async function resetAccount() {
-    await fetch('http://127.0.0.1:/resetAccount', {
+    await fetch("http://" + window.location.host + "/resetAccount", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

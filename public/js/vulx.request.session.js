@@ -30,7 +30,7 @@ function Notification(type, message) {
     }
 } window.Notification = Notification;
 
-fetch("http://127.0.0.1:/userSession").then(function(response) {
+fetch("http://" + window.location.host + "/userSession").then(function(response) {
     return response.json();
     }).then(function(data) {
         if(data.config.firstLaunch == true) {
