@@ -64,6 +64,6 @@ fetch("http://" + window.location.host + "/userSession").then(function(response)
         document.getElementById("experimentalFeatures").value = data.config.experimental;
         document.getElementById("webTooltips").value = data.config.webTooltips;
         document.getElementById("scripts").value = data.config.scripts;
-    }).catch(function() {
-    console.log("Error.");
+    }).catch(function(error) {
+    console.log(error);
 });

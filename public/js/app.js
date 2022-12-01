@@ -3,12 +3,12 @@ let scripts = [
     '/js/slip.js', 
     '/js/vulx.welcome.js',
     '/js/vulx.profile.js',
+    '/js/vulx.localization.js',
     '/js/vulx.request.friends.js',
     '/js/vulx.request.reset.js',
     '/js/vulx.request.settings.js',
     '/js/vulx.request.session.js',
     '/js/vulx.search.js',
-	'/js/vulx.localization.js',
 ];
 
 let create = (info) => {

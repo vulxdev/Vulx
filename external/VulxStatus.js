@@ -5,8 +5,8 @@
  * Written by Vulx Team <vulxdev@gmail.com>, 2022
 */
 
-const ConfigHelper = require("./configHelper");
-const meHelper = require("./meHelper");
+const ConfigHelper = require("../utils/configHelper");
+const meHelper = require("../utils/meHelper");
 
 const updateStatusMessage = async (message) => {
     const valConfig = await ConfigHelper.getValorantConfig();

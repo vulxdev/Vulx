@@ -6,9 +6,9 @@
 */
 
 // library definitions
+const express = require('express');
 const path = require('path');
 const open = require('open');
-const express = require('express');
 
 // local imports
 const DiscordRPC = require("./utils/discordHelper");
@@ -24,8 +24,10 @@ const Script = require('./utils/scriptHelper');
 const port = 80;
 const link = `http://127.0.0.1:${port}/`;
 
+// external helper imports
+const app = require('./external/VulxExpress');
+
 // express definition
-const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
