@@ -28,7 +28,10 @@ class SystemMessageHelper {
 
 	async sendSystemMessage(message) {
 		await this._initialize();
-		const conversations = await this.vulxAxios.get("/chat/v6/conversations").then(res => res.data);
+		const conversations = await this.vulxAxios.get("/chat/v6/conversations").then(res => res.data).catch(() => Logger.error("Failed to get conversations"));
+		
+		if (!conversations.conversations[0]) return Logger.error("No conversations found");
+
 		await this.vulxAxios.post("/chat/v6/messages", {
 			cid: conversations.conversations[0].cid,
 			type: "system", // suprised this is undocumented, ok thanks, this is now kyles, yoink, k bi thx x

@@ -12,20 +12,23 @@ const encrypt = require('./cryptHelper');
 const SystemMessageHelper = require("./SystemMessageHelper");
 const path = require('path');
 
+const vulxScriptsPathProd = `${homedir()}/AppData/Local/Vulx/scripts/`;
+const vulxScriptsPathDev = `${process.cwd()}/scripts/`;
+
 class Script {
 	constructor() { }
 
 	async loadScript (scriptFolder, scriptName) {
 		try {
-			const props = require(process.pkg ? path.join(process.cwd(), `../scripts/${scriptFolder}/${scriptName}`) : `../scripts/${scriptFolder}/${scriptName}`);
-            if (props.cfg.enabled === true) {
+			const props = require(process.pkg ? `${vulxScriptsPathProd}/${scriptFolder}/${scriptName}` : `${vulxScriptsPathDev}/${scriptFolder}/${scriptName}`);
+            if (props.config === true) {
                 // const hash = encrypt.computeScriptSHA512(__dirname + `/../scripts/${scriptFolder}`);
                 // const isValid = encrypt.checkScriptIntegrity(__dirname + `/../scripts/${scriptFolder}`, hash);
                 // if(!isValid) {
                 //     Logger.error(`Unable to load script ${scriptFolder}/${scriptName}: File has been modified or is unsafe.`)
                 //     return;
                 // } 
-                props.run();
+                props.execute();
 				Logger.info(`
                     \n Loaded Script: ${scriptName} in folder ${scriptFolder} 
                     \n Name: ${props.cfg.name} 
