@@ -131,7 +131,7 @@ class Client {
 			await new Promise(resolve => setTimeout(resolve, 1000));
 			return await this._getExternalSession();
 		}
-		return await res.data[Object.keys(res.data)[0]];
+		return await res.data[Object.keys(res.data)[1]];
 	}
     async _refreshEntitlement() {
         const response = await this.vulxAxios.get("/entitlements/v1/token");

@@ -13,7 +13,7 @@ const fs = require("fs");
 const isDevelopment = process.env.NODE_ENV == "development";
 const hostname = os.hostname();
 
-const vulxLogsPath = `${os.homedir()}/AppData/Local/Vulx/logs/`;
+const vulxLogsPath = `${os.homedir()}/AppData/Local/ProjectX/logs/`;
 
 if (!fs.existsSync(vulxLogsPath)) {
 	fs.mkdirSync(vulxLogsPath, { recursive: true });
@@ -22,7 +22,7 @@ if (!fs.existsSync(vulxLogsPath)) {
 const Logger = winston.createLogger({
   level: isDevelopment ? "debug" : "info",
   format: winston.format.json(),
-  defaultMeta: { service: 'vulx' },
+  defaultMeta: { service: 'ProjectX' },
   transports: [
     new winston.transports.File({ filename: vulxLogsPath + "error.log", level: "error" }),
     new winston.transports.DailyRotateFile({ filename: vulxLogsPath + "combined-%DATE%.log", level: "debug", datePattern: "YYYY-MM-DD", maxFiles: "7d" }),
