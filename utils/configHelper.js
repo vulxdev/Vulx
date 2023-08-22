@@ -8,7 +8,7 @@
 const fs = require('fs');
 const { homedir } = require('os');
 
-const vulxConfigPath = `${homedir()}/AppData/Local/Vulx/config/`;
+const vulxConfigPath = `${homedir()}/AppData/Local/ProjectX/config/`;
 
 class Helper {
 	constructor() {
